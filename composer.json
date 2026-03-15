@@ -1,0 +1,31 @@
+{
+    "name": "philicevic/faceit-php",
+    "description": "A PHP SDK for FACEITs api.",
+    "version": "0.1.0",
+    "type": "library",
+    "require": {
+        "saloonphp/saloon": "^3.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Philicevic\\FaceitPhp\\": "src/",
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Philipp Ehrenberg",
+            "email": "ehrenberg.ph@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "pestphp/pest": "^4.4",
+        "symfony/var-dumper": "^7.4"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
