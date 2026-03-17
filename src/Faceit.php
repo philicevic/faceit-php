@@ -4,15 +4,12 @@ namespace Philicevic\FaceitPhp;
 
 use Philicevic\FaceitPhp\Resources\MatchResource;
 use Philicevic\FaceitPhp\Resources\PlayerResource;
-use Saloon\Contracts\Authenticator;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 
 class Faceit extends Connector
 {
-    public function __construct(public readonly string $token)
-    {
-    }
+    public function __construct(public readonly string $token) {}
 
     public function resolveBaseUrl(): string
     {

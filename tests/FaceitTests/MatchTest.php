@@ -1,8 +1,8 @@
 <?php
 
+use Philicevic\FaceitPhp\DTO\Match\Info;
 use Philicevic\FaceitPhp\DTO\Match\Round;
-use Philicevic\FaceitPhp\DTO\Match\Stats\PlayerStats;
-use Philicevic\FaceitPhp\DTO\Match\Stats\RoundStats;
+use Philicevic\FaceitPhp\DTO\Match\Stats\MatchStats;
 use Philicevic\FaceitPhp\Requests\GetMatchDetailsRequest;
 use Philicevic\FaceitPhp\Requests\GetMatchStatsRequest;
 use Saloon\Http\Faking\MockClient;
@@ -19,7 +19,7 @@ test('can get match details', function () {
 
     $match = $this->faceit->match()->get('1-bb13fd78-e183-4d37-8a4b-ceed67da5265');
 
-    expect($match)->toBeInstanceOf(\Philicevic\FaceitPhp\DTO\Match\Info::class);
+    expect($match)->toBeInstanceOf(Info::class);
 });
 
 test('can get match stats', function () {
@@ -27,7 +27,7 @@ test('can get match stats', function () {
         GetMatchStatsRequest::class => MockResponse::fixture('match_stats'),
     ]);
     $matchStats = $this->faceit->match()->getStats('1-bb13fd78-e183-4d37-8a4b-ceed67da5265');
-    expect($matchStats)->toBeInstanceOf(\Philicevic\FaceitPhp\DTO\Match\Stats\MatchStats::class);
+    expect($matchStats)->toBeInstanceOf(MatchStats::class);
 });
 
 test('match stats contain rounds', function () {
@@ -63,7 +63,7 @@ test('players contain player stats as array', function () {
         GetMatchStatsRequest::class => MockResponse::fixture('match_stats'),
     ]);
     $matchStats = $this->faceit->match()->getStats('1-bb13fd78-e183-4d37-8a4b-ceed67da5265');
-    
+
     $round = $matchStats->rounds[0];
     $player = $round->teams[0]->players[0];
     expect($player->stats)->toBeArray()

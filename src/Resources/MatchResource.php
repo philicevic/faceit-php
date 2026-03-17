@@ -13,6 +13,7 @@ class MatchResource extends BaseResource
     {
         $request = new GetMatchDetailsRequest($uuid);
         $response = $this->connector->send($request);
+
         return $request->createDtoFromResponse($response);
     }
 
@@ -20,6 +21,7 @@ class MatchResource extends BaseResource
     {
         $request = new GetMatchStatsRequest($uuid);
         $response = $this->connector->send($request);
+
         return $request->createDtoFromResponse($response);
     }
 }

@@ -5,9 +5,6 @@ namespace Philicevic\FaceitPhp\Requests;
 use Philicevic\FaceitPhp\DTO\Match\Player;
 use Philicevic\FaceitPhp\DTO\Match\Round;
 use Philicevic\FaceitPhp\DTO\Match\Stats\MatchStats;
-use Philicevic\FaceitPhp\DTO\Match\Stats\PlayerStats;
-use Philicevic\FaceitPhp\DTO\Match\Stats\RoundStats;
-use Philicevic\FaceitPhp\DTO\Match\Stats\TeamStats;
 use Philicevic\FaceitPhp\DTO\Match\Team;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
@@ -15,15 +12,13 @@ use Saloon\Http\Response;
 
 class GetMatchStatsRequest extends Request
 {
-    public function __construct(protected readonly string $uuid)
-    {
-    }
+    public function __construct(protected readonly string $uuid) {}
 
     protected Method $method = Method::GET;
 
     public function resolveEndpoint(): string
     {
-        return '/matches/' . $this->uuid . '/stats';
+        return '/matches/'.$this->uuid.'/stats';
     }
 
     public function createDtoFromResponse(Response $response): MatchStats
@@ -31,13 +26,13 @@ class GetMatchStatsRequest extends Request
         $data = $response->json();
         // dump($data['rounds']);die();
 
-        $rounds = array_map(function($item) {
-            $teams = array_map(function($team) {
+        $rounds = array_map(function ($item) {
+            $teams = array_map(function ($team) {
                 return new Team(
                     uuid: $team['team_id'],
                     premade: $team['premade'],
                     stats: $team['team_stats'],
-                    players: array_map(function($player) {
+                    players: array_map(function ($player) {
                         return new Player(
                             uuid: $player['player_id'],
                             nickname: $player['nickname'],
@@ -46,6 +41,7 @@ class GetMatchStatsRequest extends Request
                     }, $team['players']),
                 );
             }, $item['teams']);
+
             return new Round(
                 bestOf: $item['best_of'],
                 competitionId: $item['competition_id'],
@@ -53,7 +49,7 @@ class GetMatchStatsRequest extends Request
                 gameMode: $item['game_mode'],
                 matchId: $item['match_id'],
                 matchRound: $item['match_round'],
-                played: $item['played'] == "1",
+                played: $item['played'] == '1',
                 stats: $item['round_stats'],
                 teams: $teams,
             );

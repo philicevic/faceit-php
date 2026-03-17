@@ -2,20 +2,10 @@
 
 namespace Philicevic\FaceitPhp\DTO\Match;
 
-use Philicevic\FaceitPhp\DTO\Match\Stats\RoundStats;
-
 class Round
 {
     /**
-     * @param int $bestOf
-     * @param string $competitionId
-     * @param string $gameId
-     * @param string $gameMode
-     * @param string $matchId
-     * @param int $matchRound
-     * @param bool $played
-     * @param array $stats
-     * @param array<Team> $teams
+     * @param  array<Team>  $teams
      */
     public function __construct(
         public int $bestOf,
@@ -27,7 +17,5 @@ class Round
         public bool $played,
         public array $stats,
         public array $teams,
-    )
-    {
-    }
+    ) {}
 }

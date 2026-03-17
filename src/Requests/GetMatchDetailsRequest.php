@@ -9,15 +9,13 @@ use Saloon\Http\Response;
 
 class GetMatchDetailsRequest extends Request
 {
-    public function __construct(protected readonly string $uuid)
-    {
-    }
+    public function __construct(protected readonly string $uuid) {}
 
     protected Method $method = Method::GET;
 
     public function resolveEndpoint(): string
     {
-        return '/matches/' . $this->uuid;
+        return '/matches/'.$this->uuid;
     }
 
     public function createDtoFromResponse(Response $response): Info

@@ -12,6 +12,7 @@ class PlayerResource extends BaseResource
     {
         $request = new GetPlayerRequest($uuid);
         $response = $this->connector->send($request);
+
         return $request->createDtoFromResponse($response);
     }
 }

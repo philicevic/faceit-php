@@ -2,7 +2,8 @@
 
 namespace Philicevic\FaceitPhp\DTO\Match;
 
-readonly class Info {
+readonly class Info
+{
     public function __construct(
         public string $uuid,
         public string $competitionId,
@@ -10,5 +11,5 @@ readonly class Info {
         public string $competitionType,
         public int $bestOf,
         public string $status,
-    ){}
+    ) {}
 }
