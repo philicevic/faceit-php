@@ -3,6 +3,7 @@
 namespace Philicevic\FaceitPhp;
 
 use Philicevic\FaceitPhp\Resources\MatchResource;
+use Philicevic\FaceitPhp\Resources\PlayerResource;
 use Saloon\Contracts\Authenticator;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
@@ -34,5 +35,10 @@ class Faceit extends Connector
     public function match(): MatchResource
     {
         return new MatchResource($this);
+    }
+
+    public function player(): PlayerResource
+    {
+        return new PlayerResource($this);
     }
 }
