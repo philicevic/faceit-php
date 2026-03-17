@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\Requests;
 
-use Philicevic\FaceitPhp\DTO\MatchInfo;
+use Philicevic\FaceitPhp\DTO\Match\Info;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
@@ -20,11 +20,11 @@ class GetMatchDetailsRequest extends Request
         return '/matches/' . $this->uuid;
     }
 
-    public function createDtoFromResponse(Response $response): mixed
+    public function createDtoFromResponse(Response $response): Info
     {
         $data = $response->json();
 
-        return new MatchInfo(
+        return new Info(
             uuid: $data['match_id'],
             competitionId: $data['competition_id'],
             competitionName: $data['competition_name'],
