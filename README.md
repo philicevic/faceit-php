@@ -37,7 +37,7 @@ A PHP SDK for the [FACEIT Data API v4](https://open.faceit.com/) with typed resp
 
 ## Requirements
 
-- PHP 8.2+
+- PHP 8.3+
 
 ## Installation
 
