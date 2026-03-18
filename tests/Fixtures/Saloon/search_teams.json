@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"team_id\":\"team-1\",\"name\":\"Team Alpha\",\"game\":\"cs2\",\"avatar\":\"https://cdn.faceit.com/team.jpg\",\"faceit_url\":\"https://www.faceit.com/en/teams/team-1\",\"verified\":false}]}",
+    "context": []
+}

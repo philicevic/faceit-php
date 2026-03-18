@@ -2,6 +2,15 @@
 
 namespace Philicevic\FaceitPhp;
 
+use Philicevic\FaceitPhp\DTO\PaginatedResponse;
+use Philicevic\FaceitPhp\Enums\SearchType;
+use Philicevic\FaceitPhp\Requests\SearchChampionshipsRequest;
+use Philicevic\FaceitPhp\Requests\SearchClansRequest;
+use Philicevic\FaceitPhp\Requests\SearchHubsRequest;
+use Philicevic\FaceitPhp\Requests\SearchOrganizersRequest;
+use Philicevic\FaceitPhp\Requests\SearchPlayersRequest;
+use Philicevic\FaceitPhp\Requests\SearchTeamsRequest;
+use Philicevic\FaceitPhp\Requests\SearchTournamentsRequest;
 use Philicevic\FaceitPhp\Resources\MatchResource;
 use Philicevic\FaceitPhp\Resources\PlayerResource;
 use Philicevic\FaceitPhp\Resources\TournamentResource;
@@ -43,5 +52,37 @@ class Faceit extends Connector
     public function tournament(): TournamentResource
     {
         return new TournamentResource($this);
+    }
+
+    /**
+     * Search across FACEIT entities.
+     *
+     * Supported $filters keys per type:
+     *   Championship: game, region, type
+     *   Clan:         game, region
+     *   Hub:          game, region
+     *   Organizer:    (none)
+     *   Player:       game, country
+     *   Team:         game
+     *   Tournament:   game, region, type
+     */
+    public function search(
+        string $query,
+        SearchType $type = SearchType::Player,
+        int $offset = 0,
+        int $limit = 20,
+        array $filters = [],
+    ): PaginatedResponse {
+        $request = match ($type) {
+            SearchType::Championship => new SearchChampionshipsRequest($query, $offset, $limit, $filters),
+            SearchType::Clan => new SearchClansRequest($query, $offset, $limit, $filters),
+            SearchType::Hub => new SearchHubsRequest($query, $offset, $limit, $filters),
+            SearchType::Organizer => new SearchOrganizersRequest($query, $offset, $limit, $filters),
+            SearchType::Player => new SearchPlayersRequest($query, $offset, $limit, $filters),
+            SearchType::Team => new SearchTeamsRequest($query, $offset, $limit, $filters),
+            SearchType::Tournament => new SearchTournamentsRequest($query, $offset, $limit, $filters),
+        };
+
+        return $request->createDtoFromResponse($this->send($request));
     }
 }

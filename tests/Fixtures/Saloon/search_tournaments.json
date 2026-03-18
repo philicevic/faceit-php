@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"competition_id\":\"tournament-1\",\"competition_type\":\"tournament\",\"name\":\"Weekly #1\",\"game\":\"cs2\",\"region\":\"EU\",\"status\":\"upcoming\",\"prize_type\":\"money\",\"organizer_id\":\"org-1\"}]}",
+    "context": []
+}

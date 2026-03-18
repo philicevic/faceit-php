@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"organizer_id\":\"org-1\",\"name\":\"FACEIT\",\"avatar\":\"https://cdn.faceit.com/org.jpg\",\"active\":true,\"games\":[\"cs2\"],\"regions\":[\"EU\"]}]}",
+    "context": []
+}

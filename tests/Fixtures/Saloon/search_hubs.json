@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"competition_id\":\"hub-1\",\"competition_type\":\"hub\",\"name\":\"EU CS2 Hub\",\"game\":\"cs2\",\"region\":\"EU\",\"status\":\"active\",\"slots\":20}]}",
+    "context": []
+}

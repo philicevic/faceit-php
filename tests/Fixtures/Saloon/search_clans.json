@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"id\":\"clan-1\",\"name\":\"Example Clan\",\"avatar\":\"https://cdn.faceit.com/clan.jpg\",\"game\":\"cs2\",\"region\":\"eu\",\"members_count\":50,\"type\":\"community\",\"join\":\"invite\",\"organizer_id\":\"org-1\"}]}",
+    "context": []
+}
