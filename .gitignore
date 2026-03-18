@@ -3,3 +3,4 @@ vendor
 .phpunit.cache
 .DS_STORE
 .idea
+AGENTS.md
