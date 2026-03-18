@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"tournament_id\":\"tournament-1\",\"name\":\"Weekly Cup #1\",\"game_id\":\"cs2\",\"region\":\"EU\",\"status\":\"finished\",\"faceit_url\":\"https://www.faceit.com/en/championship/tournament-1\",\"featured_image\":\"https://cdn.faceit.com/tournament1.jpg\",\"cover_image\":\"https://cdn.faceit.com/tournament1_cover.jpg\",\"description\":\"Weekly competitive cup for CS2 players.\",\"membership_type\":\"free\",\"match_type\":\"5v5\",\"prize_type\":\"cash\",\"invite_type\":\"open\",\"organizer_id\":\"organizer-abc123\",\"team_size\":5,\"max_skill\":10,\"min_skill\":1,\"number_of_players\":160,\"number_of_players_joined\":160,\"number_of_players_checkedin\":140,\"number_of_players_participants\":160,\"anticheat_required\":true,\"calculate_elo\":false,\"custom\":false,\"started_at\":1710000000,\"whitelist_countries\":[\"DE\",\"GB\",\"FR\"]}",
+    "context": []
+}

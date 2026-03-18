@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"game\":\"cs2\",\"name\":\"Weekly Cup #1\",\"status\":\"finished\",\"matches\":[{\"match_id\":\"1-aa11bb22-cc33-dd44-ee55-ff6677889900\",\"faceit_url\":\"https://www.faceit.com/en/cs2/room/1-aa11bb22-cc33-dd44-ee55-ff6677889900\",\"round\":1,\"position\":1,\"state\":\"FINISHED\",\"results\":{\"winner\":\"faction1\",\"score\":{\"faction1\":13,\"faction2\":7}}},{\"match_id\":\"1-bb22cc33-dd44-ee55-ff66-778899001122\",\"faceit_url\":\"https://www.faceit.com/en/cs2/room/1-bb22cc33-dd44-ee55-ff66-778899001122\",\"round\":1,\"position\":2,\"state\":\"FINISHED\",\"results\":{\"winner\":\"faction2\",\"score\":{\"faction1\":9,\"faction2\":13}}}],\"rounds\":[{\"round\":1,\"label\":\"Round of 16\",\"matches\":8,\"best_of\":1,\"start_time\":1710001000,\"starts_asap\":false,\"substitution_time\":300,\"substitutions_allowed\":true},{\"round\":2,\"label\":\"Quarter-Finals\",\"matches\":4,\"best_of\":1,\"start_time\":1710002000,\"starts_asap\":false,\"substitution_time\":300,\"substitutions_allowed\":false}]}",
+    "context": []
+}

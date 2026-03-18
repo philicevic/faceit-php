@@ -24,6 +24,12 @@ A PHP SDK for the [FACEIT Data API v4](https://open.faceit.com/) with typed resp
 - [Match API](#match-api)
   - [Get match details](#get-match-details)
   - [Get match stats](#get-match-stats)
+- [Tournament API](#tournament-api)
+  - [List tournaments](#list-tournaments)
+  - [Get tournament details](#get-tournament-details)
+  - [Get tournament brackets](#get-tournament-brackets)
+  - [Get tournament matches](#get-tournament-matches)
+  - [Get tournament teams](#get-tournament-teams)
 - [Paginated responses](#paginated-responses)
 - [Available methods](#available-methods)
 - [Error handling](#error-handling)
@@ -135,6 +141,7 @@ Available entrypoints:
 
 - `$faceit->player()`
 - `$faceit->match()`
+- `$faceit->tournament()`
 
 ## Player API
 
@@ -312,6 +319,95 @@ foreach ($stats->rounds as $round) {
 }
 ```
 
+## Tournament API
+
+### List tournaments
+
+```php
+$response = $faceit->tournament()->list(game: 'cs2', region: 'EU', offset: 0, limit: 20);
+
+foreach ($response->items as $tournament) {
+    echo $tournament->name;
+    echo $tournament->status;
+    echo $tournament->startedAt->format(DATE_ATOM);
+}
+```
+
+### Get tournament details
+
+```php
+$tournament = $faceit->tournament()->get('tournament-id');
+
+echo $tournament->name;
+echo $tournament->organizerId;
+echo $tournament->anticheatRequired ? 'anticheat required' : 'no anticheat';
+echo $tournament->startedAt->format(DATE_ATOM);
+```
+
+Optionally expand related objects (`organizer`, `game`):
+
+```php
+$tournament = $faceit->tournament()->get('tournament-id', expanded: 'organizer,game');
+```
+
+### Get tournament brackets
+
+```php
+$brackets = $faceit->tournament()->getBrackets('tournament-id');
+
+echo $brackets->name;
+echo $brackets->status;
+
+foreach ($brackets->rounds as $round) {
+    echo $round->label;
+    echo $round->bestOf;
+}
+
+foreach ($brackets->matches as $match) {
+    echo $match->state;
+    echo $match->results?->winner;
+}
+```
+
+### Get tournament matches
+
+```php
+$response = $faceit->tournament()->getMatches('tournament-id', offset: 0, limit: 20);
+
+foreach ($response->items as $match) {
+    echo $match->competitionName;
+    echo $match->status;
+    echo $match->results->winner;
+
+    foreach ($match->teams as $team) {
+        echo $team->name;
+
+        foreach ($team->players as $player) {
+            echo $player->nickname;
+        }
+    }
+}
+```
+
+### Get tournament teams
+
+Teams are grouped by their registration status.
+
+```php
+$teams = $faceit->tournament()->getTeams('tournament-id');
+
+foreach ($teams->checkedIn as $team) {
+    echo $team->nickname;
+    echo $team->skillLevel;
+}
+
+foreach ($teams->joined as $team) {
+    echo $team->nickname;
+}
+
+// Also available: $teams->started, $teams->finished
+```
+
 ## Paginated responses
 
 Methods that return collections use `Philicevic\FaceitPhp\DTO\PaginatedResponse`.
@@ -357,6 +453,16 @@ $faceit->player()->getTournaments(string $playerId, int $offset = 0, int $limit 
 ```php
 $faceit->match()->get(string $uuid);
 $faceit->match()->getStats(string $uuid);
+```
+
+### `tournament()`
+
+```php
+$faceit->tournament()->list(?string $game = null, ?string $region = null, int $offset = 0, int $limit = 20);
+$faceit->tournament()->get(string $tournamentId, ?string $expanded = null);
+$faceit->tournament()->getBrackets(string $tournamentId);
+$faceit->tournament()->getMatches(string $tournamentId, int $offset = 0, int $limit = 20);
+$faceit->tournament()->getTeams(string $tournamentId, int $offset = 0, int $limit = 20);
 ```
 
 ## Error handling
