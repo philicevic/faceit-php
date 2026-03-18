@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"stats\":{\"Kills\":\"22\",\"K/D Ratio\":\"1.4\"}}]}",
+    "context": []
+}

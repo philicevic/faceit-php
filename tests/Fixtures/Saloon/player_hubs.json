@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"hub_id\":\"hub-1\",\"name\":\"EU Community Hub\",\"avatar\":\"https://cdn.faceit.com/hub.jpg\",\"cover_image\":\"https://cdn.faceit.com/hub-cover.jpg\",\"background_image\":\"https://cdn.faceit.com/hub-bg.jpg\",\"faceit_url\":\"https://www.faceit.com/en/hub/hub-1\",\"description\":\"Friendly hub\",\"game_id\":\"cs2\",\"region\":\"EU\"}]}",
+    "context": []
+}

@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"player_id\":\"a58f6134-4f31-4611-8431-b0a9630bea77\",\"nickname\":\"xqsp4m\",\"avatar\":\"https://cdn.faceit.com/avatar.jpg\",\"country\":\"de\",\"cover_image\":\"https://cdn.faceit.com/cover.jpg\",\"activated_at\":\"2024-01-01T00:00:00Z\",\"faceit_url\":\"https://www.faceit.com/en/players/xqsp4m\",\"games\":{\"cs2\":{\"faceit_elo\":2437,\"game_player_id\":\"76561198052422727\",\"game_player_name\":\"xqsp4m\",\"game_profile_id\":\"\",\"region\":\"EU\",\"regions\":{},\"skill_level\":10,\"skill_level_label\":\"\"}},\"memberships\":[\"free\"],\"platforms\":{\"steam\":\"STEAM_0:1:46078499\"},\"verified\":true}",
+    "context": []
+}

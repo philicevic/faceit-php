@@ -2,8 +2,6 @@
 
 namespace Philicevic\FaceitPhp\DTO\Match\Stats;
 
-use Philicevic\FaceitPhp\DTO\Match\Round;
-
 class MatchStats
 {
     /**

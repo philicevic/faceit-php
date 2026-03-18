@@ -1,10 +1,11 @@
 <?php
 
-namespace Philicevic\FaceitPhp\DTO\Match;
+namespace Philicevic\FaceitPhp\DTO\Match\Stats;
 
 class Round
 {
     /**
+     * @param  array<string, mixed>  $stats
      * @param  array<Team>  $teams
      */
     public function __construct(
