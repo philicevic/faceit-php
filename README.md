@@ -30,6 +30,52 @@ A PHP SDK for the [FACEIT Data API v4](https://open.faceit.com/) with typed resp
   - [Get tournament brackets](#get-tournament-brackets)
   - [Get tournament matches](#get-tournament-matches)
   - [Get tournament teams](#get-tournament-teams)
+- [Championship API](#championship-api)
+  - [List championships](#list-championships)
+  - [Get championship details](#get-championship-details)
+  - [Get championship matches](#get-championship-matches)
+  - [Get championship results](#get-championship-results)
+  - [Get championship subscriptions](#get-championship-subscriptions)
+- [Game API](#game-api)
+  - [List games](#list-games)
+  - [Get game details](#get-game-details)
+  - [Get parent game](#get-parent-game)
+  - [Get game matchmakings](#get-game-matchmakings)
+- [Hub API](#hub-api)
+  - [Get hub details](#get-hub-details)
+  - [Get hub matches](#get-hub-matches)
+  - [Get hub members](#get-hub-members)
+  - [Get hub roles](#get-hub-roles)
+  - [Get hub rules](#get-hub-rules)
+  - [Get hub stats](#get-hub-stats)
+- [Leaderboard API](#leaderboard-api)
+  - [Get championship leaderboards](#get-championship-leaderboards)
+  - [Get championship group ranking](#get-championship-group-ranking)
+  - [Get hub leaderboards](#get-hub-leaderboards)
+  - [Get hub ranking](#get-hub-ranking)
+  - [Get hub season ranking](#get-hub-season-ranking)
+  - [Get leaderboard](#get-leaderboard)
+  - [Get player ranking in leaderboard](#get-player-ranking-in-leaderboard)
+- [League API](#league-api)
+  - [Get league details](#get-league-details)
+  - [Get league season](#get-league-season)
+  - [Get player in league season](#get-player-in-league-season)
+- [Matchmaking API](#matchmaking-api)
+  - [Get matchmaking details](#get-matchmaking-details)
+- [Organizer API](#organizer-api)
+  - [Get organizer by name](#get-organizer-by-name)
+  - [Get organizer by ID](#get-organizer-by-id)
+  - [Get organizer championships](#get-organizer-championships)
+  - [Get organizer games](#get-organizer-games)
+  - [Get organizer hubs](#get-organizer-hubs)
+  - [Get organizer tournaments](#get-organizer-tournaments)
+- [Ranking API](#ranking-api)
+  - [Get global ranking](#get-global-ranking)
+  - [Get player ranking](#get-player-ranking)
+- [Team API](#team-api)
+  - [Get team details](#get-team-details)
+  - [Get team stats](#get-team-stats)
+  - [Get team tournaments](#get-team-tournaments)
 - [Paginated responses](#paginated-responses)
 - [Available methods](#available-methods)
 - [Error handling](#error-handling)
@@ -142,6 +188,16 @@ Available entrypoints:
 - `$faceit->player()`
 - `$faceit->match()`
 - `$faceit->tournament()`
+- `$faceit->championship()`
+- `$faceit->game()`
+- `$faceit->hub()`
+- `$faceit->leaderboard()`
+- `$faceit->league()`
+- `$faceit->matchmaking()`
+- `$faceit->organizer()`
+- `$faceit->ranking()`
+- `$faceit->team()`
+- `$faceit->search()`
 
 ## Player API
 
@@ -408,6 +464,415 @@ foreach ($teams->joined as $team) {
 // Also available: $teams->started, $teams->finished
 ```
 
+## Championship API
+
+### List championships
+
+```php
+$response = $faceit->championship()->list(game: 'cs2', type: 'ongoing', offset: 0, limit: 10);
+
+foreach ($response->items as $championship) {
+    echo $championship->name;
+    echo $championship->status;
+}
+```
+
+### Get championship details
+
+```php
+$championship = $faceit->championship()->get('championship-id');
+
+echo $championship->name;
+echo $championship->status;
+```
+
+Optionally expand related objects (`organizer`, `game`):
+
+```php
+$championship = $faceit->championship()->get('championship-id', expanded: 'organizer,game');
+```
+
+### Get championship matches
+
+```php
+$response = $faceit->championship()->getMatches('championship-id', offset: 0, limit: 20);
+
+foreach ($response->items as $match) {
+    echo $match->competitionName;
+    echo $match->status;
+}
+```
+
+### Get championship results
+
+```php
+$response = $faceit->championship()->getResults('championship-id', offset: 0, limit: 20);
+
+foreach ($response->items as $result) {
+    echo $result->competitionName;
+}
+```
+
+### Get championship subscriptions
+
+```php
+$response = $faceit->championship()->getSubscriptions('championship-id', offset: 0, limit: 10);
+
+foreach ($response->items as $subscription) {
+    echo $subscription->status;
+}
+```
+
+## Game API
+
+### List games
+
+```php
+$response = $faceit->game()->list(offset: 0, limit: 20);
+
+foreach ($response->items as $game) {
+    echo $game->gameId;
+    echo $game->longLabel;
+}
+```
+
+### Get game details
+
+```php
+$game = $faceit->game()->get('cs2');
+
+echo $game->gameId;
+echo $game->longLabel;
+```
+
+### Get parent game
+
+For region-specific games, fetch the parent:
+
+```php
+$parent = $faceit->game()->getParent('cs2-eu');
+
+echo $parent->gameId;
+```
+
+### Get game matchmakings
+
+```php
+$response = $faceit->game()->getMatchmakings('cs2', region: 'EU', offset: 0, limit: 20);
+
+foreach ($response->items as $matchmaking) {
+    echo $matchmaking->label;
+    echo $matchmaking->region;
+}
+```
+
+## Hub API
+
+### Get hub details
+
+```php
+$hub = $faceit->hub()->get('hub-id');
+
+echo $hub->name;
+echo $hub->region;
+```
+
+Optionally expand related objects (`organizer`, `game`):
+
+```php
+$hub = $faceit->hub()->get('hub-id', expanded: 'organizer,game');
+```
+
+### Get hub matches
+
+```php
+$response = $faceit->hub()->getMatches('hub-id', type: 'ongoing', offset: 0, limit: 20);
+
+foreach ($response->items as $match) {
+    echo $match->competitionName;
+    echo $match->status;
+}
+```
+
+### Get hub members
+
+```php
+$response = $faceit->hub()->getMembers('hub-id', offset: 0, limit: 20);
+
+foreach ($response->items as $member) {
+    echo $member->nickname;
+}
+```
+
+### Get hub roles
+
+```php
+$response = $faceit->hub()->getRoles('hub-id', offset: 0, limit: 20);
+
+foreach ($response->items as $role) {
+    echo $role->name;
+}
+```
+
+### Get hub rules
+
+```php
+$rules = $faceit->hub()->getRules('hub-id');
+
+echo $rules->body;
+```
+
+### Get hub stats
+
+```php
+$response = $faceit->hub()->getStats('hub-id', offset: 0, limit: 20);
+
+foreach ($response->items as $stat) {
+    echo $stat->nickname;
+}
+```
+
+## Leaderboard API
+
+### Get championship leaderboards
+
+```php
+$response = $faceit->leaderboard()->getChampionshipLeaderboards('championship-id', offset: 0, limit: 20);
+
+foreach ($response->items as $leaderboard) {
+    echo $leaderboard->leaderboardId;
+}
+```
+
+### Get championship group ranking
+
+```php
+$ranking = $faceit->leaderboard()->getChampionshipGroupRanking('championship-id', group: 1, offset: 0, limit: 20);
+
+foreach ($ranking->items as $entry) {
+    echo $entry->nickname;
+    echo $entry->points;
+}
+```
+
+### Get hub leaderboards
+
+```php
+$response = $faceit->leaderboard()->getHubLeaderboards('hub-id', offset: 0, limit: 20);
+
+foreach ($response->items as $leaderboard) {
+    echo $leaderboard->leaderboardId;
+}
+```
+
+### Get hub ranking
+
+Returns the all-time hub ranking.
+
+```php
+$ranking = $faceit->leaderboard()->getHubRanking('hub-id', offset: 0, limit: 20);
+
+foreach ($ranking->items as $entry) {
+    echo $entry->nickname;
+    echo $entry->points;
+}
+```
+
+### Get hub season ranking
+
+```php
+$ranking = $faceit->leaderboard()->getHubSeasonRanking('hub-id', season: 3, offset: 0, limit: 20);
+
+foreach ($ranking->items as $entry) {
+    echo $entry->nickname;
+    echo $entry->points;
+}
+```
+
+### Get leaderboard
+
+```php
+$ranking = $faceit->leaderboard()->get('leaderboard-id', offset: 0, limit: 20);
+
+foreach ($ranking->items as $entry) {
+    echo $entry->nickname;
+    echo $entry->points;
+}
+```
+
+### Get player ranking in leaderboard
+
+```php
+$ranking = $faceit->leaderboard()->getPlayerRanking('leaderboard-id', 'player-id');
+
+echo $ranking->nickname;
+echo $ranking->position;
+echo $ranking->points;
+```
+
+## League API
+
+### Get league details
+
+```php
+$league = $faceit->league()->get('league-id');
+
+echo $league->name;
+```
+
+### Get league season
+
+```php
+$season = $faceit->league()->getSeason('league-id', 'season-id');
+
+echo $season->label;
+```
+
+### Get player in league season
+
+```php
+$playerLeague = $faceit->league()->getSeasonPlayer('league-id', 'season-id', 'player-id');
+
+echo $playerLeague->nickname;
+```
+
+## Matchmaking API
+
+### Get matchmaking details
+
+```php
+$matchmaking = $faceit->matchmaking()->get('matchmaking-id');
+
+echo $matchmaking->label;
+echo $matchmaking->region;
+```
+
+## Organizer API
+
+### Get organizer by name
+
+```php
+$organizer = $faceit->organizer()->getByName('ESL');
+
+echo $organizer->name;
+echo $organizer->type;
+```
+
+### Get organizer by ID
+
+```php
+$organizer = $faceit->organizer()->get('organizer-id');
+
+echo $organizer->name;
+echo $organizer->type;
+```
+
+### Get organizer championships
+
+```php
+$response = $faceit->organizer()->getChampionships('organizer-id', offset: 0, limit: 20);
+
+foreach ($response->items as $championship) {
+    echo $championship->name;
+}
+```
+
+### Get organizer games
+
+```php
+$response = $faceit->organizer()->getGames('organizer-id');
+
+foreach ($response->items as $game) {
+    echo $game->gameId;
+}
+```
+
+### Get organizer hubs
+
+```php
+$response = $faceit->organizer()->getHubs('organizer-id', offset: 0, limit: 20);
+
+foreach ($response->items as $hub) {
+    echo $hub->name;
+}
+```
+
+### Get organizer tournaments
+
+```php
+$response = $faceit->organizer()->getTournaments('organizer-id', type: 'upcoming', offset: 0, limit: 20);
+
+foreach ($response->items as $tournament) {
+    echo $tournament->name;
+}
+```
+
+## Ranking API
+
+### Get global ranking
+
+```php
+$response = $faceit->ranking()->getGlobal(
+    gameId: 'cs2',
+    region: 'EU',
+    country: 'DE',
+    offset: 0,
+    limit: 20,
+);
+
+foreach ($response->items as $entry) {
+    echo $entry->nickname;
+    echo $entry->faceitElo;
+    echo $entry->position;
+}
+```
+
+### Get player ranking
+
+```php
+$ranking = $faceit->ranking()->getPlayer(
+    gameId: 'cs2',
+    region: 'EU',
+    playerId: 'player-id',
+    country: 'DE',
+    limit: 20,
+);
+
+echo $ranking->nickname;
+echo $ranking->faceitElo;
+echo $ranking->position;
+```
+
+## Team API
+
+### Get team details
+
+```php
+$team = $faceit->team()->get('team-id');
+
+echo $team->name;
+echo $team->game;
+```
+
+### Get team stats
+
+```php
+$stats = $faceit->team()->getStats('team-id', 'cs2');
+
+echo $stats->lifetime['Matches'] ?? null;
+echo $stats->lifetime['Win Rate %'] ?? null;
+```
+
+### Get team tournaments
+
+```php
+$response = $faceit->team()->getTournaments('team-id', offset: 0, limit: 20);
+
+foreach ($response->items as $tournament) {
+    echo $tournament->name;
+}
+```
+
 ## Paginated responses
 
 Methods that return collections use `Philicevic\FaceitPhp\DTO\PaginatedResponse`.
@@ -463,6 +928,88 @@ $faceit->tournament()->get(string $tournamentId, ?string $expanded = null);
 $faceit->tournament()->getBrackets(string $tournamentId);
 $faceit->tournament()->getMatches(string $tournamentId, int $offset = 0, int $limit = 20);
 $faceit->tournament()->getTeams(string $tournamentId, int $offset = 0, int $limit = 20);
+```
+
+### `championship()`
+
+```php
+$faceit->championship()->list(string $game, ?string $type = null, int $offset = 0, int $limit = 10);
+$faceit->championship()->get(string $championshipId, ?string $expanded = null);
+$faceit->championship()->getMatches(string $championshipId, ?string $type = null, int $offset = 0, int $limit = 20);
+$faceit->championship()->getResults(string $championshipId, int $offset = 0, int $limit = 20);
+$faceit->championship()->getSubscriptions(string $championshipId, int $offset = 0, int $limit = 10);
+```
+
+### `game()`
+
+```php
+$faceit->game()->list(int $offset = 0, int $limit = 20);
+$faceit->game()->get(string $gameId);
+$faceit->game()->getParent(string $gameId);
+$faceit->game()->getMatchmakings(string $gameId, ?string $region = null, int $offset = 0, int $limit = 20);
+```
+
+### `hub()`
+
+```php
+$faceit->hub()->get(string $hubId, ?string $expanded = null);
+$faceit->hub()->getMatches(string $hubId, ?string $type = null, int $offset = 0, int $limit = 20);
+$faceit->hub()->getMembers(string $hubId, int $offset = 0, int $limit = 20);
+$faceit->hub()->getRoles(string $hubId, int $offset = 0, int $limit = 20);
+$faceit->hub()->getRules(string $hubId);
+$faceit->hub()->getStats(string $hubId, int $offset = 0, int $limit = 20);
+```
+
+### `leaderboard()`
+
+```php
+$faceit->leaderboard()->getChampionshipLeaderboards(string $championshipId, int $offset = 0, int $limit = 20);
+$faceit->leaderboard()->getChampionshipGroupRanking(string $championshipId, int $group, int $offset = 0, int $limit = 20);
+$faceit->leaderboard()->getHubLeaderboards(string $hubId, int $offset = 0, int $limit = 20);
+$faceit->leaderboard()->getHubRanking(string $hubId, int $offset = 0, int $limit = 20);
+$faceit->leaderboard()->getHubSeasonRanking(string $hubId, int $season, int $offset = 0, int $limit = 20);
+$faceit->leaderboard()->get(string $leaderboardId, int $offset = 0, int $limit = 20);
+$faceit->leaderboard()->getPlayerRanking(string $leaderboardId, string $playerId);
+```
+
+### `league()`
+
+```php
+$faceit->league()->get(string $leagueId);
+$faceit->league()->getSeason(string $leagueId, string $seasonId);
+$faceit->league()->getSeasonPlayer(string $leagueId, string $seasonId, string $playerId);
+```
+
+### `matchmaking()`
+
+```php
+$faceit->matchmaking()->get(string $matchmakingId);
+```
+
+### `organizer()`
+
+```php
+$faceit->organizer()->getByName(string $name);
+$faceit->organizer()->get(string $organizerId);
+$faceit->organizer()->getChampionships(string $organizerId, int $offset = 0, int $limit = 20);
+$faceit->organizer()->getGames(string $organizerId);
+$faceit->organizer()->getHubs(string $organizerId, int $offset = 0, int $limit = 20);
+$faceit->organizer()->getTournaments(string $organizerId, ?string $type = null, int $offset = 0, int $limit = 20);
+```
+
+### `ranking()`
+
+```php
+$faceit->ranking()->getGlobal(string $gameId, string $region, ?string $country = null, int $offset = 0, int $limit = 20);
+$faceit->ranking()->getPlayer(string $gameId, string $region, string $playerId, ?string $country = null, int $limit = 20);
+```
+
+### `team()`
+
+```php
+$faceit->team()->get(string $teamId);
+$faceit->team()->getStats(string $teamId, string $gameId);
+$faceit->team()->getTournaments(string $teamId, int $offset = 0, int $limit = 20);
 ```
 
 ## Error handling
