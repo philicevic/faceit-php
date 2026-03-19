@@ -2,15 +2,15 @@
 
 namespace Philicevic\FaceitPhp\DTO\Ranking;
 
-class GlobalRanking
+readonly class GlobalRanking
 {
     public function __construct(
-        public readonly string $uuid,
-        public readonly string $nickname,
-        public readonly string $country,
-        public readonly int $faceitElo,
-        public readonly int $gameSkillLevel,
-        public readonly int $position,
+        public string $uuid,
+        public string $nickname,
+        public string $country,
+        public int $faceitElo,
+        public int $gameSkillLevel,
+        public int $position,
     ) {}
 
     public static function fromArray(array $data): self

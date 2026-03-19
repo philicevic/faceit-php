@@ -2,17 +2,17 @@
 
 namespace Philicevic\FaceitPhp\DTO\Team;
 
-class Stats
+readonly class Stats
 {
     /**
      * @param  array<string, mixed>  $lifetime
      * @param  array<array<string, mixed>>  $segments
      */
     public function __construct(
-        public readonly string $teamId,
-        public readonly string $gameId,
-        public readonly array $lifetime,
-        public readonly array $segments,
+        public string $teamId,
+        public string $gameId,
+        public array $lifetime,
+        public array $segments,
     ) {}
 
     public static function fromArray(array $data): self

@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO;
 
-class Player
+readonly class Player
 {
     /**
      * @param  array<string>  $friendsIds
@@ -27,4 +27,30 @@ class Player
         public string $steamNickname,
         public bool $verified,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        $games = [];
+        foreach ($data['games'] ?? [] as $gameId => $game) {
+            $games[$gameId] = GameProfile::fromArray($gameId, $game);
+        }
+
+        return new self(
+            uuid: $data['player_id'],
+            nickname: $data['nickname'],
+            avatar: (string) ($data['avatar'] ?? ''),
+            country: (string) ($data['country'] ?? ''),
+            coverImage: (string) ($data['cover_image'] ?? ''),
+            activatedAt: new \DateTime($data['activated_at']),
+            faceitUrl: (string) ($data['faceit_url'] ?? ''),
+            friendsIds: $data['friends_ids'] ?? [],
+            games: $games,
+            memberships: $data['memberships'] ?? [],
+            platforms: $data['platforms'] ?? [],
+            membershipType: (string) ($data['membership_type'] ?? ''),
+            steamId64: (string) ($data['steam_id_64'] ?? ''),
+            steamNickname: (string) ($data['steam_nickname'] ?? ''),
+            verified: (bool) ($data['verified'] ?? false),
+        );
+    }
 }

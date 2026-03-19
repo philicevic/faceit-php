@@ -2,18 +2,18 @@
 
 namespace Philicevic\FaceitPhp\DTO\League;
 
-class Division
+readonly class Division
 {
     /**
      * @param  array<string>  $leaderboards
      */
     public function __construct(
-        public readonly string $name,
-        public readonly string $type,
-        public readonly string $configType,
-        public readonly int $minElo,
-        public readonly int $maxElo,
-        public readonly array $leaderboards,
+        public string $name,
+        public string $type,
+        public string $configType,
+        public int $minElo,
+        public int $maxElo,
+        public array $leaderboards,
     ) {}
 
     public static function fromArray(array $data): self

@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO\Tournament;
 
-class Teams
+readonly class Teams
 {
     /**
      * @param  array<Team>  $checkedIn
@@ -16,4 +16,16 @@ class Teams
         public array $joined,
         public array $started,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        $hydrate = fn (array $teams): array => array_map(fn (array $t): Team => Team::fromArray($t), $teams);
+
+        return new self(
+            checkedIn: $hydrate($data['checked_in'] ?? []),
+            finished: $hydrate($data['finished'] ?? []),
+            joined: $hydrate($data['joined'] ?? []),
+            started: $hydrate($data['started'] ?? []),
+        );
+    }
 }

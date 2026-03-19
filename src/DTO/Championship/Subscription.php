@@ -2,20 +2,20 @@
 
 namespace Philicevic\FaceitPhp\DTO\Championship;
 
-class Subscription
+readonly class Subscription
 {
     /**
      * @param  array<string>  $roster
      * @param  array<string>  $substitutes
      */
     public function __construct(
-        public readonly string $status,
-        public readonly string $leader,
-        public readonly string $coleader,
-        public readonly string $coach,
-        public readonly int $group,
-        public readonly array $roster,
-        public readonly array $substitutes,
+        public string $status,
+        public string $leader,
+        public string $coleader,
+        public string $coach,
+        public int $group,
+        public array $roster,
+        public array $substitutes,
     ) {}
 
     public static function fromArray(array $data): self

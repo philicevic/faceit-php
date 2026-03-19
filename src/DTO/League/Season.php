@@ -2,12 +2,22 @@
 
 namespace Philicevic\FaceitPhp\DTO\League;
 
-class Season
+readonly class Season
 {
     public function __construct(
-        public readonly int $number,
-        public readonly string $startDate,
-        public readonly string $endDate,
-        public readonly int $placementMatchCount,
+        public int $number,
+        public string $startDate,
+        public string $endDate,
+        public int $placementMatchCount,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            number: (int) ($data['season_number'] ?? $data['number'] ?? 0),
+            startDate: (string) ($data['start_date'] ?? ''),
+            endDate: (string) ($data['end_date'] ?? ''),
+            placementMatchCount: (int) ($data['placement_match_count'] ?? 0),
+        );
+    }
 }

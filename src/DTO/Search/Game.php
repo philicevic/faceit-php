@@ -2,10 +2,10 @@
 
 namespace Philicevic\FaceitPhp\DTO\Search;
 
-class Game
+readonly class Game
 {
     public function __construct(
-        public readonly string $name,
-        public readonly string $skillLevel,
+        public string $name,
+        public string $skillLevel,
     ) {}
 }

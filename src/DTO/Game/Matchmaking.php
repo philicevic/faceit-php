@@ -2,14 +2,14 @@
 
 namespace Philicevic\FaceitPhp\DTO\Game;
 
-class Matchmaking
+readonly class Matchmaking
 {
     public function __construct(
-        public readonly string $uuid,
-        public readonly string $name,
-        public readonly string $game,
-        public readonly string $region,
-        public readonly bool $hasLeague,
+        public string $uuid,
+        public string $name,
+        public string $game,
+        public string $region,
+        public bool $hasLeague,
     ) {}
 
     public static function fromArray(array $data): self

@@ -42,12 +42,9 @@ class GetPlayerGameStatsRequest extends Request
     public function createDtoFromResponse(Response $response): PaginatedResponse
     {
         $data = $response->json();
-        $items = array_map(function (array $item): GameMatchStats {
-            return new GameMatchStats(stats: $item['stats'] ?? []);
-        }, $data['items'] ?? []);
 
         return new PaginatedResponse(
-            items: $items,
+            items: array_map(fn (array $item): GameMatchStats => GameMatchStats::fromArray($item), $data['items'] ?? []),
             start: $data['start'] ?? 0,
             end: $data['end'] ?? 0,
         );

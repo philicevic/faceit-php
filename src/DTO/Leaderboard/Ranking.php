@@ -2,24 +2,24 @@
 
 namespace Philicevic\FaceitPhp\DTO\Leaderboard;
 
-class Ranking
+use Philicevic\FaceitPhp\DTO\Player\SimplePlayer;
+
+readonly class Ranking
 {
     public function __construct(
-        public readonly int $position,
-        public readonly int $points,
-        public readonly int $played,
-        public readonly int $won,
-        public readonly int $lost,
-        public readonly int $draw,
-        public readonly int $currentStreak,
-        public readonly float $winRate,
-        public readonly RankingPlayer $player,
+        public int $position,
+        public int $points,
+        public int $played,
+        public int $won,
+        public int $lost,
+        public int $draw,
+        public int $currentStreak,
+        public float $winRate,
+        public SimplePlayer $player,
     ) {}
 
     public static function fromArray(array $data): self
     {
-        $p = $data['player'] ?? [];
-
         return new self(
             position: (int) ($data['position'] ?? 0),
             points: (int) ($data['points'] ?? 0),
@@ -29,16 +29,7 @@ class Ranking
             draw: (int) ($data['draw'] ?? 0),
             currentStreak: (int) ($data['current_streak'] ?? 0),
             winRate: (float) ($data['win_rate'] ?? 0.0),
-            player: new RankingPlayer(
-                uuid: $p['user_id'] ?? '',
-                nickname: (string) ($p['nickname'] ?? ''),
-                avatar: (string) ($p['avatar'] ?? ''),
-                country: (string) ($p['country'] ?? ''),
-                faceitUrl: (string) ($p['faceit_url'] ?? ''),
-                membershipType: (string) ($p['membership_type'] ?? ''),
-                skillLevel: (int) ($p['skill_level'] ?? 0),
-                memberships: $p['memberships'] ?? [],
-            ),
+            player: SimplePlayer::fromArray(array_merge($data['player'] ?? [], ['player_id' => $data['player']['user_id'] ?? ''])),
         );
     }
 }

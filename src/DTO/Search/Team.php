@@ -2,14 +2,14 @@
 
 namespace Philicevic\FaceitPhp\DTO\Search;
 
-class Team
+readonly class Team
 {
     public function __construct(
-        public readonly string $teamId,
-        public readonly string $name,
-        public readonly string $game,
-        public readonly string $avatar,
-        public readonly string $faceitUrl,
-        public readonly bool $verified,
+        public string $teamId,
+        public string $name,
+        public string $game,
+        public string $avatar,
+        public string $faceitUrl,
+        public bool $verified,
     ) {}
 }

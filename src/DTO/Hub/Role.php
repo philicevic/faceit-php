@@ -2,14 +2,14 @@
 
 namespace Philicevic\FaceitPhp\DTO\Hub;
 
-class Role
+readonly class Role
 {
     public function __construct(
-        public readonly string $uuid,
-        public readonly string $name,
-        public readonly string $color,
-        public readonly int $ranking,
-        public readonly bool $visibleOnChat,
+        public string $uuid,
+        public string $name,
+        public string $color,
+        public int $ranking,
+        public bool $visibleOnChat,
     ) {}
 
     public static function fromArray(array $data): self

@@ -2,14 +2,14 @@
 
 namespace Philicevic\FaceitPhp\DTO\Search;
 
-class Tournament
+readonly class Tournament
 {
     public function __construct(
-        public readonly string $tournamentId,
-        public readonly string $name,
-        public readonly string $game,
-        public readonly string $region,
-        public readonly string $status,
-        public readonly string $prizeType,
+        public string $tournamentId,
+        public string $name,
+        public string $game,
+        public string $region,
+        public string $status,
+        public string $prizeType,
     ) {}
 }

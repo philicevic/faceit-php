@@ -2,22 +2,22 @@
 
 namespace Philicevic\FaceitPhp\DTO\Organizer;
 
-class Organizer
+readonly class Organizer
 {
     public function __construct(
-        public readonly string $uuid,
-        public readonly string $name,
-        public readonly string $avatar,
-        public readonly string $cover,
-        public readonly string $description,
-        public readonly string $type,
-        public readonly string $faceitUrl,
-        public readonly string $facebook,
-        public readonly string $twitter,
-        public readonly string $twitch,
-        public readonly string $vk,
-        public readonly string $website,
-        public readonly int $followersCount,
+        public string $uuid,
+        public string $name,
+        public string $avatar,
+        public string $cover,
+        public string $description,
+        public string $type,
+        public string $faceitUrl,
+        public string $facebook,
+        public string $twitter,
+        public string $twitch,
+        public string $vk,
+        public string $website,
+        public int $followersCount,
     ) {}
 
     public static function fromArray(array $data): self

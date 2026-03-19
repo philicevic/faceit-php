@@ -5,7 +5,7 @@ namespace Philicevic\FaceitPhp\DTO\Match\Detail;
 use Philicevic\FaceitPhp\DTO\MatchResult;
 use Philicevic\FaceitPhp\DTO\MatchScore;
 
-class Info
+readonly class Info
 {
     /**
      * @param  array<Team>  $teams

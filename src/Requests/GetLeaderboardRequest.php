@@ -3,8 +3,6 @@
 namespace Philicevic\FaceitPhp\Requests;
 
 use Philicevic\FaceitPhp\DTO\Leaderboard\EntityRanking;
-use Philicevic\FaceitPhp\DTO\Leaderboard\Leaderboard;
-use Philicevic\FaceitPhp\DTO\Leaderboard\Ranking;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
@@ -34,15 +32,6 @@ class GetLeaderboardRequest extends Request
 
     public function createDtoFromResponse(Response $response): EntityRanking
     {
-        $data = $response->json();
-
-        $items = array_map(fn (array $r): Ranking => Ranking::fromArray($r), $data['items'] ?? []);
-
-        return new EntityRanking(
-            start: $data['start'] ?? 0,
-            end: $data['end'] ?? 0,
-            leaderboard: Leaderboard::fromArray($data['leaderboard'] ?? []),
-            items: $items,
-        );
+        return EntityRanking::fromArray($response->json());
     }
 }

@@ -2,14 +2,14 @@
 
 namespace Philicevic\FaceitPhp\DTO\Search;
 
-class Clan
+readonly class Clan
 {
     public function __construct(
-        public readonly string $clanId,
-        public readonly string $name,
-        public readonly string $game,
-        public readonly string $avatar,
-        public readonly string $region,
-        public readonly int $membersCount,
+        public string $clanId,
+        public string $name,
+        public string $game,
+        public string $avatar,
+        public string $region,
+        public int $membersCount,
     ) {}
 }

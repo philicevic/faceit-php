@@ -4,7 +4,7 @@ use Philicevic\FaceitPhp\DTO\Match\Detail\Info as MatchDetail;
 use Philicevic\FaceitPhp\DTO\Match\Detail\Player as MatchDetailPlayer;
 use Philicevic\FaceitPhp\DTO\Match\Detail\Team as MatchDetailTeam;
 use Philicevic\FaceitPhp\DTO\Match\Stats\MatchStats;
-use Philicevic\FaceitPhp\DTO\Match\Stats\Player as MatchStatsPlayer;
+use Philicevic\FaceitPhp\DTO\Player\StatsPlayer as MatchStatsPlayer;
 use Philicevic\FaceitPhp\DTO\Match\Stats\Round as MatchRound;
 use Philicevic\FaceitPhp\DTO\Match\Stats\Team as MatchStatsTeam;
 use Philicevic\FaceitPhp\Requests\GetMatchDetailsRequest;

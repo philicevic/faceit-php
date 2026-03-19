@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO\Match\Detail;
 
-class Player
+readonly class Player
 {
     public function __construct(
         public string $uuid,

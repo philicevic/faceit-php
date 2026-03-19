@@ -2,15 +2,15 @@
 
 namespace Philicevic\FaceitPhp\DTO\League;
 
-class PlayerInLeague
+readonly class PlayerInLeague
 {
     public function __construct(
-        public readonly string $divisionName,
-        public readonly string $divisionTier,
-        public readonly string $divisionType,
-        public readonly string $leaderboardId,
-        public readonly int $points,
-        public readonly int $position,
+        public string $divisionName,
+        public string $divisionTier,
+        public string $divisionType,
+        public string $leaderboardId,
+        public int $points,
+        public int $position,
     ) {}
 
     public static function fromArray(array $data): self

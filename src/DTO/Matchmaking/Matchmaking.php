@@ -2,20 +2,20 @@
 
 namespace Philicevic\FaceitPhp\DTO\Matchmaking;
 
-class Matchmaking
+readonly class Matchmaking
 {
     /**
      * @param  array<Queue>  $queues
      */
     public function __construct(
-        public readonly string $uuid,
-        public readonly string $name,
-        public readonly string $game,
-        public readonly string $region,
-        public readonly string $icon,
-        public readonly string $longDescription,
-        public readonly string $leagueId,
-        public readonly array $queues,
+        public string $uuid,
+        public string $name,
+        public string $game,
+        public string $region,
+        public string $icon,
+        public string $longDescription,
+        public string $leagueId,
+        public array $queues,
     ) {}
 
     public static function fromArray(array $data): self

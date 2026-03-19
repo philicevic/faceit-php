@@ -2,10 +2,12 @@
 
 namespace Philicevic\FaceitPhp\DTO\Player\Team;
 
-class Team
+use Philicevic\FaceitPhp\DTO\Player\SimplePlayer;
+
+readonly class Team
 {
     /**
-     * @param  array<Member>  $members
+     * @param  array<SimplePlayer>  $members
      */
     public function __construct(
         public string $uuid,
@@ -21,4 +23,22 @@ class Team
         public string $chatRoomId,
         public array $members,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            uuid: $data['team_id'],
+            name: (string) ($data['name'] ?? ''),
+            nickname: (string) ($data['nickname'] ?? ''),
+            avatar: (string) ($data['avatar'] ?? ''),
+            coverImage: (string) ($data['cover_image'] ?? ''),
+            description: (string) ($data['description'] ?? ''),
+            faceitUrl: (string) ($data['faceit_url'] ?? ''),
+            game: (string) ($data['game'] ?? ''),
+            leader: (string) ($data['leader'] ?? ''),
+            teamType: (string) ($data['team_type'] ?? ''),
+            chatRoomId: (string) ($data['chat_room_id'] ?? ''),
+            members: array_map(fn (array $m): SimplePlayer => SimplePlayer::fromArray($m), $data['members'] ?? []),
+        );
+    }
 }

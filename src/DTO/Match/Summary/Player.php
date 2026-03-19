@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO\Match\Summary;
 
-class Player
+readonly class Player
 {
     public function __construct(
         public string $uuid,
@@ -12,4 +12,16 @@ class Player
         public string $gamePlayerId,
         public string $gamePlayerName,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            uuid: (string) ($data['player_id'] ?? ''),
+            nickname: (string) ($data['nickname'] ?? ''),
+            avatar: (string) ($data['avatar'] ?? ''),
+            faceitUrl: (string) ($data['faceit_url'] ?? ''),
+            gamePlayerId: (string) ($data['game_player_id'] ?? ''),
+            gamePlayerName: (string) ($data['game_player_name'] ?? ''),
+        );
+    }
 }

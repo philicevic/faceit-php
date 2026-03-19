@@ -37,20 +37,9 @@ class GetPlayerBansRequest extends Request
     public function createDtoFromResponse(Response $response): PaginatedResponse
     {
         $data = $response->json();
-        $items = array_map(function (array $ban): Ban {
-            return new Ban(
-                userId: $ban['user_id'],
-                nickname: $ban['nickname'],
-                reason: $ban['reason'],
-                type: $ban['type'],
-                game: (string) ($ban['game'] ?? ''),
-                startsAt: new \DateTime($ban['starts_at']),
-                endsAt: new \DateTime($ban['ends_at']),
-            );
-        }, $data['items'] ?? []);
 
         return new PaginatedResponse(
-            items: $items,
+            items: array_map(fn (array $ban): Ban => Ban::fromArray($ban), $data['items'] ?? []),
             start: $data['start'] ?? 0,
             end: $data['end'] ?? 0,
         );

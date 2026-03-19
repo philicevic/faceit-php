@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO\Match\Detail;
 
-class Team
+readonly class Team
 {
     /**
      * @param  array<Player>  $players

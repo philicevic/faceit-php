@@ -2,16 +2,27 @@
 
 namespace Philicevic\FaceitPhp\DTO\League;
 
-class League
+readonly class League
 {
     /**
      * @param  array<Division>  $divisions
      */
     public function __construct(
-        public readonly string $uuid,
-        public readonly string $game,
-        public readonly string $region,
-        public readonly int $minMatches,
-        public readonly array $divisions,
+        public string $uuid,
+        public string $game,
+        public string $region,
+        public int $minMatches,
+        public array $divisions,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            uuid: (string) ($data['league_id'] ?? ''),
+            game: (string) ($data['game'] ?? ''),
+            region: (string) ($data['region'] ?? ''),
+            minMatches: (int) ($data['min_matches'] ?? 0),
+            divisions: array_map(fn (array $d): Division => Division::fromArray($d), $data['divisions'] ?? []),
+        );
+    }
 }

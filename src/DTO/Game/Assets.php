@@ -2,17 +2,32 @@
 
 namespace Philicevic\FaceitPhp\DTO\Game;
 
-class Assets
+readonly class Assets
 {
     public function __construct(
-        public readonly string $cover,
-        public readonly string $featuredImgL,
-        public readonly string $featuredImgM,
-        public readonly string $featuredImgS,
-        public readonly string $flagImgIcon,
-        public readonly string $flagImgL,
-        public readonly string $flagImgM,
-        public readonly string $flagImgS,
-        public readonly string $landingPage,
+        public string $cover,
+        public string $featuredImgL,
+        public string $featuredImgM,
+        public string $featuredImgS,
+        public string $flagImgIcon,
+        public string $flagImgL,
+        public string $flagImgM,
+        public string $flagImgS,
+        public string $landingPage,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            cover: (string) ($data['cover'] ?? ''),
+            featuredImgL: (string) ($data['featured_img_l'] ?? ''),
+            featuredImgM: (string) ($data['featured_img_m'] ?? ''),
+            featuredImgS: (string) ($data['featured_img_s'] ?? ''),
+            flagImgIcon: (string) ($data['flag_img_icon'] ?? ''),
+            flagImgL: (string) ($data['flag_img_l'] ?? ''),
+            flagImgM: (string) ($data['flag_img_m'] ?? ''),
+            flagImgS: (string) ($data['flag_img_s'] ?? ''),
+            landingPage: (string) ($data['landing_page'] ?? ''),
+        );
+    }
 }

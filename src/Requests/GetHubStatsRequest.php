@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\Requests;
 
-use Philicevic\FaceitPhp\DTO\Hub\StatsPlayer;
+use Philicevic\FaceitPhp\DTO\Player\StatsPlayer;
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;

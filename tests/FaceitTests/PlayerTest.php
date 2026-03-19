@@ -9,7 +9,7 @@ use Philicevic\FaceitPhp\DTO\Player;
 use Philicevic\FaceitPhp\DTO\Player\GameMatchStats;
 use Philicevic\FaceitPhp\DTO\Player\Hub;
 use Philicevic\FaceitPhp\DTO\Player\LifetimeStats;
-use Philicevic\FaceitPhp\DTO\Player\Team\Member as TeamMember;
+use Philicevic\FaceitPhp\DTO\Player\SimplePlayer as TeamMember;
 use Philicevic\FaceitPhp\DTO\Player\Team\Team as PlayerTeam;
 use Philicevic\FaceitPhp\DTO\Player\Tournament;
 use Philicevic\FaceitPhp\Faceit;

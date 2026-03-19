@@ -2,14 +2,14 @@
 
 namespace Philicevic\FaceitPhp\DTO\Matchmaking;
 
-class Queue
+readonly class Queue
 {
     public function __construct(
-        public readonly string $uuid,
-        public readonly string $name,
-        public readonly string $organizerId,
-        public readonly bool $open,
-        public readonly bool $paused,
+        public string $uuid,
+        public string $name,
+        public string $organizerId,
+        public bool $open,
+        public bool $paused,
     ) {}
 
     public static function fromArray(array $data): self

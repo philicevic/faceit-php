@@ -2,31 +2,31 @@
 
 namespace Philicevic\FaceitPhp\DTO\Leaderboard;
 
-class Leaderboard
+readonly class Leaderboard
 {
     public function __construct(
-        public readonly string $leaderboardId,
-        public readonly string $leaderboardName,
-        public readonly string $leaderboardType,
-        public readonly string $leaderboardMode,
-        public readonly string $competitionId,
-        public readonly string $competitionType,
-        public readonly string $gameId,
-        public readonly string $region,
-        public readonly string $status,
-        public readonly string $pointsType,
-        public readonly string $rankingType,
-        public readonly int $group,
-        public readonly int $round,
-        public readonly int $season,
-        public readonly int $startDate,
-        public readonly int $endDate,
-        public readonly int $minMatches,
-        public readonly int $pointsPerWin,
-        public readonly int $pointsPerLoss,
-        public readonly int $pointsPerDraw,
-        public readonly int $startingPoints,
-        public readonly int $rankingBoost,
+        public string $leaderboardId,
+        public string $leaderboardName,
+        public string $leaderboardType,
+        public string $leaderboardMode,
+        public string $competitionId,
+        public string $competitionType,
+        public string $gameId,
+        public string $region,
+        public string $status,
+        public string $pointsType,
+        public string $rankingType,
+        public int $group,
+        public int $round,
+        public int $season,
+        public int $startDate,
+        public int $endDate,
+        public int $minMatches,
+        public int $pointsPerWin,
+        public int $pointsPerLoss,
+        public int $pointsPerDraw,
+        public int $startingPoints,
+        public int $rankingBoost,
     ) {}
 
     public static function fromArray(array $data): self

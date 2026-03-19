@@ -2,14 +2,14 @@
 
 namespace Philicevic\FaceitPhp\DTO\Hub;
 
-class Rules
+readonly class Rules
 {
     public function __construct(
-        public readonly string $ruleId,
-        public readonly string $name,
-        public readonly string $body,
-        public readonly string $game,
-        public readonly string $organizer,
+        public string $ruleId,
+        public string $name,
+        public string $body,
+        public string $game,
+        public string $organizer,
     ) {}
 
     public static function fromArray(array $data): self

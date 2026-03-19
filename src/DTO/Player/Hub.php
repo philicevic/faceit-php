@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO\Player;
 
-class Hub
+readonly class Hub
 {
     public function __construct(
         public string $uuid,
@@ -15,4 +15,19 @@ class Hub
         public string $gameId,
         public string $region,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            uuid: $data['hub_id'],
+            name: $data['name'],
+            avatar: (string) ($data['avatar'] ?? ''),
+            coverImage: (string) ($data['cover_image'] ?? ''),
+            backgroundImage: (string) ($data['background_image'] ?? ''),
+            faceitUrl: (string) ($data['faceit_url'] ?? ''),
+            description: (string) ($data['description'] ?? ''),
+            gameId: (string) ($data['game_id'] ?? ''),
+            region: (string) ($data['region'] ?? ''),
+        );
+    }
 }

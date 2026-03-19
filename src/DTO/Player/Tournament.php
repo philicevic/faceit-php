@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO\Player;
 
-class Tournament
+readonly class Tournament
 {
     /**
      * @param  array<string>  $whitelistCountries

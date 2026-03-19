@@ -2,22 +2,22 @@
 
 namespace Philicevic\FaceitPhp\DTO\Team;
 
-class Team
+readonly class Team
 {
     /**
      * @param  array<Member>  $members
      */
     public function __construct(
-        public readonly string $uuid,
-        public readonly string $name,
-        public readonly string $avatar,
-        public readonly string $coverImage,
-        public readonly string $description,
-        public readonly string $game,
-        public readonly string $leader,
-        public readonly string $faceitUrl,
-        public readonly string $chatRoomId,
-        public readonly array $members,
+        public string $uuid,
+        public string $name,
+        public string $avatar,
+        public string $coverImage,
+        public string $description,
+        public string $game,
+        public string $leader,
+        public string $faceitUrl,
+        public string $chatRoomId,
+        public array $members,
     ) {}
 
     public static function fromArray(array $data): self

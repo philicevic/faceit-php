@@ -2,17 +2,17 @@
 
 namespace Philicevic\FaceitPhp\DTO\Hub;
 
-class Member
+readonly class Member
 {
     /**
      * @param  array<string>  $roles
      */
     public function __construct(
-        public readonly string $uuid,
-        public readonly string $nickname,
-        public readonly string $avatar,
-        public readonly string $faceitUrl,
-        public readonly array $roles,
+        public string $uuid,
+        public string $nickname,
+        public string $avatar,
+        public string $faceitUrl,
+        public array $roles,
     ) {}
 
     public static function fromArray(array $data): self

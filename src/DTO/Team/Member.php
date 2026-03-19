@@ -2,13 +2,13 @@
 
 namespace Philicevic\FaceitPhp\DTO\Team;
 
-class Member
+readonly class Member
 {
     public function __construct(
-        public readonly string $uuid,
-        public readonly string $nickname,
-        public readonly string $avatar,
-        public readonly string $faceitUrl,
+        public string $uuid,
+        public string $nickname,
+        public string $avatar,
+        public string $faceitUrl,
     ) {}
 
     public static function fromArray(array $data): self

@@ -6,7 +6,7 @@ use Philicevic\FaceitPhp\DTO\Hub\Hub;
 use Philicevic\FaceitPhp\DTO\Hub\Member;
 use Philicevic\FaceitPhp\DTO\Hub\Role;
 use Philicevic\FaceitPhp\DTO\Hub\Rules;
-use Philicevic\FaceitPhp\DTO\Hub\StatsPlayer;
+use Philicevic\FaceitPhp\DTO\Player\StatsPlayer;
 use Philicevic\FaceitPhp\DTO\Match\Detail\Info;
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
 use Philicevic\FaceitPhp\Requests\GetHubMatchesRequest;

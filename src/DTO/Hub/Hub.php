@@ -2,24 +2,24 @@
 
 namespace Philicevic\FaceitPhp\DTO\Hub;
 
-class Hub
+readonly class Hub
 {
     public function __construct(
-        public readonly string $uuid,
-        public readonly string $name,
-        public readonly string $avatar,
-        public readonly string $coverImage,
-        public readonly string $backgroundImage,
-        public readonly string $description,
-        public readonly string $gameId,
-        public readonly string $region,
-        public readonly string $organizerId,
-        public readonly string $joinPermission,
-        public readonly string $faceitUrl,
-        public readonly string $chatRoomId,
-        public readonly int $minSkillLevel,
-        public readonly int $maxSkillLevel,
-        public readonly int $playersJoined,
+        public string $uuid,
+        public string $name,
+        public string $avatar,
+        public string $coverImage,
+        public string $backgroundImage,
+        public string $description,
+        public string $gameId,
+        public string $region,
+        public string $organizerId,
+        public string $joinPermission,
+        public string $faceitUrl,
+        public string $chatRoomId,
+        public int $minSkillLevel,
+        public int $maxSkillLevel,
+        public int $playersJoined,
     ) {}
 
     public static function fromArray(array $data): self

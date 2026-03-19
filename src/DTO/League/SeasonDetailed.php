@@ -2,13 +2,21 @@
 
 namespace Philicevic\FaceitPhp\DTO\League;
 
-class SeasonDetailed
+readonly class SeasonDetailed
 {
     /**
      * @param  array<Division>  $divisions
      */
     public function __construct(
-        public readonly Season $season,
-        public readonly array $divisions,
+        public Season $season,
+        public array $divisions,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            season: Season::fromArray($data['season'] ?? $data),
+            divisions: array_map(fn (array $d): Division => Division::fromArray($d), $data['divisions'] ?? []),
+        );
+    }
 }
