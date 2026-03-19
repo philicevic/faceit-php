@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"hub_id\":\"hub-uuid-1\",\"name\":\"CS2 Hub EU\",\"avatar\":\"https://cdn.faceit.com/hub.jpg\",\"cover_image\":\"https://cdn.faceit.com/hub-cover.jpg\",\"background_image\":\"https://cdn.faceit.com/hub-bg.jpg\",\"description\":\"The main CS2 hub.\",\"game_id\":\"cs2\",\"region\":\"EU\",\"organizer_id\":\"org-uuid-1\",\"join_permission\":\"public\",\"faceit_url\":\"https://www.faceit.com/en/hubs/hub-uuid-1\",\"chat_room_id\":\"chat-1\",\"min_skill_level\":1,\"max_skill_level\":10,\"players_joined\":1500}"
+}

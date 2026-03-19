@@ -2,44 +2,49 @@
 
 namespace Philicevic\FaceitPhp\Requests;
 
-use Philicevic\FaceitPhp\DTO\Match\Detail\Info;
+use Philicevic\FaceitPhp\DTO\Championship\Championship;
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
 
-class GetTournamentMatchesRequest extends Request
+class GetChampionshipsRequest extends Request
 {
     protected Method $method = Method::GET;
 
     public function __construct(
-        protected readonly string $tournamentId,
+        protected readonly string $game,
+        protected readonly ?string $type = null,
         protected readonly int $offset = 0,
-        protected readonly int $limit = 20,
+        protected readonly int $limit = 10,
     ) {}
 
     public function resolveEndpoint(): string
     {
-        return '/tournaments/'.$this->tournamentId.'/matches';
+        return '/championships';
     }
 
     protected function defaultQuery(): array
     {
-        return [
+        return array_filter([
+            'game' => $this->game,
+            'type' => $this->type,
             'offset' => $this->offset,
             'limit' => $this->limit,
-        ];
+        ], static fn (mixed $value): bool => $value !== null);
     }
 
     /**
-     * @return PaginatedResponse<Info>
+     * @return PaginatedResponse<Championship>
      */
     public function createDtoFromResponse(Response $response): PaginatedResponse
     {
         $data = $response->json();
 
+        $items = array_map(fn (array $c): Championship => Championship::fromArray($c), $data['items'] ?? []);
+
         return new PaginatedResponse(
-            items: array_map(fn (array $m): Info => Info::fromArray($m), $data['items'] ?? []),
+            items: $items,
             start: $data['start'] ?? 0,
             end: $data['end'] ?? 0,
         );

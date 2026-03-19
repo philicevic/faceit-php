@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"organizer_id\":\"org-uuid-1\",\"name\":\"ESL\",\"avatar\":\"https://cdn.faceit.com/esl.jpg\",\"cover\":\"https://cdn.faceit.com/esl-cover.jpg\",\"description\":\"ESL Gaming.\",\"type\":\"league\",\"faceit_url\":\"https://www.faceit.com/en/organizers/org-uuid-1\",\"facebook\":\"https://facebook.com/esl\",\"twitter\":\"https://twitter.com/esl\",\"twitch\":\"https://twitch.tv/esl\",\"vk\":\"\",\"website\":\"https://eslgaming.com\",\"followers_count\":50000}"
+}

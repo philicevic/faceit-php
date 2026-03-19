@@ -2,25 +2,26 @@
 
 namespace Philicevic\FaceitPhp\Requests;
 
-use Philicevic\FaceitPhp\DTO\Match\Detail\Info;
-use Philicevic\FaceitPhp\DTO\PaginatedResponse;
+use Philicevic\FaceitPhp\DTO\Leaderboard\EntityRanking;
+use Philicevic\FaceitPhp\DTO\Leaderboard\Leaderboard;
+use Philicevic\FaceitPhp\DTO\Leaderboard\Ranking;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
 
-class GetTournamentMatchesRequest extends Request
+class GetLeaderboardRequest extends Request
 {
     protected Method $method = Method::GET;
 
     public function __construct(
-        protected readonly string $tournamentId,
+        protected readonly string $leaderboardId,
         protected readonly int $offset = 0,
         protected readonly int $limit = 20,
     ) {}
 
     public function resolveEndpoint(): string
     {
-        return '/tournaments/'.$this->tournamentId.'/matches';
+        return '/leaderboards/'.$this->leaderboardId;
     }
 
     protected function defaultQuery(): array
@@ -31,17 +32,17 @@ class GetTournamentMatchesRequest extends Request
         ];
     }
 
-    /**
-     * @return PaginatedResponse<Info>
-     */
-    public function createDtoFromResponse(Response $response): PaginatedResponse
+    public function createDtoFromResponse(Response $response): EntityRanking
     {
         $data = $response->json();
 
-        return new PaginatedResponse(
-            items: array_map(fn (array $m): Info => Info::fromArray($m), $data['items'] ?? []),
+        $items = array_map(fn (array $r): Ranking => Ranking::fromArray($r), $data['items'] ?? []);
+
+        return new EntityRanking(
             start: $data['start'] ?? 0,
             end: $data['end'] ?? 0,
+            leaderboard: Leaderboard::fromArray($data['leaderboard'] ?? []),
+            items: $items,
         );
     }
 }

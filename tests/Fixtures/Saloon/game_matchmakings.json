@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"id\":\"mm-slim-1\",\"name\":\"Competitive EU\",\"game\":\"cs2\",\"region\":\"EU\",\"has_league\":true}]}"
+}

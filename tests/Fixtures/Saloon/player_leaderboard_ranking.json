@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"position\":42,\"points\":120,\"played\":30,\"won\":20,\"lost\":8,\"draw\":2,\"current_streak\":3,\"win_rate\":0.667,\"player\":{\"user_id\":\"player-uuid-1\",\"nickname\":\"TopPlayer\",\"avatar\":\"https://cdn.faceit.com/p1.jpg\",\"country\":\"DE\",\"faceit_url\":\"https://www.faceit.com/en/players/TopPlayer\",\"membership_type\":\"premium\",\"skill_level\":10,\"memberships\":[\"premium\"]}}"
+}

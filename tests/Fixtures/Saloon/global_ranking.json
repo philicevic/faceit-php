@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"start\":0,\"end\":2,\"items\":[{\"player_id\":\"player-uuid-1\",\"nickname\":\"TopPlayer\",\"country\":\"DE\",\"faceit_elo\":2500,\"game_skill_level\":10,\"position\":1},{\"player_id\":\"player-uuid-2\",\"nickname\":\"SecondPlayer\",\"country\":\"GB\",\"faceit_elo\":2400,\"game_skill_level\":10,\"position\":2}]}"
+}

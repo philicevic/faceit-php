@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"role_id\":\"role-uuid-1\",\"name\":\"Admin\",\"color\":\"#ff0000\",\"ranking\":1,\"visible_on_chat\":true}]}"
+}

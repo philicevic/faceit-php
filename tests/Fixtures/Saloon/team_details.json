@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"team_id\":\"team-uuid-1\",\"name\":\"ProTeam\",\"avatar\":\"https://cdn.faceit.com/team.jpg\",\"cover_image\":\"https://cdn.faceit.com/team-cover.jpg\",\"description\":\"A professional CS2 team.\",\"game\":\"cs2\",\"leader\":\"player-uuid-1\",\"faceit_url\":\"https://www.faceit.com/en/teams/team-uuid-1\",\"chat_room_id\":\"team-chat-1\",\"members\":[{\"user_id\":\"player-uuid-1\",\"nickname\":\"ProPlayer1\",\"avatar\":\"https://cdn.faceit.com/player1.jpg\",\"faceit_url\":\"https://www.faceit.com/en/players/ProPlayer1\"}]}"
+}

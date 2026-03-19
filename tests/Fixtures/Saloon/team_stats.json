@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"team_id\":\"team-uuid-1\",\"game_id\":\"cs2\",\"lifetime\":{\"Matches\":\"100\",\"Wins\":\"60\"},\"segments\":[]}"
+}

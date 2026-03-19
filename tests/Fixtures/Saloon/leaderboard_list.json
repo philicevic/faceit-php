@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"leaderboard_id\":\"lb-uuid-1\",\"leaderboard_name\":\"Main Leaderboard\",\"leaderboard_type\":\"hub\",\"leaderboard_mode\":\"team\",\"competition_id\":\"hub-uuid-1\",\"competition_type\":\"hub\",\"game_id\":\"cs2\",\"region\":\"EU\",\"status\":\"active\",\"points_type\":\"elo\",\"ranking_type\":\"points\",\"group\":0,\"round\":0,\"season\":1,\"start_date\":1710000000,\"end_date\":1712000000,\"min_matches\":5,\"points_per_win\":3,\"points_per_loss\":-1,\"points_per_draw\":1,\"starting_points\":0,\"ranking_boost\":0}]}"
+}

@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"division_name\":\"Diamond\",\"division_tier\":\"I\",\"division_type\":\"ranked\",\"leaderboard_id\":\"lb-1\",\"points\":1500,\"position\":42}"
+}

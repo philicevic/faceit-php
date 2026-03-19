@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"user_id\":\"player-uuid-1\",\"nickname\":\"ProPlayer1\",\"avatar\":\"https://cdn.faceit.com/p1.jpg\",\"faceit_url\":\"https://www.faceit.com/en/players/ProPlayer1\",\"roles\":[\"member\"]}]}"
+}

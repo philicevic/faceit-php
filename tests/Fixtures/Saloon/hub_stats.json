@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"game_id\":\"cs2\",\"start\":0,\"end\":1,\"players\":[{\"player_id\":\"player-uuid-1\",\"nickname\":\"ProPlayer1\",\"stats\":{\"Matches\":\"50\",\"Wins\":\"30\"}}]}"
+}

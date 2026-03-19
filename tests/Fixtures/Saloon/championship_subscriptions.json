@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"status\":\"checkedin\",\"leader\":\"player-uuid-1\",\"coleader\":\"\",\"coach\":\"\",\"group\":1,\"roster\":[\"player-uuid-1\",\"player-uuid-2\"],\"substitutes\":[]}]}"
+}

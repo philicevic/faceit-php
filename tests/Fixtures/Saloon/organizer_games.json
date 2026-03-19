@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"game_id\":\"cs2\",\"long_label\":\"Counter-Strike 2\",\"short_label\":\"CS2\",\"parent_game_id\":\"\",\"order\":1,\"platforms\":[\"PC\"],\"regions\":[\"EU\",\"NA\"],\"assets\":{\"cover\":\"https://cdn.faceit.com/cs2-cover.jpg\",\"featured_img_l\":\"\",\"featured_img_m\":\"\",\"featured_img_s\":\"\",\"flag_img_icon\":\"\",\"flag_img_l\":\"\",\"flag_img_m\":\"\",\"flag_img_s\":\"\",\"landing_page\":\"\"}}]}"
+}

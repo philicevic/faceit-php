@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"rule_id\":\"rule-uuid-1\",\"name\":\"CS2 Hub Rules\",\"body\":\"No cheating allowed.\",\"game\":\"cs2\",\"organizer\":\"org-uuid-1\"}"
+}

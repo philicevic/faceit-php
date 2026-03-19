@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"match_id\":\"1-aa11bb22-cc33-dd44-ee55-ff6677889900\",\"competition_id\":\"champ-uuid-1\",\"competition_name\":\"ESL Pro League\",\"competition_type\":\"championship\",\"best_of\":1,\"status\":\"FINISHED\",\"game\":\"cs2\",\"region\":\"EU\",\"organizer_id\":\"org-uuid-1\",\"started_at\":1710000000,\"finished_at\":1710003600,\"faceit_url\":\"https://www.faceit.com/en/cs2/room/1-aa11bb22-cc33-dd44-ee55-ff6677889900\",\"results\":{\"winner\":\"faction1\",\"score\":{\"faction1\":16,\"faction2\":10}},\"teams\":{\"faction1\":{\"faction_id\":\"faction1\",\"name\":\"Team Alpha\",\"avatar\":\"\",\"leader\":\"player-1\",\"type\":\"team\",\"roster\":[{\"player_id\":\"player-1\",\"nickname\":\"Pro1\",\"avatar\":\"\",\"membership\":\"free\",\"game_player_id\":\"steam-1\",\"game_player_name\":\"Pro1\",\"game_skill_level\":10,\"anticheat_required\":false}]}}}]}"
+}

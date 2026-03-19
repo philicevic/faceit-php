@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"id\":\"mm-uuid-1\",\"name\":\"CS2 Matchmaking EU\",\"game\":\"cs2\",\"region\":\"EU\",\"icon\":\"https://cdn.faceit.com/mm-icon.png\",\"long_description\":\"The official CS2 matchmaking.\",\"league_id\":\"league-1\",\"queues\":[{\"id\":\"queue-1\",\"name\":\"Standard\",\"organizer_id\":\"org-1\",\"open\":true,\"paused\":false}]}"
+}

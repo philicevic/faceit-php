@@ -1,0 +1,5 @@
+{
+    "statusCode": 200,
+    "headers": { "Content-Type": "application/json" },
+    "data": "{\"id\":\"league-uuid-1\",\"game\":\"cs2\",\"region\":\"EU\",\"min_matches\":10,\"divisions\":[{\"name\":\"Diamond\",\"type\":\"ranked\",\"config_type\":\"classic\",\"min_elo\":2000,\"max_elo\":2500,\"leaderboards\":[\"lb-1\"]}]}"
+}
