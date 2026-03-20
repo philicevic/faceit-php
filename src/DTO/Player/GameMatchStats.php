@@ -2,8 +2,13 @@
 
 namespace Philicevic\FaceitPhp\DTO\Player;
 
+use Philicevic\FaceitPhp\Validation\ValidatesFields;
+use Philicevic\FaceitPhp\Validation\ValidationContext;
+
 readonly class GameMatchStats
 {
+    use ValidatesFields;
+
     /**
      * @param  array<string, mixed>  $stats
      */
@@ -11,8 +16,22 @@ readonly class GameMatchStats
         public array $stats,
     ) {}
 
+    protected static function fieldSchema(): array
+    {
+        return [
+            'stats' => '?array',
+        ];
+    }
+
     public static function fromArray(array $data): self
     {
-        return new self(stats: $data['stats'] ?? []);
+        ValidationContext::pushPath('GameMatchStats');
+        try {
+            static::validateData($data);
+
+            return new self(stats: $data['stats'] ?? []);
+        } finally {
+            ValidationContext::popPath();
+        }
     }
 }

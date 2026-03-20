@@ -2,8 +2,13 @@
 
 namespace Philicevic\FaceitPhp\DTO;
 
+use Philicevic\FaceitPhp\Validation\ValidatesFields;
+use Philicevic\FaceitPhp\Validation\ValidationContext;
+
 readonly class UserSimple
 {
+    use ValidatesFields;
+
     /**
      * @param  array<string>  $memberships
      */
@@ -18,17 +23,38 @@ readonly class UserSimple
         public int $skillLevel,
     ) {}
 
+    protected static function fieldSchema(): array
+    {
+        return [
+            'user_id' => 'string',
+            'nickname' => 'string',
+            'avatar' => '?string',
+            'country' => '?string',
+            'faceit_url' => '?string',
+            'membership_type' => '?string',
+            'memberships' => '?array',
+            'skill_level' => '?int',
+        ];
+    }
+
     public static function fromArray(array $data): self
     {
-        return new self(
-            uuid: $data['user_id'],
-            nickname: $data['nickname'],
-            avatar: (string) ($data['avatar'] ?? ''),
-            country: (string) ($data['country'] ?? ''),
-            faceitUrl: (string) ($data['faceit_url'] ?? ''),
-            membershipType: (string) ($data['membership_type'] ?? ''),
-            memberships: $data['memberships'] ?? [],
-            skillLevel: (int) ($data['skill_level'] ?? 0),
-        );
+        ValidationContext::pushPath('UserSimple');
+        try {
+            static::validateData($data);
+
+            return new self(
+                uuid: $data['user_id'],
+                nickname: $data['nickname'],
+                avatar: (string) ($data['avatar'] ?? ''),
+                country: (string) ($data['country'] ?? ''),
+                faceitUrl: (string) ($data['faceit_url'] ?? ''),
+                membershipType: (string) ($data['membership_type'] ?? ''),
+                memberships: $data['memberships'] ?? [],
+                skillLevel: (int) ($data['skill_level'] ?? 0),
+            );
+        } finally {
+            ValidationContext::popPath();
+        }
     }
 }

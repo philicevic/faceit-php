@@ -22,12 +22,20 @@ use Philicevic\FaceitPhp\Resources\PlayerResource;
 use Philicevic\FaceitPhp\Resources\RankingResource;
 use Philicevic\FaceitPhp\Resources\TeamResource;
 use Philicevic\FaceitPhp\Resources\TournamentResource;
+use Philicevic\FaceitPhp\Validation\ValidationContext;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 
 class Faceit extends Connector
 {
-    public function __construct(public readonly string $token) {}
+    public function __construct(public readonly string $token, bool $strict = false)
+    {
+        if ($strict) {
+            ValidationContext::enable();
+        } else {
+            ValidationContext::disable();
+        }
+    }
 
     public function resolveBaseUrl(): string
     {

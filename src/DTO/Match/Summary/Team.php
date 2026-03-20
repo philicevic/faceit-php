@@ -2,8 +2,13 @@
 
 namespace Philicevic\FaceitPhp\DTO\Match\Summary;
 
+use Philicevic\FaceitPhp\Validation\ValidatesFields;
+use Philicevic\FaceitPhp\Validation\ValidationContext;
+
 readonly class Team
 {
+    use ValidatesFields;
+
     /**
      * @param  array<Player>  $players
      */
@@ -14,13 +19,30 @@ readonly class Team
         public array $players,
     ) {}
 
+    protected static function fieldSchema(): array
+    {
+        return [
+            'team_id' => '?string',
+            'nickname' => '?string',
+            'avatar' => '?string',
+            'players' => '?array',
+        ];
+    }
+
     public static function fromArray(array $data): self
     {
-        return new self(
-            uuid: (string) ($data['team_id'] ?? $data['nickname']),
-            nickname: (string) ($data['nickname'] ?? ''),
-            avatar: (string) ($data['avatar'] ?? ''),
-            players: array_map(Player::fromArray(...), $data['players'] ?? []),
-        );
+        ValidationContext::pushPath('SummaryTeam');
+        try {
+            static::validateData($data);
+
+            return new self(
+                uuid: (string) ($data['team_id'] ?? $data['nickname']),
+                nickname: (string) ($data['nickname'] ?? ''),
+                avatar: (string) ($data['avatar'] ?? ''),
+                players: array_map(Player::fromArray(...), $data['players'] ?? []),
+            );
+        } finally {
+            ValidationContext::popPath();
+        }
     }
 }

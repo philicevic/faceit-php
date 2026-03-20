@@ -2,8 +2,13 @@
 
 namespace Philicevic\FaceitPhp\DTO\Team;
 
+use Philicevic\FaceitPhp\Validation\ValidatesFields;
+use Philicevic\FaceitPhp\Validation\ValidationContext;
+
 readonly class TeamStats
 {
+    use ValidatesFields;
+
     /**
      * @param  array<string, mixed>  $lifetime
      * @param  array<array<string, mixed>>  $segments
@@ -15,13 +20,30 @@ readonly class TeamStats
         public array $segments,
     ) {}
 
+    protected static function fieldSchema(): array
+    {
+        return [
+            'team_id' => 'string',
+            'game_id' => 'string',
+            'lifetime' => '?array',
+            'segments' => '?array',
+        ];
+    }
+
     public static function fromArray(array $data): self
     {
-        return new self(
-            teamId: $data['team_id'],
-            gameId: $data['game_id'],
-            lifetime: $data['lifetime'] ?? [],
-            segments: $data['segments'] ?? [],
-        );
+        ValidationContext::pushPath('TeamStats');
+        try {
+            static::validateData($data);
+
+            return new self(
+                teamId: $data['team_id'],
+                gameId: $data['game_id'],
+                lifetime: $data['lifetime'] ?? [],
+                segments: $data['segments'] ?? [],
+            );
+        } finally {
+            ValidationContext::popPath();
+        }
     }
 }

@@ -2,8 +2,13 @@
 
 namespace Philicevic\FaceitPhp\DTO\Match\Stats;
 
+use Philicevic\FaceitPhp\Validation\ValidatesFields;
+use Philicevic\FaceitPhp\Validation\ValidationContext;
+
 readonly class MatchStats
 {
+    use ValidatesFields;
+
     /**
      * @param  array<Round>  $rounds
      */
@@ -11,10 +16,24 @@ readonly class MatchStats
         public array $rounds,
     ) {}
 
+    protected static function fieldSchema(): array
+    {
+        return [
+            'rounds' => 'array',
+        ];
+    }
+
     public static function fromArray(array $data): self
     {
-        return new self(
-            rounds: array_map(Round::fromArray(...), $data['rounds']),
-        );
+        ValidationContext::pushPath('MatchStats');
+        try {
+            static::validateData($data);
+
+            return new self(
+                rounds: array_map(Round::fromArray(...), $data['rounds']),
+            );
+        } finally {
+            ValidationContext::popPath();
+        }
     }
 }
