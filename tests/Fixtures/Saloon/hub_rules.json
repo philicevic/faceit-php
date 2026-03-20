@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"rule_id\":\"rule-abc123\",\"name\":\"CS2 EU Hub Rules\",\"body\":\"1. Be respectful\\n2. No cheating\\n3. English only in chat\",\"game\":\"cs2\",\"organizer\":\"FACEIT\"}",
+    "context": []
+}

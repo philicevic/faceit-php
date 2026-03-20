@@ -23,13 +23,6 @@ class GetPlayerLifetimeStatsRequest extends Request
 
     public function createDtoFromResponse(Response $response): LifetimeStats
     {
-        $data = $response->json();
-
-        return new LifetimeStats(
-            playerId: $data['player_id'],
-            gameId: $data['game_id'],
-            lifetime: $data['lifetime'] ?? [],
-            segments: $data['segments'] ?? [],
-        );
+        return LifetimeStats::fromArray($response->json());
     }
 }

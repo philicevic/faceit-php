@@ -49,20 +49,6 @@ class SearchHubsRequest extends Request
      */
     public function createDtoFromResponse(Response $response): PaginatedResponse
     {
-        $data = $response->json();
-        $items = array_map(fn (array $item): Hub => new Hub(
-            hubId: $item['competition_id'],
-            name: $item['name'],
-            game: (string) ($item['game'] ?? ''),
-            region: (string) ($item['region'] ?? ''),
-            status: (string) ($item['status'] ?? ''),
-            slots: (int) ($item['slots'] ?? 0),
-        ), $data['items'] ?? []);
-
-        return new PaginatedResponse(
-            items: $items,
-            start: $data['start'] ?? 0,
-            end: $data['end'] ?? 0,
-        );
+        return PaginatedResponse::fromArray($response->json(), Hub::fromArray(...));
     }
 }

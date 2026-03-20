@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"championship_id\":\"champ-uuid-1\",\"name\":\"CS2 Spring Championship\",\"game_id\":\"cs2\",\"region\":\"EU\",\"status\":\"ongoing\",\"type\":\"upcoming\",\"organizer_id\":\"organizer-abc123\",\"faceit_url\":\"https://www.faceit.com/en/championship/champ-uuid-1\",\"avatar\":\"https://cdn.faceit.com/champ-avatar.jpg\",\"background_image\":\"https://cdn.faceit.com/champ-bg.jpg\",\"cover_image\":\"https://cdn.faceit.com/champ-cover.jpg\",\"description\":\"Spring championship series\",\"anticheat_required\":true,\"featured\":true,\"full\":false,\"current_subscriptions\":24,\"slots\":32,\"total_groups\":4,\"rules_id\":\"rules-123\",\"seeding_strategy\":\"manual\",\"championship_start\":1710000000,\"checkin_start\":1709996400,\"checkin_clear\":1709998200,\"checkin_enabled\":true,\"subscription_start\":1709000000,\"subscription_end\":1709900000,\"subscriptions_locked\":false}]}",
+    "context": []
+}

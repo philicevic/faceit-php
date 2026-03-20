@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\Requests;
 
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
-use Philicevic\FaceitPhp\DTO\Search\Game;
 use Philicevic\FaceitPhp\DTO\Search\Player;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
@@ -50,28 +49,6 @@ class SearchPlayersRequest extends Request
      */
     public function createDtoFromResponse(Response $response): PaginatedResponse
     {
-        $data = $response->json();
-        $items = array_map(function (array $player): Player {
-            $games = array_map(fn (array $game): Game => new Game(
-                name: $game['name'],
-                skillLevel: (string) ($game['skill_level'] ?? ''),
-            ), $player['games'] ?? []);
-
-            return new Player(
-                playerId: $player['player_id'],
-                nickname: $player['nickname'],
-                status: (string) ($player['status'] ?? ''),
-                country: (string) ($player['country'] ?? ''),
-                avatar: (string) ($player['avatar'] ?? ''),
-                verified: (bool) ($player['verified'] ?? false),
-                games: $games,
-            );
-        }, $data['items'] ?? []);
-
-        return new PaginatedResponse(
-            items: $items,
-            start: $data['start'] ?? 0,
-            end: $data['end'] ?? 0,
-        );
+        return PaginatedResponse::fromArray($response->json(), Player::fromArray(...));
     }
 }

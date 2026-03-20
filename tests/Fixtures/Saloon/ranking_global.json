@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":2,\"items\":[{\"player_id\":\"aaa-111\",\"nickname\":\"s1mple\",\"country\":\"UA\",\"faceit_elo\":4321,\"game_skill_level\":10,\"position\":1},{\"player_id\":\"bbb-222\",\"nickname\":\"ZywOo\",\"country\":\"FR\",\"faceit_elo\":4200,\"game_skill_level\":10,\"position\":2}]}",
+    "context": []
+}

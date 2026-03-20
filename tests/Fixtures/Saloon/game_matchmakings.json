@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"matchmaking_id\":\"mm-abc123\",\"name\":\"CS2 5v5 Premium\",\"game\":\"cs2\",\"region\":\"EU\",\"has_league\":true}]}",
+    "context": []
+}

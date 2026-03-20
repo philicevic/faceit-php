@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO\Player;
 
-class LifetimeStats
+readonly class LifetimeStats
 {
     /**
      * @param  array<string, mixed>  $lifetime
@@ -14,4 +14,14 @@ class LifetimeStats
         public array $lifetime,
         public array $segments,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            playerId: $data['player_id'],
+            gameId: $data['game_id'],
+            lifetime: $data['lifetime'] ?? [],
+            segments: $data['segments'] ?? [],
+        );
+    }
 }

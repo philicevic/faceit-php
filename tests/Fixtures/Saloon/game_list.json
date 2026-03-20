@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"game_id\":\"cs2\",\"short_label\":\"CS2\",\"long_label\":\"Counter-Strike 2\",\"order\":1,\"parent_game_id\":\"csgo\",\"platforms\":[\"steam\"],\"regions\":[\"EU\",\"US\",\"SEA\",\"OCE\",\"SA\"],\"assets\":{\"cover\":\"https://cdn.faceit.com/games/cs2/cover.jpg\",\"featured_img_l\":\"https://cdn.faceit.com/games/cs2/featured_l.jpg\",\"featured_img_m\":\"https://cdn.faceit.com/games/cs2/featured_m.jpg\",\"featured_img_s\":\"https://cdn.faceit.com/games/cs2/featured_s.jpg\",\"flag_img_icon\":\"https://cdn.faceit.com/games/cs2/flag_icon.png\",\"flag_img_l\":\"https://cdn.faceit.com/games/cs2/flag_l.png\",\"flag_img_m\":\"https://cdn.faceit.com/games/cs2/flag_m.png\",\"flag_img_s\":\"https://cdn.faceit.com/games/cs2/flag_s.png\",\"landing_page\":\"https://www.faceit.com/en/cs2\"}}]}",
+    "context": []
+}

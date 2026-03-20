@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO\Player;
 
-class GameMatchStats
+readonly class GameMatchStats
 {
     /**
      * @param  array<string, mixed>  $stats
@@ -10,4 +10,9 @@ class GameMatchStats
     public function __construct(
         public array $stats,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(stats: $data['stats'] ?? []);
+    }
 }

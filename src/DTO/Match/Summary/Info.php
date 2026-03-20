@@ -4,7 +4,7 @@ namespace Philicevic\FaceitPhp\DTO\Match\Summary;
 
 use Philicevic\FaceitPhp\DTO\MatchResult;
 
-class Info
+readonly class Info
 {
     /**
      * @param  array<Team>  $teams
@@ -29,4 +29,27 @@ class Info
         public array $teams,
         public array $playingPlayers,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            uuid: $data['match_id'],
+            competitionId: $data['competition_id'],
+            competitionName: $data['competition_name'],
+            competitionType: $data['competition_type'],
+            status: $data['status'],
+            gameId: $data['game_id'],
+            gameMode: $data['game_mode'],
+            matchType: $data['match_type'],
+            maxPlayers: (int) $data['max_players'],
+            organizerId: $data['organizer_id'],
+            region: $data['region'],
+            faceitUrl: $data['faceit_url'],
+            startedAt: new \DateTime('@'.$data['started_at']),
+            finishedAt: new \DateTime('@'.$data['finished_at']),
+            results: MatchResult::fromArray($data['results']),
+            teams: array_map(Team::fromArray(...), array_values($data['teams'] ?? [])),
+            playingPlayers: $data['playing_players'] ?? [],
+        );
+    }
 }

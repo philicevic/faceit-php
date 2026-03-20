@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"leaderboard\":{\"leaderboard_id\":\"lb-champ-001\",\"competition_id\":\"championship-abc123\",\"competition_type\":\"championship\",\"game_id\":\"cs2\",\"region\":\"EU\",\"leaderboard_mode\":\"score\",\"leaderboard_name\":\"Season 56 Group 1\",\"leaderboard_type\":\"general\",\"min_matches\":5,\"points_per_draw\":1,\"points_per_loss\":0,\"points_per_win\":3,\"points_type\":\"elo\",\"ranking_boost\":0,\"ranking_type\":\"default\",\"round\":14,\"season\":56,\"start_date\":1709000000,\"end_date\":1711000000,\"starting_points\":1000,\"status\":\"active\",\"group\":1},\"items\":[{\"position\":1,\"points\":42,\"played\":14,\"won\":13,\"lost\":1,\"draw\":0,\"current_streak\":5,\"win_rate\":92.86,\"player\":{\"user_id\":\"a58f6134-4f31-4611-8431-b0a9630bea77\",\"nickname\":\"xqsp4m\",\"avatar\":\"https://cdn.faceit.com/avatar1.jpg\",\"country\":\"DE\",\"faceit_url\":\"https://www.faceit.com/en/players/xqsp4m\",\"membership_type\":\"premium\",\"memberships\":[\"premium\"],\"skill_level\":10}},{\"position\":2,\"points\":36,\"played\":14,\"won\":11,\"lost\":3,\"draw\":0,\"current_streak\":2,\"win_rate\":78.57,\"player\":{\"user_id\":\"b68f7245-5f42-5722-9542-c1ba741cfb88\",\"nickname\":\"Player2\",\"avatar\":\"https://cdn.faceit.com/avatar2.jpg\",\"country\":\"SE\",\"faceit_url\":\"https://www.faceit.com/en/players/Player2\",\"membership_type\":\"free\",\"memberships\":[],\"skill_level\":8}}],\"start\":0,\"end\":2}",
+    "context": []
+}

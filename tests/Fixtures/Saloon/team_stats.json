@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"team_id\":\"team-abc-123\",\"game_id\":\"cs2\",\"lifetime\":{\"Average K/D Ratio\":\"1.2\",\"Win Rate %\":\"55\",\"Matches\":\"42\"},\"segments\":[{\"label\":\"5v5\",\"img_small\":\"https://cdn.faceit.com/segment.jpg\",\"img_regular\":\"https://cdn.faceit.com/segment.jpg\",\"stats\":{\"Average K/D Ratio\":\"1.3\",\"Win Rate %\":\"60\"},\"type\":\"Map\",\"mode\":\"5v5\"}]}",
+    "context": []
+}

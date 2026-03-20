@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"coach\":\"coach-uuid-1\",\"coleader\":\"coleader-uuid-1\",\"group\":1,\"leader\":\"leader-uuid-1\",\"roster\":[\"player-uuid-1\",\"player-uuid-2\",\"player-uuid-3\",\"player-uuid-4\",\"player-uuid-5\"],\"status\":\"CHECKED_IN\",\"substitutes\":[\"player-uuid-10\",\"player-uuid-11\"],\"team\":{\"team_id\":\"team-uuid-sub1\",\"name\":\"SubscriptionTeam\",\"nickname\":\"SubTeam\",\"avatar\":\"https://cdn.faceit.com/sub-team.jpg\",\"cover_image\":\"\",\"description\":\"A subscribed team\",\"faceit_url\":\"https://www.faceit.com/en/teams/team-uuid-sub1\",\"game\":\"cs2\",\"leader\":\"leader-uuid-1\",\"team_type\":\"premade\",\"chat_room_id\":\"chat-room-1\",\"members\":[]}}]}",
+    "context": []
+}

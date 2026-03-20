@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO\Match\Stats;
 
-class Team
+readonly class Team
 {
     /**
      * @param  array<string, mixed>  $stats
@@ -14,4 +14,14 @@ class Team
         public array $stats,
         public array $players,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            uuid: $data['team_id'],
+            premade: (bool) $data['premade'],
+            stats: $data['team_stats'],
+            players: array_map(Player::fromArray(...), $data['players']),
+        );
+    }
 }

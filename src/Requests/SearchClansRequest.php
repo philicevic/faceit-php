@@ -49,20 +49,6 @@ class SearchClansRequest extends Request
      */
     public function createDtoFromResponse(Response $response): PaginatedResponse
     {
-        $data = $response->json();
-        $items = array_map(fn (array $item): Clan => new Clan(
-            clanId: $item['id'],
-            name: $item['name'],
-            game: (string) ($item['game'] ?? ''),
-            avatar: (string) ($item['avatar'] ?? ''),
-            region: (string) ($item['region'] ?? ''),
-            membersCount: (int) ($item['members_count'] ?? 0),
-        ), $data['items'] ?? []);
-
-        return new PaginatedResponse(
-            items: $items,
-            start: $data['start'] ?? 0,
-            end: $data['end'] ?? 0,
-        );
+        return PaginatedResponse::fromArray($response->json(), Clan::fromArray(...));
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO\Match\Stats;
 
-class MatchStats
+readonly class MatchStats
 {
     /**
      * @param  array<Round>  $rounds
@@ -10,4 +10,11 @@ class MatchStats
     public function __construct(
         public array $rounds,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            rounds: array_map(Round::fromArray(...), $data['rounds']),
+        );
+    }
 }

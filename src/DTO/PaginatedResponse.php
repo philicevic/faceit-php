@@ -20,6 +20,21 @@ class PaginatedResponse implements \ArrayAccess
         public ?int $to = null,
     ) {}
 
+    /**
+     * @param  callable(array): T  $itemMapper
+     * @return self<T>
+     */
+    public static function fromArray(array $data, callable $itemMapper): self
+    {
+        return new self(
+            items: array_map($itemMapper, $data['items'] ?? []),
+            start: $data['start'] ?? 0,
+            end: $data['end'] ?? 0,
+            from: $data['from'] ?? null,
+            to: $data['to'] ?? null,
+        );
+    }
+
     public function offsetExists(mixed $offset): bool
     {
         if (is_int($offset)) {

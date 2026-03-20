@@ -47,20 +47,6 @@ class SearchOrganizersRequest extends Request
      */
     public function createDtoFromResponse(Response $response): PaginatedResponse
     {
-        $data = $response->json();
-        $items = array_map(fn (array $item): Organizer => new Organizer(
-            organizerId: $item['organizer_id'],
-            name: $item['name'],
-            avatar: (string) ($item['avatar'] ?? ''),
-            active: (bool) ($item['active'] ?? false),
-            games: $item['games'] ?? [],
-            regions: $item['regions'] ?? [],
-        ), $data['items'] ?? []);
-
-        return new PaginatedResponse(
-            items: $items,
-            start: $data['start'] ?? 0,
-            end: $data['end'] ?? 0,
-        );
+        return PaginatedResponse::fromArray($response->json(), Organizer::fromArray(...));
     }
 }

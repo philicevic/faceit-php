@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"matchmaking_id\":\"mm-abc123\",\"name\":\"CS2 5v5 Premium\",\"game\":\"cs2\",\"region\":\"EU\",\"icon\":\"https://cdn.faceit.com/matchmaking/icon.png\",\"league_id\":\"league-xyz789\",\"short_description\":\"Premium 5v5 matchmaking\",\"long_description\":\"Play competitive CS2 matches with premium features and anti-cheat.\",\"queues\":[{\"queue_id\":\"queue-111\",\"name\":\"EU Premium Queue\",\"open\":true,\"organizer_id\":\"org-faceit\",\"paused\":false},{\"queue_id\":\"queue-222\",\"name\":\"EU Free Queue\",\"open\":true,\"organizer_id\":\"org-faceit\",\"paused\":true}]}",
+    "context": []
+}

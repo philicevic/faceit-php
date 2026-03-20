@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"organizer_id\":\"organizer-abc123\",\"name\":\"FACEIT Pro League\",\"avatar\":\"https://cdn.faceit.com/organizer-avatar.jpg\",\"cover\":\"https://cdn.faceit.com/organizer-cover.jpg\",\"description\":\"Official FACEIT Pro League organizer\",\"faceit_url\":\"https://www.faceit.com/en/organizers/organizer-abc123\",\"type\":\"premium\",\"followers_count\":15000,\"facebook\":\"https://facebook.com/faceitproleague\",\"twitter\":\"https://twitter.com/faceitproleague\",\"twitch\":\"https://twitch.tv/faceitproleague\",\"youtube\":\"https://youtube.com/faceitproleague\",\"vk\":\"\",\"website\":\"https://www.faceit.com\"}",
+    "context": []
+}

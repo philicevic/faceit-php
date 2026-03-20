@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"leaderboard\":{\"leaderboard_id\":\"lb-hub-001\",\"competition_id\":\"05f970ad-b6a9-4740-89d1-a9fea46f7525\",\"competition_type\":\"hub\",\"game_id\":\"cs2\",\"region\":\"EU\",\"leaderboard_mode\":\"score\",\"leaderboard_name\":\"Hub All-Time Ranking\",\"leaderboard_type\":\"general\",\"min_matches\":10,\"points_per_draw\":1,\"points_per_loss\":0,\"points_per_win\":3,\"points_type\":\"elo\",\"ranking_boost\":0,\"ranking_type\":\"default\",\"round\":0,\"season\":1,\"start_date\":1700000000,\"end_date\":1712000000,\"starting_points\":1000,\"status\":\"active\",\"group\":0},\"items\":[{\"position\":1,\"points\":1850,\"played\":120,\"won\":85,\"lost\":35,\"draw\":0,\"current_streak\":8,\"win_rate\":70.83,\"player\":{\"user_id\":\"a58f6134-4f31-4611-8431-b0a9630bea77\",\"nickname\":\"xqsp4m\",\"avatar\":\"https://cdn.faceit.com/avatar1.jpg\",\"country\":\"DE\",\"faceit_url\":\"https://www.faceit.com/en/players/xqsp4m\",\"membership_type\":\"premium\",\"memberships\":[\"premium\"],\"skill_level\":10}}],\"start\":0,\"end\":1}",
+    "context": []
+}

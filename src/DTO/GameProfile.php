@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO;
 
-class GameProfile
+readonly class GameProfile
 {
     /**
      * @param  array<string, mixed>  $regions
@@ -18,4 +18,19 @@ class GameProfile
         public int $faceitElo,
         public array $regions = [],
     ) {}
+
+    public static function fromArray(array $data, string $gameId = ''): self
+    {
+        return new self(
+            gameId: $gameId ?: (string) ($data['game_id'] ?? ''),
+            gamePlayerId: (string) ($data['game_player_id'] ?? ''),
+            gamePlayerName: (string) ($data['game_player_name'] ?? ''),
+            gameProfileId: (string) ($data['game_profile_id'] ?? ''),
+            region: (string) ($data['region'] ?? ''),
+            skillLevel: (int) ($data['skill_level'] ?? 0),
+            skillLevelLabel: (string) ($data['skill_level_label'] ?? ''),
+            faceitElo: (int) ($data['faceit_elo'] ?? 0),
+            regions: is_array($data['regions'] ?? null) ? $data['regions'] : [],
+        );
+    }
 }

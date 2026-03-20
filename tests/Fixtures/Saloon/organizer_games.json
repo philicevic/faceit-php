@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"items\":[\"cs2\",\"dota2\"]}",
+    "context": []
+}

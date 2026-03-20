@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"match_id\":\"1-dd11ee22-ff33-aa44-bb55-cc6677889900\",\"game\":\"cs2\",\"region\":\"EU\",\"competition_id\":\"champ-uuid-1\",\"competition_type\":\"championship\",\"competition_name\":\"CS2 Spring Championship\",\"organizer_id\":\"organizer-abc123\",\"best_of\":1,\"status\":\"FINISHED\",\"scheduled_at\":1710001000,\"started_at\":1710001200,\"finished_at\":1710003600,\"faceit_url\":\"https://www.faceit.com/en/cs2/room/1-dd11ee22-ff33-aa44-bb55-cc6677889900\",\"results\":{\"winner\":\"faction2\",\"score\":{\"faction1\":9,\"faction2\":13}},\"teams\":{\"faction1\":{\"faction_id\":\"team-faction1-id\",\"name\":\"ResultTeamA\",\"avatar\":\"https://cdn.faceit.com/team_a.jpg\",\"leader\":\"player-uuid-1\",\"type\":\"premade\",\"roster\":[{\"player_id\":\"player-uuid-1\",\"nickname\":\"ResultPlayer1\",\"avatar\":\"https://cdn.faceit.com/player1.jpg\",\"membership\":\"premium\",\"game_player_id\":\"76561198000000001\",\"game_player_name\":\"ResultPlayer1\",\"game_skill_level\":8,\"anticheat_required\":true}]},\"faction2\":{\"faction_id\":\"team-faction2-id\",\"name\":\"ResultTeamB\",\"avatar\":\"https://cdn.faceit.com/team_b.jpg\",\"leader\":\"player-uuid-6\",\"type\":\"premade\",\"roster\":[{\"player_id\":\"player-uuid-6\",\"nickname\":\"ResultPlayer6\",\"avatar\":\"https://cdn.faceit.com/player6.jpg\",\"membership\":\"free\",\"game_player_id\":\"76561198000000006\",\"game_player_name\":\"ResultPlayer6\",\"game_skill_level\":7,\"anticheat_required\":false}]}}}]}",
+    "context": []
+}

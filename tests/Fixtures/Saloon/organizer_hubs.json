@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"hub_id\":\"hub-org-1\",\"name\":\"Organizer Hub EU\",\"avatar\":\"https://cdn.faceit.com/org-hub.jpg\",\"cover_image\":\"https://cdn.faceit.com/org-hub-cover.jpg\",\"background_image\":\"https://cdn.faceit.com/org-hub-bg.jpg\",\"faceit_url\":\"https://www.faceit.com/en/hub/hub-org-1\",\"description\":\"Organizer managed hub\",\"game_id\":\"cs2\",\"region\":\"EU\"}]}",
+    "context": []
+}

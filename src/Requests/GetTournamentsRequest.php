@@ -39,36 +39,6 @@ class GetTournamentsRequest extends Request
      */
     public function createDtoFromResponse(Response $response): PaginatedResponse
     {
-        $data = $response->json();
-        $items = array_map(function (array $tournament): Tournament {
-            return new Tournament(
-                uuid: $tournament['tournament_id'],
-                name: $tournament['name'],
-                gameId: (string) ($tournament['game_id'] ?? ''),
-                region: (string) ($tournament['region'] ?? ''),
-                status: (string) ($tournament['status'] ?? ''),
-                faceitUrl: (string) ($tournament['faceit_url'] ?? ''),
-                featuredImage: (string) ($tournament['featured_image'] ?? ''),
-                membershipType: (string) ($tournament['membership_type'] ?? ''),
-                matchType: (string) ($tournament['match_type'] ?? ''),
-                prizeType: (string) ($tournament['prize_type'] ?? ''),
-                teamSize: (int) ($tournament['team_size'] ?? 0),
-                maxSkill: (int) ($tournament['max_skill'] ?? 0),
-                minSkill: (int) ($tournament['min_skill'] ?? 0),
-                subscriptionsCount: (int) ($tournament['subscriptions_count'] ?? 0),
-                numberOfPlayers: (int) ($tournament['number_of_players'] ?? 0),
-                numberOfPlayersJoined: (int) ($tournament['number_of_players_joined'] ?? 0),
-                numberOfPlayersCheckedin: (int) ($tournament['number_of_players_checkedin'] ?? 0),
-                numberOfPlayersParticipants: (int) ($tournament['number_of_players_participants'] ?? 0),
-                startedAt: new \DateTime('@'.(int) ($tournament['started_at'] ?? 0)),
-                whitelistCountries: $tournament['whitelist_countries'] ?? [],
-            );
-        }, $data['items'] ?? []);
-
-        return new PaginatedResponse(
-            items: $items,
-            start: $data['start'] ?? 0,
-            end: $data['end'] ?? 0,
-        );
+        return PaginatedResponse::fromArray($response->json(), Tournament::fromArray(...));
     }
 }

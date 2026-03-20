@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"start\":0,\"end\":1,\"items\":[{\"championship_id\":\"champ-uuid-org1\",\"name\":\"Organizer Championship\",\"game_id\":\"cs2\",\"region\":\"EU\",\"status\":\"ongoing\",\"type\":\"upcoming\",\"organizer_id\":\"organizer-abc123\",\"faceit_url\":\"https://www.faceit.com/en/championship/champ-uuid-org1\",\"avatar\":\"https://cdn.faceit.com/org-champ-avatar.jpg\",\"background_image\":\"\",\"cover_image\":\"\",\"description\":\"Organizer hosted championship\",\"anticheat_required\":true,\"featured\":false,\"full\":false,\"current_subscriptions\":16,\"slots\":32,\"total_groups\":2,\"rules_id\":\"rules-org1\",\"seeding_strategy\":\"random\",\"championship_start\":1712000000,\"checkin_start\":1711996400,\"checkin_clear\":1711998200,\"checkin_enabled\":true,\"subscription_start\":1711000000,\"subscription_end\":1711900000,\"subscriptions_locked\":false}]}",
+    "context": []
+}

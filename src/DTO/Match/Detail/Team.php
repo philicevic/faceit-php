@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO\Match\Detail;
 
-class Team
+readonly class Team
 {
     /**
      * @param  array<Player>  $players
@@ -15,4 +15,16 @@ class Team
         public string $type,
         public array $players,
     ) {}
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            uuid: $data['faction_id'],
+            name: (string) ($data['name'] ?? ''),
+            avatar: (string) ($data['avatar'] ?? ''),
+            leader: (string) ($data['leader'] ?? ''),
+            type: (string) ($data['type'] ?? ''),
+            players: array_map(Player::fromArray(...), $data['roster'] ?? []),
+        );
+    }
 }
