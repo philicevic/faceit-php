@@ -2,12 +2,14 @@
 
 namespace Philicevic\FaceitPhp\DTO;
 
+use ArrayAccess;
+
 /**
  * @template T
  *
- * @implements \ArrayAccess<int|string, mixed>
+ * @implements ArrayAccess<int|string, mixed>
  */
-class PaginatedResponse implements \ArrayAccess
+class PaginatedResponse implements ArrayAccess
 {
     /**
      * @param  array<T>  $items

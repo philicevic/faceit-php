@@ -3,6 +3,9 @@
 namespace Philicevic\FaceitPhp\DTO\Match\Detail;
 
 use Philicevic\FaceitPhp\DTO\MatchResult;
+use Philicevic\FaceitPhp\Enums\CompetitionType;
+use Philicevic\FaceitPhp\Enums\MatchStatus;
+use Philicevic\FaceitPhp\Enums\Region;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
 
 readonly class Info
@@ -16,17 +19,17 @@ readonly class Info
         public string $uuid,
         public string $competitionId,
         public string $competitionName,
-        public string $competitionType,
+        public CompetitionType $competitionType,
         public int $bestOf,
-        public string $status,
+        public MatchStatus $status,
         public string $game,
-        public string $region,
+        public Region $region,
         public string $organizerId,
         public ?\DateTime $startedAt,
         public ?\DateTime $finishedAt,
         public ?\DateTime $scheduledAt,
         public string $faceitUrl,
-        public MatchResult $results,
+        public ?MatchResult $results,
         public array $teams,
     ) {}
 
@@ -36,17 +39,17 @@ readonly class Info
             'match_id' => 'string',
             'competition_id' => 'string',
             'competition_name' => 'string',
-            'competition_type' => 'string',
+            'competition_type' => CompetitionType::class,
             'best_of' => '?int',
-            'status' => 'string',
+            'status' => MatchStatus::class,
             'game' => 'string',
-            'region' => 'string',
+            'region' => Region::class,
             'organizer_id' => 'string',
             'started_at' => '?int',
             'finished_at' => '?int',
             'scheduled_at' => '?int',
             'faceit_url' => '?string',
-            'results' => 'array',
+            'results' => '?'.MatchResult::class,
             'teams' => '?array',
         ];
     }
@@ -57,17 +60,17 @@ readonly class Info
             uuid: $d['match_id'],
             competitionId: $d['competition_id'],
             competitionName: $d['competition_name'],
-            competitionType: $d['competition_type'],
+            competitionType: CompetitionType::from($d['competition_type']),
             bestOf: (int) ($d['best_of'] ?? 1),
-            status: $d['status'],
+            status: MatchStatus::from($d['status']),
             game: $d['game'],
-            region: $d['region'],
+            region: Region::from($d['region']),
             organizerId: $d['organizer_id'],
             startedAt: isset($d['started_at']) ? new \DateTime('@'.$d['started_at']) : null,
             finishedAt: isset($d['finished_at']) ? new \DateTime('@'.$d['finished_at']) : null,
             scheduledAt: isset($d['scheduled_at']) ? new \DateTime('@'.$d['scheduled_at']) : null,
             faceitUrl: (string) ($d['faceit_url'] ?? ''),
-            results: MatchResult::fromArray($d['results']),
+            results: isset($d['results']) ? MatchResult::fromArray($d['results']) : null,
             teams: array_map(Team::fromArray(...), array_values($d['teams'] ?? [])),
         ));
     }

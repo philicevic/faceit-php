@@ -2,6 +2,7 @@
 
 namespace Philicevic\FaceitPhp\Requests;
 
+use Philicevic\FaceitPhp\DTO\Championship\Results\Group;
 use Philicevic\FaceitPhp\DTO\Match\Detail\Info;
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
 use Saloon\Enums\Method;
@@ -36,6 +37,6 @@ class GetChampionshipResultsRequest extends Request
      */
     public function createDtoFromResponse(Response $response): PaginatedResponse
     {
-        return PaginatedResponse::fromArray($response->json(), Info::fromArray(...));
+        return PaginatedResponse::fromArray($response->json(), Group::fromArray(...));
     }
 }

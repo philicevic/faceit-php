@@ -2,6 +2,9 @@
 
 namespace Philicevic\FaceitPhp\DTO\Championship;
 
+use Philicevic\FaceitPhp\Enums\ChampionshipStatus;
+use Philicevic\FaceitPhp\Enums\ChampionshipType;
+use Philicevic\FaceitPhp\Enums\Region;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
 
 readonly class Championship
@@ -12,9 +15,9 @@ readonly class Championship
         public string $uuid,
         public string $name,
         public string $gameId,
-        public string $region,
-        public string $status,
-        public string $type,
+        public Region $region,
+        public ChampionshipStatus $status,
+        public ChampionshipType $type,
         public string $organizerId,
         public string $faceitUrl,
         public string $avatar,
@@ -77,9 +80,9 @@ readonly class Championship
             uuid: $d['championship_id'],
             name: (string) ($d['name'] ?? ''),
             gameId: (string) ($d['game_id'] ?? ''),
-            region: (string) ($d['region'] ?? ''),
-            status: (string) ($d['status'] ?? ''),
-            type: (string) ($d['type'] ?? ''),
+            region: Region::from($d['region']),
+            status: ChampionshipStatus::from($d['status']),
+            type: ChampionshipType::from($d['type']),
             organizerId: (string) ($d['organizer_id'] ?? ''),
             faceitUrl: (string) ($d['faceit_url'] ?? ''),
             avatar: (string) ($d['avatar'] ?? ''),

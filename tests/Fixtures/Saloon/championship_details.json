@@ -1,8 +1,33 @@
 {
     "statusCode": 200,
     "headers": {
-        "Content-Type": "application/json"
+        "Date": "Sat, 21 Mar 2026 13:22:46 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "9dfd447298b1359e-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/championships\/{championshipId}",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "14",
+        "vary": "Accept-Encoding,Origin",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=F4u1LXX5X9tcxkN5_Yr4lr5JsT0ICKZo2kUZ1rhytZU-1774099366-1.0.1.1-Q89VgVtbf2n3ZKnkh14DbJgwAFhG69bxO.O1H9sHa6IUIEuv2p8dmXFtwk4ZlGSb6ZfuBcp6SV_UJvcQpdADQWXmqple_ZLmR4fSlALKJpL7FZGYa4uHI6q508_CfoO2; path=\/; expires=Sat, 21-Mar-26 13:52:46 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=wHwXI3IE1rrgxgeMN.yaH1MD6sePLzPLlaUADDGcTMY-1774099366962-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
     },
-    "data": "{\"championship_id\":\"champ-uuid-1\",\"name\":\"CS2 Spring Championship\",\"game_id\":\"cs2\",\"region\":\"EU\",\"status\":\"ongoing\",\"type\":\"upcoming\",\"organizer_id\":\"organizer-abc123\",\"faceit_url\":\"https://www.faceit.com/en/championship/champ-uuid-1\",\"avatar\":\"https://cdn.faceit.com/champ-avatar.jpg\",\"background_image\":\"https://cdn.faceit.com/champ-bg.jpg\",\"cover_image\":\"https://cdn.faceit.com/champ-cover.jpg\",\"description\":\"Spring championship series\",\"anticheat_required\":true,\"featured\":true,\"full\":false,\"current_subscriptions\":24,\"slots\":32,\"total_groups\":4,\"rules_id\":\"rules-123\",\"seeding_strategy\":\"manual\",\"championship_start\":1710000000,\"checkin_start\":1709996400,\"checkin_clear\":1709998200,\"checkin_enabled\":true,\"subscription_start\":1709000000,\"subscription_end\":1709900000,\"subscriptions_locked\":false}",
+    "data": "{\"id\":\"4af3f365-8333-418c-8677-eba68d63fffb\",\"championship_id\":\"4af3f365-8333-418c-8677-eba68d63fffb\",\"name\":\"CYBERLIGA\",\"cover_image\":\"\",\"background_image\":\"\",\"avatar\":\"\",\"organizer_id\":\"251bd7bf-ef70-42d9-942f-b3a46862f423\",\"description\":\"\",\"type\":\"bracket\",\"status\":\"started\",\"game_id\":\"cs2\",\"region\":\"EU\",\"featured\":false,\"subscription_start\":1741958400000,\"checkin_start\":1741960800000,\"checkin_clear\":1741962600000,\"subscription_end\":1741964400000,\"championship_start\":1741964700000,\"slots\":13,\"current_subscriptions\":13,\"join_checks\":{\"min_skill_level\":1,\"max_skill_level\":10,\"whitelist_geo_countries\":[],\"whitelist_geo_countries_min_players\":0,\"blacklist_geo_countries\":[],\"join_policy\":\"public\",\"membership_type\":\"\",\"allowed_team_types\":[\"premade\",\"mix\"]},\"anticheat_required\":true,\"rules_id\":\"\",\"substitution_configuration\":{\"max_substitutes\":0,\"max_substitutions\":0},\"full\":true,\"checkin_enabled\":true,\"total_rounds\":4,\"schedule\":{\"1\":{\"date\":1741964700000,\"status\":\"created\"},\"2\":{\"date\":0,\"status\":\"waiting\"},\"3\":{\"date\":0,\"status\":\"waiting\"},\"4\":{\"date\":0,\"status\":\"waiting\"}},\"total_groups\":1,\"subscriptions_locked\":true,\"seeding_strategy\":\"uniformGroupDistribution\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/championship\/4af3f365-8333-418c-8677-eba68d63fffb\/\",\"prizes\":null,\"total_prizes\":0,\"stream\":{\"active\":false,\"platform\":\"\",\"source\":\"\",\"title\":\"\"}}",
     "context": []
 }

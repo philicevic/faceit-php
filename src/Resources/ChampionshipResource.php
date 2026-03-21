@@ -3,6 +3,7 @@
 namespace Philicevic\FaceitPhp\Resources;
 
 use Philicevic\FaceitPhp\DTO\Championship\Championship;
+use Philicevic\FaceitPhp\DTO\Championship\Results\Group;
 use Philicevic\FaceitPhp\DTO\Championship\Subscription;
 use Philicevic\FaceitPhp\DTO\Match\Detail\Info;
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
@@ -36,7 +37,7 @@ class ChampionshipResource extends FaceitResource
     }
 
     /**
-     * @return PaginatedResponse<Info>
+     * @return PaginatedResponse<Group>
      */
     public function getResults(string $championshipId, int $offset = 0, int $limit = 20): PaginatedResponse
     {

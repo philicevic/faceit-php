@@ -3,6 +3,7 @@
 namespace Philicevic\FaceitPhp\DTO\Championship;
 
 use Philicevic\FaceitPhp\DTO\Team\Team;
+use Philicevic\FaceitPhp\Enums\SubscriptionStatus;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
 
 readonly class Subscription
@@ -19,7 +20,7 @@ readonly class Subscription
         public int $group,
         public string $leader,
         public array $roster,
-        public string $status,
+        public SubscriptionStatus $status,
         public array $substitutes,
         public ?Team $team,
     ) {}
@@ -32,7 +33,7 @@ readonly class Subscription
             'group' => '?int',
             'leader' => '?string',
             'roster' => '?array',
-            'status' => '?string',
+            'status' => SubscriptionStatus::class,
             'substitutes' => '?array',
             'team' => '?array',
         ];
@@ -46,7 +47,7 @@ readonly class Subscription
             group: (int) ($d['group'] ?? 0),
             leader: (string) ($d['leader'] ?? ''),
             roster: $d['roster'] ?? [],
-            status: (string) ($d['status'] ?? ''),
+            status: SubscriptionStatus::from($d['status']),
             substitutes: $d['substitutes'] ?? [],
             team: isset($d['team']) ? Team::fromArray($d['team']) : null,
         ));

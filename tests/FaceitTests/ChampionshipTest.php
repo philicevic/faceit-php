@@ -1,12 +1,22 @@
 <?php
 
 use Philicevic\FaceitPhp\DTO\Championship\Championship;
+use Philicevic\FaceitPhp\DTO\Championship\Results\Bounds;
+use Philicevic\FaceitPhp\DTO\Championship\Results\Group;
+use Philicevic\FaceitPhp\DTO\Championship\Results\Placement;
 use Philicevic\FaceitPhp\DTO\Championship\Subscription;
 use Philicevic\FaceitPhp\DTO\Match\Detail\Info as MatchInfo;
 use Philicevic\FaceitPhp\DTO\Match\Detail\Player as MatchPlayer;
 use Philicevic\FaceitPhp\DTO\Match\Detail\Team as MatchTeam;
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
 use Philicevic\FaceitPhp\DTO\Team\Team;
+use Philicevic\FaceitPhp\Enums\ChampionshipStatus;
+use Philicevic\FaceitPhp\Enums\ChampionshipType;
+use Philicevic\FaceitPhp\Enums\CompetitionType;
+use Philicevic\FaceitPhp\Enums\MatchStatus;
+use Philicevic\FaceitPhp\Enums\PlacementType;
+use Philicevic\FaceitPhp\Enums\Region;
+use Philicevic\FaceitPhp\Enums\SubscriptionStatus;
 use Philicevic\FaceitPhp\Requests\GetChampionshipMatchesRequest;
 use Philicevic\FaceitPhp\Requests\GetChampionshipRequest;
 use Philicevic\FaceitPhp\Requests\GetChampionshipResultsRequest;
@@ -18,6 +28,7 @@ use Saloon\Http\Faking\MockResponse;
 beforeEach(function () {
     $this->faceit = faceitMock();
     $this->resource = $this->faceit->championship();
+    $this->championship = '588ab681-e552-4617-b0e7-588713f7713c';
 });
 
 // --- List championships ---
@@ -33,43 +44,56 @@ test('can list championships', function () {
         ->and($response->items)->toContainOnlyInstancesOf(Championship::class);
 });
 
-test('championship list hydrates all attributes', function () {
+test('can list championships with limit', function () {
     MockClient::global([
-        GetChampionshipsRequest::class => MockResponse::fixture('championship_list'),
+        GetChampionshipsRequest::class => MockResponse::fixture('championship_list_limited'),
     ]);
 
-    $response = $this->resource->list(game: 'cs2');
-    $championship = $response->items[0];
+    $response = $this->resource->list(game: 'cs2', limit: 100);
+
+    expect($response)->toBeInstanceOf(PaginatedResponse::class)
+        ->and($response->items)->toHaveCount(100);
+});
+
+test('championship list hydrates all attributes', function () {
+    MockClient::global([
+        GetChampionshipsRequest::class => MockResponse::fixture('championship_list_limited'),
+    ]);
+
+    $response = $this->resource->list(game: 'cs2', limit: 100);
 
     expect($response->start)->toBe(0)
-        ->and($response->end)->toBe(1)
-        ->and($championship->uuid)->toBe('champ-uuid-1')
-        ->and($championship->name)->toBe('CS2 Spring Championship')
-        ->and($championship->gameId)->toBe('cs2')
-        ->and($championship->region)->toBe('EU')
-        ->and($championship->status)->toBe('ongoing')
-        ->and($championship->type)->toBe('upcoming')
-        ->and($championship->organizerId)->toBe('organizer-abc123')
-        ->and($championship->faceitUrl)->toBeString()
-        ->and($championship->avatar)->toBeString()
-        ->and($championship->backgroundImage)->toBeString()
-        ->and($championship->coverImage)->toBeString()
-        ->and($championship->description)->toBe('Spring championship series')
-        ->and($championship->anticheatRequired)->toBeTrue()
-        ->and($championship->featured)->toBeTrue()
-        ->and($championship->full)->toBeFalse()
-        ->and($championship->currentSubscriptions)->toBe(24)
-        ->and($championship->slots)->toBe(32)
-        ->and($championship->totalGroups)->toBe(4)
-        ->and($championship->rulesId)->toBe('rules-123')
-        ->and($championship->seedingStrategy)->toBe('manual')
-        ->and($championship->championshipStart)->toBe(1710000000)
-        ->and($championship->checkinStart)->toBe(1709996400)
-        ->and($championship->checkinClear)->toBe(1709998200)
-        ->and($championship->checkinEnabled)->toBeTrue()
-        ->and($championship->subscriptionStart)->toBe(1709000000)
-        ->and($championship->subscriptionEnd)->toBe(1709900000)
-        ->and($championship->subscriptionsLocked)->toBeFalse();
+        ->and($response->end)->toBe(100);
+
+    foreach ($response->items as $championship) {
+        expect($championship->uuid)->toBeString()->not()->toBeEmpty()
+            ->and($championship->name)->toBeString()->not()->toBeEmpty()
+            ->and($championship->gameId)->toBe('cs2')
+            ->and($championship->region)->toBeIn(Region::cases())
+            ->and($championship->status)->toBeIn(ChampionshipStatus::cases())
+            ->and($championship->type)->toBeIn(ChampionshipType::cases())
+            ->and($championship->organizerId)->toBeString()->not()->toBeEmpty()
+            ->and($championship->faceitUrl)->toBeString()->not()->toBeEmpty()
+            ->and($championship->avatar)->toBeString()
+            ->and($championship->backgroundImage)->toBeString()
+            ->and($championship->coverImage)->toBeString()
+            ->and($championship->description)->toBeString()
+            ->and($championship->anticheatRequired)->toBeBool()
+            ->and($championship->featured)->toBeBool()
+            ->and($championship->full)->toBeBool()
+            ->and($championship->currentSubscriptions)->toBeNumeric()
+            ->and($championship->slots)->toBeNumeric()
+            ->and($championship->totalGroups)->toBeNumeric()
+            ->and($championship->rulesId)->toBeString()
+            ->and($championship->seedingStrategy)->toBeIn(['manual', 'uniformGroupDistribution', 'doubleEliminationDistribution'])
+            ->and($championship->championshipStart)->toBeNumeric()
+            ->and($championship->checkinStart)->toBeNumeric()
+            ->and($championship->checkinClear)->toBeNumeric()
+            ->and($championship->checkinEnabled)->toBeBool()
+            ->and($championship->subscriptionStart)->toBeNumeric()
+            ->and($championship->subscriptionEnd)->toBeNumeric()
+            ->and($championship->subscriptionsLocked)->toBeBool();
+    }
 });
 
 // --- Get single championship ---
@@ -79,7 +103,7 @@ test('can get championship details', function () {
         GetChampionshipRequest::class => MockResponse::fixture('championship_details'),
     ]);
 
-    $championship = $this->resource->get('champ-uuid-1');
+    $championship = $this->resource->get($this->championship);
 
     expect($championship)->toBeInstanceOf(Championship::class);
 });
@@ -89,24 +113,24 @@ test('championship details hydrate all attributes', function () {
         GetChampionshipRequest::class => MockResponse::fixture('championship_details'),
     ]);
 
-    $championship = $this->resource->get('champ-uuid-1');
+    $championship = $this->resource->get($this->championship);
 
-    expect($championship->uuid)->toBe('champ-uuid-1')
-        ->and($championship->name)->toBe('CS2 Spring Championship')
+    expect($championship->uuid)->toBe('4af3f365-8333-418c-8677-eba68d63fffb')
+        ->and($championship->name)->toBeString()->not()->toBeEmpty()
         ->and($championship->gameId)->toBe('cs2')
-        ->and($championship->region)->toBe('EU')
-        ->and($championship->status)->toBe('ongoing')
-        ->and($championship->type)->toBe('upcoming')
-        ->and($championship->organizerId)->toBe('organizer-abc123')
-        ->and($championship->anticheatRequired)->toBeTrue()
-        ->and($championship->featured)->toBeTrue()
-        ->and($championship->full)->toBeFalse()
-        ->and($championship->currentSubscriptions)->toBe(24)
-        ->and($championship->slots)->toBe(32)
-        ->and($championship->totalGroups)->toBe(4)
-        ->and($championship->championshipStart)->toBe(1710000000)
-        ->and($championship->checkinEnabled)->toBeTrue()
-        ->and($championship->subscriptionsLocked)->toBeFalse();
+        ->and($championship->region)->toBeIn(Region::cases())
+        ->and($championship->status)->toBeIn(ChampionshipStatus::cases())
+        ->and($championship->type)->toBeIn(ChampionshipType::cases())
+        ->and($championship->organizerId)->toBeString()->not()->toBeEmpty()
+        ->and($championship->anticheatRequired)->toBeBool()
+        ->and($championship->featured)->toBeBool()
+        ->and($championship->full)->toBeBool()
+        ->and($championship->currentSubscriptions)->toBeNumeric()
+        ->and($championship->slots)->toBeNumeric()
+        ->and($championship->totalGroups)->toBeNumeric()
+        ->and($championship->championshipStart)->toBeNumeric()
+        ->and($championship->checkinEnabled)->toBeBool()
+        ->and($championship->subscriptionsLocked)->toBeBool();
 });
 
 // --- Get championship matches ---
@@ -116,36 +140,42 @@ test('can get championship matches', function () {
         GetChampionshipMatchesRequest::class => MockResponse::fixture('championship_matches'),
     ]);
 
-    $response = $this->resource->getMatches('champ-uuid-1');
+    $response = $this->resource->getMatches($this->championship);
 
     expect($response)->toBeInstanceOf(PaginatedResponse::class)
         ->and($response->items)->toContainOnlyInstancesOf(MatchInfo::class);
 });
 
-test('championship matches hydrate all attributes', function () {
+test('championship matches hydrate all attributes', closure: function () {
     MockClient::global([
         GetChampionshipMatchesRequest::class => MockResponse::fixture('championship_matches'),
     ]);
 
-    $response = $this->resource->getMatches('champ-uuid-1');
-    $match = $response->items[0];
-    $team = $match->teams[0];
-    $player = $team->players[0];
+    $response = $this->resource->getMatches($this->championship);
 
     expect($response->start)->toBe(0)
-        ->and($response->end)->toBe(1)
-        ->and($match->uuid)->toBe('1-cc11dd22-ee33-ff44-aa55-bb6677889900')
-        ->and($match->game)->toBe('cs2')
-        ->and($match->region)->toBe('EU')
-        ->and($match->competitionId)->toBe('champ-uuid-1')
-        ->and($match->competitionType)->toBe('championship')
-        ->and($match->status)->toBe('FINISHED')
-        ->and($match->bestOf)->toBe(1)
-        ->and($match->results->winner)->toBe('faction1')
-        ->and($match->teams)->toContainOnlyInstancesOf(MatchTeam::class)
-        ->and($team->players)->toContainOnlyInstancesOf(MatchPlayer::class)
-        ->and($player->uuid)->toBeString()
-        ->and($player->nickname)->toBeString();
+        ->and($response->end)->toBe(20);
+
+    foreach ($response->items as $match) {
+        expect($match->uuid)->toBeString()->not()->toBeEmpty()
+            ->and($match->game)->toBe('cs2')
+            ->and($match->region)->toBeIn(Region::cases())
+            ->and($match->competitionId)->toBeString()->not()->toBeEmpty()
+            ->and($match->competitionType)->toBe(CompetitionType::Championship)
+            ->and($match->status)->toBeIn(MatchStatus::cases())
+            ->and($match->bestOf)->toBeNumeric()
+            ->and($match->teams)->toContainOnlyInstancesOf(MatchTeam::class);
+
+        foreach ($match->teams as $team) {
+            expect($team->players)->toContainOnlyInstancesOf(MatchPlayer::class);
+
+            foreach ($team->players as $player) {
+                expect($team->players)->toContainOnlyInstancesOf(MatchPlayer::class)
+                    ->and($player->uuid)->toBeString()
+                    ->and($player->nickname)->toBeString();
+            }
+        }
+    }
 });
 
 // --- Get championship results ---
@@ -155,10 +185,26 @@ test('can get championship results', function () {
         GetChampionshipResultsRequest::class => MockResponse::fixture('championship_results'),
     ]);
 
-    $response = $this->resource->getResults('champ-uuid-1');
+    $response = $this->resource->getResults($this->championship);
 
     expect($response)->toBeInstanceOf(PaginatedResponse::class)
-        ->and($response->items)->toContainOnlyInstancesOf(MatchInfo::class);
+        ->and($response->items)->toContainOnlyInstancesOf(Group::class);
+});
+
+test('placement can be empty', function () {
+    $placement = Placement::fromArray([
+        'id' => '',
+        'name' => '',
+        'type' => '',
+    ]);
+    $filledPlacement = Placement::fromArray([
+        'id' => 'fake-id',
+        'name' => 'fake-name',
+        'type' => 'team',
+    ]);
+
+    expect($placement->isEmpty())->toBeTrue()
+        ->and($filledPlacement->isEmpty())->toBeFalse();
 });
 
 test('championship results hydrate all attributes', function () {
@@ -166,12 +212,28 @@ test('championship results hydrate all attributes', function () {
         GetChampionshipResultsRequest::class => MockResponse::fixture('championship_results'),
     ]);
 
-    $response = $this->resource->getResults('champ-uuid-1');
+    $response = $this->resource->getResults($this->championship);
     $match = $response->items[0];
 
-    expect($match->uuid)->toBe('1-dd11ee22-ff33-aa44-bb55-cc6677889900')
-        ->and($match->competitionType)->toBe('championship')
-        ->and($match->results->winner)->toBe('faction2');
+    foreach ($response->items as $group) {
+        expect($group->bounds)->toBeInstanceOf(Bounds::class)
+            ->and($group->bounds->left)->toBeNumeric()
+            ->and($group->bounds->right)->toBeNumeric()
+            ->and($group->placements)->toBeArray()
+            ->and($group->placements)->toContainOnlyInstancesOf(Placement::class);
+
+        foreach ($group->placements as $placement) {
+            expect($placement->uuid)
+                ->when($placement->isEmpty(), fn ($id) => $id->toBeEmpty())
+                ->when(! $placement->isEmpty(), fn ($id) => $id->toBeString()->not->toBeEmpty())
+                ->and($placement->name)
+                ->when($placement->isEmpty(), fn ($name) => $name->toBeEmpty())
+                ->when(! $placement->isEmpty(), fn ($name) => $name->toBeString()->not()->toBeEmpty())
+                ->and($placement->type)
+                ->when($placement->isEmpty(), fn ($type) => $type->toBeNull())
+                ->when(! $placement->isEmpty(), fn ($type) => $type->toBeIn(PlacementType::cases()));
+        }
+    }
 });
 
 // --- Get championship subscriptions ---
@@ -181,7 +243,7 @@ test('can get championship subscriptions', function () {
         GetChampionshipSubscriptionsRequest::class => MockResponse::fixture('championship_subscriptions'),
     ]);
 
-    $response = $this->resource->getSubscriptions('champ-uuid-1');
+    $response = $this->resource->getSubscriptions($this->championship);
 
     expect($response)->toBeInstanceOf(PaginatedResponse::class)
         ->and($response->items)->toContainOnlyInstancesOf(Subscription::class);
@@ -192,17 +254,17 @@ test('championship subscriptions hydrate all attributes', function () {
         GetChampionshipSubscriptionsRequest::class => MockResponse::fixture('championship_subscriptions'),
     ]);
 
-    $response = $this->resource->getSubscriptions('champ-uuid-1');
+    $response = $this->resource->getSubscriptions($this->championship);
     $subscription = $response->items[0];
 
-    expect($subscription->coach)->toBe('coach-uuid-1')
-        ->and($subscription->coleader)->toBe('coleader-uuid-1')
-        ->and($subscription->group)->toBe(1)
-        ->and($subscription->leader)->toBe('leader-uuid-1')
-        ->and($subscription->roster)->toBe(['player-uuid-1', 'player-uuid-2', 'player-uuid-3', 'player-uuid-4', 'player-uuid-5'])
-        ->and($subscription->status)->toBe('CHECKED_IN')
-        ->and($subscription->substitutes)->toBe(['player-uuid-10', 'player-uuid-11'])
+    expect($subscription->coach)->toBeString()
+        ->and($subscription->coleader)->toBeString()
+        ->and($subscription->group)->toBeNumeric()
+        ->and($subscription->leader)->toBeString()->not->toBeEmpty()
+        ->and($subscription->roster)->each->toBeString()->not->toBeEmpty()
+        ->and($subscription->status)->toBeIn(SubscriptionStatus::cases())
+        ->and($subscription->substitutes)->each->toBeString()->not->toBeEmpty()
         ->and($subscription->team)->toBeInstanceOf(Team::class)
-        ->and($subscription->team->uuid)->toBe('team-uuid-sub1')
-        ->and($subscription->team->name)->toBe('SubscriptionTeam');
+        ->and($subscription->team->uuid)->toBeString()->not->toBeEmpty()
+        ->and($subscription->team->name)->toBeString()->not->toBeEmpty();
 });
