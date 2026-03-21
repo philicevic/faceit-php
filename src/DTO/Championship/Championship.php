@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Championship;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Championship
 {
@@ -74,41 +73,34 @@ readonly class Championship
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Championship');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['championship_id'],
-                name: (string) ($data['name'] ?? ''),
-                gameId: (string) ($data['game_id'] ?? ''),
-                region: (string) ($data['region'] ?? ''),
-                status: (string) ($data['status'] ?? ''),
-                type: (string) ($data['type'] ?? ''),
-                organizerId: (string) ($data['organizer_id'] ?? ''),
-                faceitUrl: (string) ($data['faceit_url'] ?? ''),
-                avatar: (string) ($data['avatar'] ?? ''),
-                backgroundImage: (string) ($data['background_image'] ?? ''),
-                coverImage: (string) ($data['cover_image'] ?? ''),
-                description: (string) ($data['description'] ?? ''),
-                anticheatRequired: (bool) ($data['anticheat_required'] ?? false),
-                featured: (bool) ($data['featured'] ?? false),
-                full: (bool) ($data['full'] ?? false),
-                currentSubscriptions: (int) ($data['current_subscriptions'] ?? 0),
-                slots: (int) ($data['slots'] ?? 0),
-                totalGroups: (int) ($data['total_groups'] ?? 0),
-                rulesId: (string) ($data['rules_id'] ?? ''),
-                seedingStrategy: (string) ($data['seeding_strategy'] ?? ''),
-                championshipStart: (int) ($data['championship_start'] ?? 0),
-                checkinStart: (int) ($data['checkin_start'] ?? 0),
-                checkinClear: (int) ($data['checkin_clear'] ?? 0),
-                checkinEnabled: (bool) ($data['checkin_enabled'] ?? false),
-                subscriptionStart: (int) ($data['subscription_start'] ?? 0),
-                subscriptionEnd: (int) ($data['subscription_end'] ?? 0),
-                subscriptionsLocked: (bool) ($data['subscriptions_locked'] ?? false),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['championship_id'],
+            name: (string) ($d['name'] ?? ''),
+            gameId: (string) ($d['game_id'] ?? ''),
+            region: (string) ($d['region'] ?? ''),
+            status: (string) ($d['status'] ?? ''),
+            type: (string) ($d['type'] ?? ''),
+            organizerId: (string) ($d['organizer_id'] ?? ''),
+            faceitUrl: (string) ($d['faceit_url'] ?? ''),
+            avatar: (string) ($d['avatar'] ?? ''),
+            backgroundImage: (string) ($d['background_image'] ?? ''),
+            coverImage: (string) ($d['cover_image'] ?? ''),
+            description: (string) ($d['description'] ?? ''),
+            anticheatRequired: (bool) ($d['anticheat_required'] ?? false),
+            featured: (bool) ($d['featured'] ?? false),
+            full: (bool) ($d['full'] ?? false),
+            currentSubscriptions: (int) ($d['current_subscriptions'] ?? 0),
+            slots: (int) ($d['slots'] ?? 0),
+            totalGroups: (int) ($d['total_groups'] ?? 0),
+            rulesId: (string) ($d['rules_id'] ?? ''),
+            seedingStrategy: (string) ($d['seeding_strategy'] ?? ''),
+            championshipStart: (int) ($d['championship_start'] ?? 0),
+            checkinStart: (int) ($d['checkin_start'] ?? 0),
+            checkinClear: (int) ($d['checkin_clear'] ?? 0),
+            checkinEnabled: (bool) ($d['checkin_enabled'] ?? false),
+            subscriptionStart: (int) ($d['subscription_start'] ?? 0),
+            subscriptionEnd: (int) ($d['subscription_end'] ?? 0),
+            subscriptionsLocked: (bool) ($d['subscriptions_locked'] ?? false),
+        ));
     }
 }

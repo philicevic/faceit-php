@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Matchmaking;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class MatchmakingQueue
 {
@@ -30,19 +29,12 @@ readonly class MatchmakingQueue
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('MatchmakingQueue');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: (string) ($data['queue_id'] ?? ''),
-                name: (string) ($data['name'] ?? ''),
-                open: (bool) ($data['open'] ?? false),
-                organizerId: (string) ($data['organizer_id'] ?? ''),
-                paused: (bool) ($data['paused'] ?? false),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: (string) ($d['queue_id'] ?? ''),
+            name: (string) ($d['name'] ?? ''),
+            open: (bool) ($d['open'] ?? false),
+            organizerId: (string) ($d['organizer_id'] ?? ''),
+            paused: (bool) ($d['paused'] ?? false),
+        ));
     }
 }

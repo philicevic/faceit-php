@@ -11,6 +11,19 @@ trait ValidatesFields
     /** @return array<string, string> */
     abstract protected static function fieldSchema(): array;
 
+    protected static function validated(array $data, \Closure $factory): mixed
+    {
+        $name = substr(static::class, strrpos(static::class, '\\') + 1);
+        ValidationContext::pushPath($name);
+        try {
+            static::validateData($data);
+
+            return $factory($data);
+        } finally {
+            ValidationContext::popPath();
+        }
+    }
+
     protected static function validateData(array $data): void
     {
         if (! ValidationContext::isStrict()) {

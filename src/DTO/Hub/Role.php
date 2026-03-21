@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Hub;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Role
 {
@@ -30,19 +29,12 @@ readonly class Role
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Role');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['role_id'],
-                name: $data['name'],
-                color: (string) ($data['color'] ?? ''),
-                ranking: (int) ($data['ranking'] ?? 0),
-                visibleOnChat: (bool) ($data['visible_on_chat'] ?? false),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['role_id'],
+            name: $d['name'],
+            color: (string) ($d['color'] ?? ''),
+            ranking: (int) ($d['ranking'] ?? 0),
+            visibleOnChat: (bool) ($d['visible_on_chat'] ?? false),
+        ));
     }
 }

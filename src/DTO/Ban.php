@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Ban
 {
@@ -34,21 +33,14 @@ readonly class Ban
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Ban');
-        try {
-            static::validateData($data);
-
-            return new self(
-                userId: $data['user_id'],
-                nickname: $data['nickname'],
-                reason: $data['reason'],
-                type: $data['type'],
-                game: (string) ($data['game'] ?? ''),
-                startsAt: new \DateTime($data['starts_at']),
-                endsAt: new \DateTime($data['ends_at']),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            userId: $d['user_id'],
+            nickname: $d['nickname'],
+            reason: $d['reason'],
+            type: $d['type'],
+            game: (string) ($d['game'] ?? ''),
+            startsAt: new \DateTime($d['starts_at']),
+            endsAt: new \DateTime($d['ends_at']),
+        ));
     }
 }

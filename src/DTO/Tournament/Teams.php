@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Tournament;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Teams
 {
@@ -34,18 +33,11 @@ readonly class Teams
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('TournamentTeams');
-        try {
-            static::validateData($data);
-
-            return new self(
-                checkedIn: array_map(Team::fromArray(...), $data['checked_in'] ?? []),
-                finished: array_map(Team::fromArray(...), $data['finished'] ?? []),
-                joined: array_map(Team::fromArray(...), $data['joined'] ?? []),
-                started: array_map(Team::fromArray(...), $data['started'] ?? []),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            checkedIn: array_map(Team::fromArray(...), $d['checked_in'] ?? []),
+            finished: array_map(Team::fromArray(...), $d['finished'] ?? []),
+            joined: array_map(Team::fromArray(...), $d['joined'] ?? []),
+            started: array_map(Team::fromArray(...), $d['started'] ?? []),
+        ));
     }
 }

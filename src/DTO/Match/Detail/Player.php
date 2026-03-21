@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Match\Detail;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Player
 {
@@ -36,22 +35,15 @@ readonly class Player
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('DetailPlayer');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['player_id'],
-                nickname: $data['nickname'],
-                avatar: (string) ($data['avatar'] ?? ''),
-                membership: (string) ($data['membership'] ?? ''),
-                gamePlayerId: (string) ($data['game_player_id'] ?? ''),
-                gamePlayerName: (string) ($data['game_player_name'] ?? ''),
-                gameSkillLevel: (int) ($data['game_skill_level'] ?? 0),
-                anticheatRequired: (bool) ($data['anticheat_required'] ?? false),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['player_id'],
+            nickname: $d['nickname'],
+            avatar: (string) ($d['avatar'] ?? ''),
+            membership: (string) ($d['membership'] ?? ''),
+            gamePlayerId: (string) ($d['game_player_id'] ?? ''),
+            gamePlayerName: (string) ($d['game_player_name'] ?? ''),
+            gameSkillLevel: (int) ($d['game_skill_level'] ?? 0),
+            anticheatRequired: (bool) ($d['anticheat_required'] ?? false),
+        ));
     }
 }

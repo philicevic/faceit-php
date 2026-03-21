@@ -10,27 +10,20 @@ use Philicevic\FaceitPhp\Requests\GetChampionshipLeaderboardsRequest;
 use Philicevic\FaceitPhp\Requests\GetHubLeaderboardsRequest;
 use Philicevic\FaceitPhp\Requests\GetHubRankingRequest;
 use Philicevic\FaceitPhp\Requests\GetLeaderboardRequest;
-use Saloon\Http\BaseResource;
 
-class LeaderboardResource extends BaseResource
+class LeaderboardResource extends FaceitResource
 {
     /**
      * @return PaginatedResponse<Leaderboard>
      */
     public function getChampionshipLeaderboards(string $championshipId, int $offset = 0, int $limit = 20): PaginatedResponse
     {
-        $request = new GetChampionshipLeaderboardsRequest($championshipId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetChampionshipLeaderboardsRequest($championshipId, $offset, $limit));
     }
 
     public function getChampionshipGroupRanking(string $championshipId, int $group, int $offset = 0, int $limit = 20): EntityRanking
     {
-        $request = new GetChampionshipGroupRankingRequest($championshipId, $group, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetChampionshipGroupRankingRequest($championshipId, $group, $offset, $limit));
     }
 
     /**
@@ -38,25 +31,16 @@ class LeaderboardResource extends BaseResource
      */
     public function getHubLeaderboards(string $hubId, int $offset = 0, int $limit = 20): PaginatedResponse
     {
-        $request = new GetHubLeaderboardsRequest($hubId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetHubLeaderboardsRequest($hubId, $offset, $limit));
     }
 
     public function getHubRanking(string $hubId, int $offset = 0, int $limit = 20): EntityRanking
     {
-        $request = new GetHubRankingRequest($hubId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetHubRankingRequest($hubId, $offset, $limit));
     }
 
     public function get(string $leaderboardId, int $offset = 0, int $limit = 20): EntityRanking
     {
-        $request = new GetLeaderboardRequest($leaderboardId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetLeaderboardRequest($leaderboardId, $offset, $limit));
     }
 }

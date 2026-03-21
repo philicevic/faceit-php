@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Hub;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Member
 {
@@ -33,19 +32,12 @@ readonly class Member
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Member');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['user_id'],
-                nickname: $data['nickname'],
-                avatar: (string) ($data['avatar'] ?? ''),
-                faceitUrl: (string) ($data['faceit_url'] ?? ''),
-                roles: $data['roles'] ?? [],
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['user_id'],
+            nickname: $d['nickname'],
+            avatar: (string) ($d['avatar'] ?? ''),
+            faceitUrl: (string) ($d['faceit_url'] ?? ''),
+            roles: $d['roles'] ?? [],
+        ));
     }
 }

@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Ranking;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class GlobalRankingItem
 {
@@ -32,20 +31,13 @@ readonly class GlobalRankingItem
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('GlobalRankingItem');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: (string) ($data['player_id'] ?? ''),
-                nickname: (string) ($data['nickname'] ?? ''),
-                country: (string) ($data['country'] ?? ''),
-                faceitElo: (int) ($data['faceit_elo'] ?? 0),
-                gameSkillLevel: (int) ($data['game_skill_level'] ?? 0),
-                position: (int) ($data['position'] ?? 0),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: (string) ($d['player_id'] ?? ''),
+            nickname: (string) ($d['nickname'] ?? ''),
+            country: (string) ($d['country'] ?? ''),
+            faceitElo: (int) ($d['faceit_elo'] ?? 0),
+            gameSkillLevel: (int) ($d['game_skill_level'] ?? 0),
+            position: (int) ($d['position'] ?? 0),
+        ));
     }
 }

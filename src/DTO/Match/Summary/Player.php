@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Match\Summary;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Player
 {
@@ -32,20 +31,13 @@ readonly class Player
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('SummaryPlayer');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['player_id'],
-                nickname: $data['nickname'],
-                avatar: (string) ($data['avatar'] ?? ''),
-                faceitUrl: (string) ($data['faceit_url'] ?? ''),
-                gamePlayerId: (string) ($data['game_player_id'] ?? ''),
-                gamePlayerName: (string) ($data['game_player_name'] ?? ''),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['player_id'],
+            nickname: $d['nickname'],
+            avatar: (string) ($d['avatar'] ?? ''),
+            faceitUrl: (string) ($d['faceit_url'] ?? ''),
+            gamePlayerId: (string) ($d['game_player_id'] ?? ''),
+            gamePlayerName: (string) ($d['game_player_name'] ?? ''),
+        ));
     }
 }

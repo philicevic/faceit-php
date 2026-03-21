@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Tournament;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class BracketsRound
 {
@@ -36,22 +35,15 @@ readonly class BracketsRound
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('BracketsRound');
-        try {
-            static::validateData($data);
-
-            return new self(
-                round: (int) ($data['round'] ?? 0),
-                label: (string) ($data['label'] ?? ''),
-                matchesCount: (int) ($data['matches'] ?? 0),
-                bestOf: (int) ($data['best_of'] ?? 0),
-                startTime: (int) ($data['start_time'] ?? 0),
-                startsAsap: (bool) ($data['starts_asap'] ?? false),
-                substitutionTime: (int) ($data['substitution_time'] ?? 0),
-                substitutionsAllowed: (bool) ($data['substitutions_allowed'] ?? false),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            round: (int) ($d['round'] ?? 0),
+            label: (string) ($d['label'] ?? ''),
+            matchesCount: (int) ($d['matches'] ?? 0),
+            bestOf: (int) ($d['best_of'] ?? 0),
+            startTime: (int) ($d['start_time'] ?? 0),
+            startsAsap: (bool) ($d['starts_asap'] ?? false),
+            substitutionTime: (int) ($d['substitution_time'] ?? 0),
+            substitutionsAllowed: (bool) ($d['substitutions_allowed'] ?? false),
+        ));
     }
 }

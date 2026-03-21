@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Player
 {
@@ -56,34 +55,29 @@ readonly class Player
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Player');
-        try {
-            static::validateData($data);
-
+        return static::validated($data, function ($d) {
             $games = [];
-            foreach ($data['games'] ?? [] as $gameId => $game) {
+            foreach ($d['games'] ?? [] as $gameId => $game) {
                 $games[$gameId] = GameProfile::fromArray($game, $gameId);
             }
 
             return new self(
-                uuid: $data['player_id'],
-                nickname: $data['nickname'],
-                avatar: (string) ($data['avatar'] ?? ''),
-                country: (string) ($data['country'] ?? ''),
-                coverImage: (string) ($data['cover_image'] ?? ''),
-                activatedAt: new \DateTime($data['activated_at']),
-                faceitUrl: (string) ($data['faceit_url'] ?? ''),
-                friendsIds: $data['friends_ids'] ?? [],
+                uuid: $d['player_id'],
+                nickname: $d['nickname'],
+                avatar: (string) ($d['avatar'] ?? ''),
+                country: (string) ($d['country'] ?? ''),
+                coverImage: (string) ($d['cover_image'] ?? ''),
+                activatedAt: new \DateTime($d['activated_at']),
+                faceitUrl: (string) ($d['faceit_url'] ?? ''),
+                friendsIds: $d['friends_ids'] ?? [],
                 games: $games,
-                memberships: $data['memberships'] ?? [],
-                platforms: $data['platforms'] ?? [],
-                membershipType: (string) ($data['membership_type'] ?? ''),
-                steamId64: (string) ($data['steam_id_64'] ?? ''),
-                steamNickname: (string) ($data['steam_nickname'] ?? ''),
-                verified: (bool) ($data['verified'] ?? false),
+                memberships: $d['memberships'] ?? [],
+                platforms: $d['platforms'] ?? [],
+                membershipType: (string) ($d['membership_type'] ?? ''),
+                steamId64: (string) ($d['steam_id_64'] ?? ''),
+                steamNickname: (string) ($d['steam_nickname'] ?? ''),
+                verified: (bool) ($d['verified'] ?? false),
             );
-        } finally {
-            ValidationContext::popPath();
-        }
+        });
     }
 }

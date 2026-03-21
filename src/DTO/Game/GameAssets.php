@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Game;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class GameAssets
 {
@@ -38,23 +37,16 @@ readonly class GameAssets
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('GameAssets');
-        try {
-            static::validateData($data);
-
-            return new self(
-                cover: (string) ($data['cover'] ?? ''),
-                featuredImgL: (string) ($data['featured_img_l'] ?? ''),
-                featuredImgM: (string) ($data['featured_img_m'] ?? ''),
-                featuredImgS: (string) ($data['featured_img_s'] ?? ''),
-                flagImgIcon: (string) ($data['flag_img_icon'] ?? ''),
-                flagImgL: (string) ($data['flag_img_l'] ?? ''),
-                flagImgM: (string) ($data['flag_img_m'] ?? ''),
-                flagImgS: (string) ($data['flag_img_s'] ?? ''),
-                landingPage: (string) ($data['landing_page'] ?? ''),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            cover: (string) ($d['cover'] ?? ''),
+            featuredImgL: (string) ($d['featured_img_l'] ?? ''),
+            featuredImgM: (string) ($d['featured_img_m'] ?? ''),
+            featuredImgS: (string) ($d['featured_img_s'] ?? ''),
+            flagImgIcon: (string) ($d['flag_img_icon'] ?? ''),
+            flagImgL: (string) ($d['flag_img_l'] ?? ''),
+            flagImgM: (string) ($d['flag_img_m'] ?? ''),
+            flagImgS: (string) ($d['flag_img_s'] ?? ''),
+            landingPage: (string) ($d['landing_page'] ?? ''),
+        ));
     }
 }

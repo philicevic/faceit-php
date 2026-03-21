@@ -4,7 +4,6 @@ namespace Philicevic\FaceitPhp\DTO\Team;
 
 use Philicevic\FaceitPhp\DTO\UserSimple;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Team
 {
@@ -56,30 +55,23 @@ readonly class Team
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Team');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['team_id'],
-                name: (string) ($data['name'] ?? ''),
-                nickname: (string) ($data['nickname'] ?? ''),
-                avatar: (string) ($data['avatar'] ?? ''),
-                coverImage: (string) ($data['cover_image'] ?? ''),
-                description: (string) ($data['description'] ?? ''),
-                faceitUrl: (string) ($data['faceit_url'] ?? ''),
-                game: (string) ($data['game'] ?? ''),
-                leader: (string) ($data['leader'] ?? ''),
-                teamType: (string) ($data['team_type'] ?? ''),
-                chatRoomId: (string) ($data['chat_room_id'] ?? ''),
-                members: array_map(UserSimple::fromArray(...), $data['members'] ?? []),
-                facebook: (string) ($data['facebook'] ?? ''),
-                twitter: (string) ($data['twitter'] ?? ''),
-                youtube: (string) ($data['youtube'] ?? ''),
-                website: (string) ($data['website'] ?? ''),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['team_id'],
+            name: (string) ($d['name'] ?? ''),
+            nickname: (string) ($d['nickname'] ?? ''),
+            avatar: (string) ($d['avatar'] ?? ''),
+            coverImage: (string) ($d['cover_image'] ?? ''),
+            description: (string) ($d['description'] ?? ''),
+            faceitUrl: (string) ($d['faceit_url'] ?? ''),
+            game: (string) ($d['game'] ?? ''),
+            leader: (string) ($d['leader'] ?? ''),
+            teamType: (string) ($d['team_type'] ?? ''),
+            chatRoomId: (string) ($d['chat_room_id'] ?? ''),
+            members: array_map(UserSimple::fromArray(...), $d['members'] ?? []),
+            facebook: (string) ($d['facebook'] ?? ''),
+            twitter: (string) ($d['twitter'] ?? ''),
+            youtube: (string) ($d['youtube'] ?? ''),
+            website: (string) ($d['website'] ?? ''),
+        ));
     }
 }

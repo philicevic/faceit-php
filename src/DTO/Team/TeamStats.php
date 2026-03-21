@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Team;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class TeamStats
 {
@@ -32,18 +31,11 @@ readonly class TeamStats
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('TeamStats');
-        try {
-            static::validateData($data);
-
-            return new self(
-                teamId: $data['team_id'],
-                gameId: $data['game_id'],
-                lifetime: $data['lifetime'] ?? [],
-                segments: $data['segments'] ?? [],
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            teamId: $d['team_id'],
+            gameId: $d['game_id'],
+            lifetime: $d['lifetime'] ?? [],
+            segments: $d['segments'] ?? [],
+        ));
     }
 }

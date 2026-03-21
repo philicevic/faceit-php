@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Hub;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Hub
 {
@@ -52,30 +51,23 @@ readonly class Hub
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Hub');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['hub_id'],
-                name: $data['name'],
-                avatar: (string) ($data['avatar'] ?? ''),
-                backgroundImage: (string) ($data['background_image'] ?? ''),
-                coverImage: (string) ($data['cover_image'] ?? ''),
-                description: (string) ($data['description'] ?? ''),
-                faceitUrl: (string) ($data['faceit_url'] ?? ''),
-                gameId: (string) ($data['game_id'] ?? ''),
-                region: (string) ($data['region'] ?? ''),
-                organizerId: (string) ($data['organizer_id'] ?? ''),
-                joinPermission: (string) ($data['join_permission'] ?? ''),
-                maxSkillLevel: (int) ($data['max_skill_level'] ?? 0),
-                minSkillLevel: (int) ($data['min_skill_level'] ?? 0),
-                playersJoined: (int) ($data['players_joined'] ?? 0),
-                ruleId: (string) ($data['rule_id'] ?? ''),
-                chatRoomId: (string) ($data['chat_room_id'] ?? ''),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['hub_id'],
+            name: $d['name'],
+            avatar: (string) ($d['avatar'] ?? ''),
+            backgroundImage: (string) ($d['background_image'] ?? ''),
+            coverImage: (string) ($d['cover_image'] ?? ''),
+            description: (string) ($d['description'] ?? ''),
+            faceitUrl: (string) ($d['faceit_url'] ?? ''),
+            gameId: (string) ($d['game_id'] ?? ''),
+            region: (string) ($d['region'] ?? ''),
+            organizerId: (string) ($d['organizer_id'] ?? ''),
+            joinPermission: (string) ($d['join_permission'] ?? ''),
+            maxSkillLevel: (int) ($d['max_skill_level'] ?? 0),
+            minSkillLevel: (int) ($d['min_skill_level'] ?? 0),
+            playersJoined: (int) ($d['players_joined'] ?? 0),
+            ruleId: (string) ($d['rule_id'] ?? ''),
+            chatRoomId: (string) ($d['chat_room_id'] ?? ''),
+        ));
     }
 }

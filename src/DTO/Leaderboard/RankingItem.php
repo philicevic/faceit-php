@@ -4,7 +4,6 @@ namespace Philicevic\FaceitPhp\DTO\Leaderboard;
 
 use Philicevic\FaceitPhp\DTO\UserSimple;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class RankingItem
 {
@@ -39,23 +38,16 @@ readonly class RankingItem
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('RankingItem');
-        try {
-            static::validateData($data);
-
-            return new self(
-                position: (int) ($data['position'] ?? 0),
-                points: (int) ($data['points'] ?? 0),
-                played: (int) ($data['played'] ?? 0),
-                won: (int) ($data['won'] ?? 0),
-                lost: (int) ($data['lost'] ?? 0),
-                draw: (int) ($data['draw'] ?? 0),
-                currentStreak: (int) ($data['current_streak'] ?? 0),
-                winRate: (float) ($data['win_rate'] ?? 0),
-                player: UserSimple::fromArray($data['player']),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            position: (int) ($d['position'] ?? 0),
+            points: (int) ($d['points'] ?? 0),
+            played: (int) ($d['played'] ?? 0),
+            won: (int) ($d['won'] ?? 0),
+            lost: (int) ($d['lost'] ?? 0),
+            draw: (int) ($d['draw'] ?? 0),
+            currentStreak: (int) ($d['current_streak'] ?? 0),
+            winRate: (float) ($d['win_rate'] ?? 0),
+            player: UserSimple::fromArray($d['player']),
+        ));
     }
 }

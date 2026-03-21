@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class MatchResult
 {
@@ -24,16 +23,9 @@ readonly class MatchResult
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('MatchResult');
-        try {
-            static::validateData($data);
-
-            return new self(
-                winner: $data['winner'],
-                score: new MatchScore(byFaction: $data['score']),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            winner: $d['winner'],
+            score: new MatchScore(byFaction: $d['score']),
+        ));
     }
 }

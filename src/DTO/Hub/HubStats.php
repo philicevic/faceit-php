@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Hub;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class HubStats
 {
@@ -27,16 +26,9 @@ readonly class HubStats
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('HubStats');
-        try {
-            static::validateData($data);
-
-            return new self(
-                gameId: (string) ($data['game_id'] ?? ''),
-                players: array_map(HubStatsPlayer::fromArray(...), $data['players'] ?? []),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            gameId: (string) ($d['game_id'] ?? ''),
+            players: array_map(HubStatsPlayer::fromArray(...), $d['players'] ?? []),
+        ));
     }
 }

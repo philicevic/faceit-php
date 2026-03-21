@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Search;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Hub
 {
@@ -32,20 +31,13 @@ readonly class Hub
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('SearchHub');
-        try {
-            static::validateData($data);
-
-            return new self(
-                hubId: $data['competition_id'],
-                name: $data['name'],
-                game: (string) ($data['game'] ?? ''),
-                region: (string) ($data['region'] ?? ''),
-                status: (string) ($data['status'] ?? ''),
-                slots: (int) ($data['slots'] ?? 0),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            hubId: $d['competition_id'],
+            name: $d['name'],
+            game: (string) ($d['game'] ?? ''),
+            region: (string) ($d['region'] ?? ''),
+            status: (string) ($d['status'] ?? ''),
+            slots: (int) ($d['slots'] ?? 0),
+        ));
     }
 }

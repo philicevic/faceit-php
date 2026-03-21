@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class UserSimple
 {
@@ -39,22 +38,15 @@ readonly class UserSimple
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('UserSimple');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['user_id'],
-                nickname: $data['nickname'],
-                avatar: (string) ($data['avatar'] ?? ''),
-                country: (string) ($data['country'] ?? ''),
-                faceitUrl: (string) ($data['faceit_url'] ?? ''),
-                membershipType: (string) ($data['membership_type'] ?? ''),
-                memberships: $data['memberships'] ?? [],
-                skillLevel: (int) ($data['skill_level'] ?? 0),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['user_id'],
+            nickname: $d['nickname'],
+            avatar: (string) ($d['avatar'] ?? ''),
+            country: (string) ($d['country'] ?? ''),
+            faceitUrl: (string) ($d['faceit_url'] ?? ''),
+            membershipType: (string) ($d['membership_type'] ?? ''),
+            memberships: $d['memberships'] ?? [],
+            skillLevel: (int) ($d['skill_level'] ?? 0),
+        ));
     }
 }

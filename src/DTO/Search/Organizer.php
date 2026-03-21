@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Search;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Organizer
 {
@@ -36,20 +35,13 @@ readonly class Organizer
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('SearchOrganizer');
-        try {
-            static::validateData($data);
-
-            return new self(
-                organizerId: $data['organizer_id'],
-                name: $data['name'],
-                avatar: (string) ($data['avatar'] ?? ''),
-                active: (bool) ($data['active'] ?? false),
-                games: $data['games'] ?? [],
-                regions: $data['regions'] ?? [],
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            organizerId: $d['organizer_id'],
+            name: $d['name'],
+            avatar: (string) ($d['avatar'] ?? ''),
+            active: (bool) ($d['active'] ?? false),
+            games: $d['games'] ?? [],
+            regions: $d['regions'] ?? [],
+        ));
     }
 }

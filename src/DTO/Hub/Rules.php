@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Hub;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Rules
 {
@@ -30,19 +29,12 @@ readonly class Rules
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Rules');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['rule_id'],
-                name: (string) ($data['name'] ?? ''),
-                body: (string) ($data['body'] ?? ''),
-                game: (string) ($data['game'] ?? ''),
-                organizer: (string) ($data['organizer'] ?? ''),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['rule_id'],
+            name: (string) ($d['name'] ?? ''),
+            body: (string) ($d['body'] ?? ''),
+            game: (string) ($d['game'] ?? ''),
+            organizer: (string) ($d['organizer'] ?? ''),
+        ));
     }
 }

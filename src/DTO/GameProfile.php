@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class GameProfile
 {
@@ -41,23 +40,16 @@ readonly class GameProfile
 
     public static function fromArray(array $data, string $gameId = ''): self
     {
-        ValidationContext::pushPath('GameProfile');
-        try {
-            static::validateData($data);
-
-            return new self(
-                gameId: $gameId ?: (string) ($data['game_id'] ?? ''),
-                gamePlayerId: (string) ($data['game_player_id'] ?? ''),
-                gamePlayerName: (string) ($data['game_player_name'] ?? ''),
-                gameProfileId: (string) ($data['game_profile_id'] ?? ''),
-                region: (string) ($data['region'] ?? ''),
-                skillLevel: (int) ($data['skill_level'] ?? 0),
-                skillLevelLabel: (string) ($data['skill_level_label'] ?? ''),
-                faceitElo: (int) ($data['faceit_elo'] ?? 0),
-                regions: is_array($data['regions'] ?? null) ? $data['regions'] : [],
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            gameId: $gameId ?: (string) ($d['game_id'] ?? ''),
+            gamePlayerId: (string) ($d['game_player_id'] ?? ''),
+            gamePlayerName: (string) ($d['game_player_name'] ?? ''),
+            gameProfileId: (string) ($d['game_profile_id'] ?? ''),
+            region: (string) ($d['region'] ?? ''),
+            skillLevel: (int) ($d['skill_level'] ?? 0),
+            skillLevelLabel: (string) ($d['skill_level_label'] ?? ''),
+            faceitElo: (int) ($d['faceit_elo'] ?? 0),
+            regions: is_array($d['regions'] ?? null) ? $d['regions'] : [],
+        ));
     }
 }

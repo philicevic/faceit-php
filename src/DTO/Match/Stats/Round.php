@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Match\Stats;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Round
 {
@@ -42,23 +41,16 @@ readonly class Round
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Round');
-        try {
-            static::validateData($data);
-
-            return new self(
-                bestOf: (int) $data['best_of'],
-                competitionId: $data['competition_id'],
-                gameId: $data['game_id'],
-                gameMode: $data['game_mode'],
-                matchId: $data['match_id'],
-                matchRound: (int) $data['match_round'],
-                played: $data['played'] == '1',
-                stats: $data['round_stats'],
-                teams: array_map(Team::fromArray(...), $data['teams']),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            bestOf: (int) $d['best_of'],
+            competitionId: $d['competition_id'],
+            gameId: $d['game_id'],
+            gameMode: $d['game_mode'],
+            matchId: $d['match_id'],
+            matchRound: (int) $d['match_round'],
+            played: $d['played'] == '1',
+            stats: $d['round_stats'],
+            teams: array_map(Team::fromArray(...), $d['teams']),
+        ));
     }
 }

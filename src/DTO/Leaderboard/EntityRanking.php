@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Leaderboard;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class EntityRanking
 {
@@ -31,18 +30,11 @@ readonly class EntityRanking
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('EntityRanking');
-        try {
-            static::validateData($data);
-
-            return new self(
-                leaderboard: Leaderboard::fromArray($data['leaderboard']),
-                items: array_map(RankingItem::fromArray(...), $data['items'] ?? []),
-                start: $data['start'] ?? 0,
-                end: $data['end'] ?? 0,
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            leaderboard: Leaderboard::fromArray($d['leaderboard']),
+            items: array_map(RankingItem::fromArray(...), $d['items'] ?? []),
+            start: $d['start'] ?? 0,
+            end: $d['end'] ?? 0,
+        ));
     }
 }

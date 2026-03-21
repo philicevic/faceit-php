@@ -13,35 +13,25 @@ use Philicevic\FaceitPhp\Requests\GetTournamentMatchesRequest;
 use Philicevic\FaceitPhp\Requests\GetTournamentRequest;
 use Philicevic\FaceitPhp\Requests\GetTournamentsRequest;
 use Philicevic\FaceitPhp\Requests\GetTournamentTeamsRequest;
-use Saloon\Http\BaseResource;
 
-class TournamentResource extends BaseResource
+class TournamentResource extends FaceitResource
 {
     /**
      * @return PaginatedResponse<TournamentSimple>
      */
     public function list(?string $game = null, ?string $region = null, int $offset = 0, int $limit = 20): PaginatedResponse
     {
-        $request = new GetTournamentsRequest($game, $region, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetTournamentsRequest($game, $region, $offset, $limit));
     }
 
     public function get(string $tournamentId, ?string $expanded = null): Tournament
     {
-        $request = new GetTournamentRequest($tournamentId, $expanded);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetTournamentRequest($tournamentId, $expanded));
     }
 
     public function getBrackets(string $tournamentId): Brackets
     {
-        $request = new GetTournamentBracketsRequest($tournamentId);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetTournamentBracketsRequest($tournamentId));
     }
 
     /**
@@ -49,17 +39,11 @@ class TournamentResource extends BaseResource
      */
     public function getMatches(string $tournamentId, int $offset = 0, int $limit = 20): PaginatedResponse
     {
-        $request = new GetTournamentMatchesRequest($tournamentId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetTournamentMatchesRequest($tournamentId, $offset, $limit));
     }
 
     public function getTeams(string $tournamentId, int $offset = 0, int $limit = 20): Teams
     {
-        $request = new GetTournamentTeamsRequest($tournamentId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetTournamentTeamsRequest($tournamentId, $offset, $limit));
     }
 }

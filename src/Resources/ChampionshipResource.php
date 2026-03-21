@@ -11,27 +11,20 @@ use Philicevic\FaceitPhp\Requests\GetChampionshipRequest;
 use Philicevic\FaceitPhp\Requests\GetChampionshipResultsRequest;
 use Philicevic\FaceitPhp\Requests\GetChampionshipsRequest;
 use Philicevic\FaceitPhp\Requests\GetChampionshipSubscriptionsRequest;
-use Saloon\Http\BaseResource;
 
-class ChampionshipResource extends BaseResource
+class ChampionshipResource extends FaceitResource
 {
     /**
      * @return PaginatedResponse<Championship>
      */
     public function list(string $game, ?string $type = null, int $offset = 0, int $limit = 10): PaginatedResponse
     {
-        $request = new GetChampionshipsRequest($game, $type, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetChampionshipsRequest($game, $type, $offset, $limit));
     }
 
     public function get(string $championshipId, ?string $expanded = null): Championship
     {
-        $request = new GetChampionshipRequest($championshipId, $expanded);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetChampionshipRequest($championshipId, $expanded));
     }
 
     /**
@@ -39,10 +32,7 @@ class ChampionshipResource extends BaseResource
      */
     public function getMatches(string $championshipId, ?string $type = null, int $offset = 0, int $limit = 20): PaginatedResponse
     {
-        $request = new GetChampionshipMatchesRequest($championshipId, $type, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetChampionshipMatchesRequest($championshipId, $type, $offset, $limit));
     }
 
     /**
@@ -50,10 +40,7 @@ class ChampionshipResource extends BaseResource
      */
     public function getResults(string $championshipId, int $offset = 0, int $limit = 20): PaginatedResponse
     {
-        $request = new GetChampionshipResultsRequest($championshipId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetChampionshipResultsRequest($championshipId, $offset, $limit));
     }
 
     /**
@@ -61,9 +48,6 @@ class ChampionshipResource extends BaseResource
      */
     public function getSubscriptions(string $championshipId, int $offset = 0, int $limit = 10): PaginatedResponse
     {
-        $request = new GetChampionshipSubscriptionsRequest($championshipId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetChampionshipSubscriptionsRequest($championshipId, $offset, $limit));
     }
 }

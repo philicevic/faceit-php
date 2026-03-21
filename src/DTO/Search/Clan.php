@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Search;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Clan
 {
@@ -32,20 +31,13 @@ readonly class Clan
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('SearchClan');
-        try {
-            static::validateData($data);
-
-            return new self(
-                clanId: $data['id'],
-                name: $data['name'],
-                game: (string) ($data['game'] ?? ''),
-                avatar: (string) ($data['avatar'] ?? ''),
-                region: (string) ($data['region'] ?? ''),
-                membersCount: (int) ($data['members_count'] ?? 0),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            clanId: $d['id'],
+            name: $d['name'],
+            game: (string) ($d['game'] ?? ''),
+            avatar: (string) ($d['avatar'] ?? ''),
+            region: (string) ($d['region'] ?? ''),
+            membersCount: (int) ($d['members_count'] ?? 0),
+        ));
     }
 }

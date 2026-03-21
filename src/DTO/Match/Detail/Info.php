@@ -4,7 +4,6 @@ namespace Philicevic\FaceitPhp\DTO\Match\Detail;
 
 use Philicevic\FaceitPhp\DTO\MatchResult;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Info
 {
@@ -54,29 +53,22 @@ readonly class Info
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('DetailInfo');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['match_id'],
-                competitionId: $data['competition_id'],
-                competitionName: $data['competition_name'],
-                competitionType: $data['competition_type'],
-                bestOf: (int) ($data['best_of'] ?? 1),
-                status: $data['status'],
-                game: $data['game'],
-                region: $data['region'],
-                organizerId: $data['organizer_id'],
-                startedAt: isset($data['started_at']) ? new \DateTime('@'.$data['started_at']) : null,
-                finishedAt: isset($data['finished_at']) ? new \DateTime('@'.$data['finished_at']) : null,
-                scheduledAt: isset($data['scheduled_at']) ? new \DateTime('@'.$data['scheduled_at']) : null,
-                faceitUrl: (string) ($data['faceit_url'] ?? ''),
-                results: MatchResult::fromArray($data['results']),
-                teams: array_map(Team::fromArray(...), array_values($data['teams'] ?? [])),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['match_id'],
+            competitionId: $d['competition_id'],
+            competitionName: $d['competition_name'],
+            competitionType: $d['competition_type'],
+            bestOf: (int) ($d['best_of'] ?? 1),
+            status: $d['status'],
+            game: $d['game'],
+            region: $d['region'],
+            organizerId: $d['organizer_id'],
+            startedAt: isset($d['started_at']) ? new \DateTime('@'.$d['started_at']) : null,
+            finishedAt: isset($d['finished_at']) ? new \DateTime('@'.$d['finished_at']) : null,
+            scheduledAt: isset($d['scheduled_at']) ? new \DateTime('@'.$d['scheduled_at']) : null,
+            faceitUrl: (string) ($d['faceit_url'] ?? ''),
+            results: MatchResult::fromArray($d['results']),
+            teams: array_map(Team::fromArray(...), array_values($d['teams'] ?? [])),
+        ));
     }
 }

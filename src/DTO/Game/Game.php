@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Game;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Game
 {
@@ -40,22 +39,15 @@ readonly class Game
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Game');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: (string) ($data['game_id'] ?? ''),
-                shortLabel: (string) ($data['short_label'] ?? ''),
-                longLabel: (string) ($data['long_label'] ?? ''),
-                order: (int) ($data['order'] ?? 0),
-                parentGameId: (string) ($data['parent_game_id'] ?? ''),
-                platforms: $data['platforms'] ?? [],
-                regions: $data['regions'] ?? [],
-                assets: GameAssets::fromArray($data['assets'] ?? []),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: (string) ($d['game_id'] ?? ''),
+            shortLabel: (string) ($d['short_label'] ?? ''),
+            longLabel: (string) ($d['long_label'] ?? ''),
+            order: (int) ($d['order'] ?? 0),
+            parentGameId: (string) ($d['parent_game_id'] ?? ''),
+            platforms: $d['platforms'] ?? [],
+            regions: $d['regions'] ?? [],
+            assets: GameAssets::fromArray($d['assets'] ?? []),
+        ));
     }
 }

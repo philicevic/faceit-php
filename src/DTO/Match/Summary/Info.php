@@ -4,7 +4,6 @@ namespace Philicevic\FaceitPhp\DTO\Match\Summary;
 
 use Philicevic\FaceitPhp\DTO\MatchResult;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Info
 {
@@ -59,31 +58,24 @@ readonly class Info
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('SummaryInfo');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['match_id'],
-                competitionId: $data['competition_id'],
-                competitionName: $data['competition_name'],
-                competitionType: $data['competition_type'],
-                status: $data['status'],
-                gameId: $data['game_id'],
-                gameMode: $data['game_mode'],
-                matchType: $data['match_type'],
-                maxPlayers: (int) $data['max_players'],
-                organizerId: $data['organizer_id'],
-                region: $data['region'],
-                faceitUrl: $data['faceit_url'],
-                startedAt: new \DateTime('@'.$data['started_at']),
-                finishedAt: new \DateTime('@'.$data['finished_at']),
-                results: MatchResult::fromArray($data['results']),
-                teams: array_map(Team::fromArray(...), array_values($data['teams'] ?? [])),
-                playingPlayers: $data['playing_players'] ?? [],
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['match_id'],
+            competitionId: $d['competition_id'],
+            competitionName: $d['competition_name'],
+            competitionType: $d['competition_type'],
+            status: $d['status'],
+            gameId: $d['game_id'],
+            gameMode: $d['game_mode'],
+            matchType: $d['match_type'],
+            maxPlayers: (int) $d['max_players'],
+            organizerId: $d['organizer_id'],
+            region: $d['region'],
+            faceitUrl: $d['faceit_url'],
+            startedAt: new \DateTime('@'.$d['started_at']),
+            finishedAt: new \DateTime('@'.$d['finished_at']),
+            results: MatchResult::fromArray($d['results']),
+            teams: array_map(Team::fromArray(...), array_values($d['teams'] ?? [])),
+            playingPlayers: $d['playing_players'] ?? [],
+        ));
     }
 }

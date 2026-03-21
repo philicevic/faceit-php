@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Organizer;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Organizer
 {
@@ -48,28 +47,21 @@ readonly class Organizer
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Organizer');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['organizer_id'],
-                name: (string) ($data['name'] ?? ''),
-                avatar: (string) ($data['avatar'] ?? ''),
-                cover: (string) ($data['cover'] ?? ''),
-                description: (string) ($data['description'] ?? ''),
-                faceitUrl: (string) ($data['faceit_url'] ?? ''),
-                type: (string) ($data['type'] ?? ''),
-                followersCount: (int) ($data['followers_count'] ?? 0),
-                facebook: (string) ($data['facebook'] ?? ''),
-                twitter: (string) ($data['twitter'] ?? ''),
-                twitch: (string) ($data['twitch'] ?? ''),
-                youtube: (string) ($data['youtube'] ?? ''),
-                vk: (string) ($data['vk'] ?? ''),
-                website: (string) ($data['website'] ?? ''),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['organizer_id'],
+            name: (string) ($d['name'] ?? ''),
+            avatar: (string) ($d['avatar'] ?? ''),
+            cover: (string) ($d['cover'] ?? ''),
+            description: (string) ($d['description'] ?? ''),
+            faceitUrl: (string) ($d['faceit_url'] ?? ''),
+            type: (string) ($d['type'] ?? ''),
+            followersCount: (int) ($d['followers_count'] ?? 0),
+            facebook: (string) ($d['facebook'] ?? ''),
+            twitter: (string) ($d['twitter'] ?? ''),
+            twitch: (string) ($d['twitch'] ?? ''),
+            youtube: (string) ($d['youtube'] ?? ''),
+            vk: (string) ($d['vk'] ?? ''),
+            website: (string) ($d['website'] ?? ''),
+        ));
     }
 }

@@ -4,7 +4,6 @@ namespace Philicevic\FaceitPhp\DTO\Championship;
 
 use Philicevic\FaceitPhp\DTO\Team\Team;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Subscription
 {
@@ -41,22 +40,15 @@ readonly class Subscription
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Subscription');
-        try {
-            static::validateData($data);
-
-            return new self(
-                coach: (string) ($data['coach'] ?? ''),
-                coleader: (string) ($data['coleader'] ?? ''),
-                group: (int) ($data['group'] ?? 0),
-                leader: (string) ($data['leader'] ?? ''),
-                roster: $data['roster'] ?? [],
-                status: (string) ($data['status'] ?? ''),
-                substitutes: $data['substitutes'] ?? [],
-                team: isset($data['team']) ? Team::fromArray($data['team']) : null,
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            coach: (string) ($d['coach'] ?? ''),
+            coleader: (string) ($d['coleader'] ?? ''),
+            group: (int) ($d['group'] ?? 0),
+            leader: (string) ($d['leader'] ?? ''),
+            roster: $d['roster'] ?? [],
+            status: (string) ($d['status'] ?? ''),
+            substitutes: $d['substitutes'] ?? [],
+            team: isset($d['team']) ? Team::fromArray($d['team']) : null,
+        ));
     }
 }

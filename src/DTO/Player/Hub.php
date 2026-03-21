@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Player;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Hub
 {
@@ -38,23 +37,16 @@ readonly class Hub
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('PlayerHub');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['hub_id'],
-                name: $data['name'],
-                avatar: (string) ($data['avatar'] ?? ''),
-                coverImage: (string) ($data['cover_image'] ?? ''),
-                backgroundImage: (string) ($data['background_image'] ?? ''),
-                faceitUrl: (string) ($data['faceit_url'] ?? ''),
-                description: (string) ($data['description'] ?? ''),
-                gameId: (string) ($data['game_id'] ?? ''),
-                region: (string) ($data['region'] ?? ''),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['hub_id'],
+            name: $d['name'],
+            avatar: (string) ($d['avatar'] ?? ''),
+            coverImage: (string) ($d['cover_image'] ?? ''),
+            backgroundImage: (string) ($d['background_image'] ?? ''),
+            faceitUrl: (string) ($d['faceit_url'] ?? ''),
+            description: (string) ($d['description'] ?? ''),
+            gameId: (string) ($d['game_id'] ?? ''),
+            region: (string) ($d['region'] ?? ''),
+        ));
     }
 }

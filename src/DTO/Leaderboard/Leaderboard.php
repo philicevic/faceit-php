@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Leaderboard;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Leaderboard
 {
@@ -64,36 +63,29 @@ readonly class Leaderboard
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Leaderboard');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: $data['leaderboard_id'],
-                competitionId: (string) ($data['competition_id'] ?? ''),
-                competitionType: (string) ($data['competition_type'] ?? ''),
-                gameId: (string) ($data['game_id'] ?? ''),
-                region: (string) ($data['region'] ?? ''),
-                leaderboardMode: (string) ($data['leaderboard_mode'] ?? ''),
-                leaderboardName: (string) ($data['leaderboard_name'] ?? ''),
-                leaderboardType: (string) ($data['leaderboard_type'] ?? ''),
-                minMatches: (int) ($data['min_matches'] ?? 0),
-                pointsPerDraw: (int) ($data['points_per_draw'] ?? 0),
-                pointsPerLoss: (int) ($data['points_per_loss'] ?? 0),
-                pointsPerWin: (int) ($data['points_per_win'] ?? 0),
-                pointsType: (string) ($data['points_type'] ?? ''),
-                rankingBoost: (int) ($data['ranking_boost'] ?? 0),
-                rankingType: (string) ($data['ranking_type'] ?? ''),
-                round: (int) ($data['round'] ?? 0),
-                season: (int) ($data['season'] ?? 0),
-                startDate: (int) ($data['start_date'] ?? 0),
-                endDate: (int) ($data['end_date'] ?? 0),
-                startingPoints: (int) ($data['starting_points'] ?? 0),
-                status: (string) ($data['status'] ?? ''),
-                group: (int) ($data['group'] ?? 0),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: $d['leaderboard_id'],
+            competitionId: (string) ($d['competition_id'] ?? ''),
+            competitionType: (string) ($d['competition_type'] ?? ''),
+            gameId: (string) ($d['game_id'] ?? ''),
+            region: (string) ($d['region'] ?? ''),
+            leaderboardMode: (string) ($d['leaderboard_mode'] ?? ''),
+            leaderboardName: (string) ($d['leaderboard_name'] ?? ''),
+            leaderboardType: (string) ($d['leaderboard_type'] ?? ''),
+            minMatches: (int) ($d['min_matches'] ?? 0),
+            pointsPerDraw: (int) ($d['points_per_draw'] ?? 0),
+            pointsPerLoss: (int) ($d['points_per_loss'] ?? 0),
+            pointsPerWin: (int) ($d['points_per_win'] ?? 0),
+            pointsType: (string) ($d['points_type'] ?? ''),
+            rankingBoost: (int) ($d['ranking_boost'] ?? 0),
+            rankingType: (string) ($d['ranking_type'] ?? ''),
+            round: (int) ($d['round'] ?? 0),
+            season: (int) ($d['season'] ?? 0),
+            startDate: (int) ($d['start_date'] ?? 0),
+            endDate: (int) ($d['end_date'] ?? 0),
+            startingPoints: (int) ($d['starting_points'] ?? 0),
+            status: (string) ($d['status'] ?? ''),
+            group: (int) ($d['group'] ?? 0),
+        ));
     }
 }

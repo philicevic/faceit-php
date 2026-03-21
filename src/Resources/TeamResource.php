@@ -9,24 +9,17 @@ use Philicevic\FaceitPhp\DTO\Team\TeamStats;
 use Philicevic\FaceitPhp\Requests\GetTeamRequest;
 use Philicevic\FaceitPhp\Requests\GetTeamStatsRequest;
 use Philicevic\FaceitPhp\Requests\GetTeamTournamentsRequest;
-use Saloon\Http\BaseResource;
 
-class TeamResource extends BaseResource
+class TeamResource extends FaceitResource
 {
     public function get(string $teamId): Team
     {
-        $request = new GetTeamRequest($teamId);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetTeamRequest($teamId));
     }
 
     public function getStats(string $teamId, string $gameId): TeamStats
     {
-        $request = new GetTeamStatsRequest($teamId, $gameId);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetTeamStatsRequest($teamId, $gameId));
     }
 
     /**
@@ -34,9 +27,6 @@ class TeamResource extends BaseResource
      */
     public function getTournaments(string $teamId, int $offset = 0, int $limit = 20): PaginatedResponse
     {
-        $request = new GetTeamTournamentsRequest($teamId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetTeamTournamentsRequest($teamId, $offset, $limit));
     }
 }

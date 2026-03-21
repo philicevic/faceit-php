@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Tournament;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Brackets
 {
@@ -34,19 +33,12 @@ readonly class Brackets
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Brackets');
-        try {
-            static::validateData($data);
-
-            return new self(
-                game: (string) ($data['game'] ?? ''),
-                name: (string) ($data['name'] ?? ''),
-                status: (string) ($data['status'] ?? ''),
-                matches: array_map(BracketsMatch::fromArray(...), $data['matches'] ?? []),
-                rounds: array_map(BracketsRound::fromArray(...), $data['rounds'] ?? []),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            game: (string) ($d['game'] ?? ''),
+            name: (string) ($d['name'] ?? ''),
+            status: (string) ($d['status'] ?? ''),
+            matches: array_map(BracketsMatch::fromArray(...), $d['matches'] ?? []),
+            rounds: array_map(BracketsRound::fromArray(...), $d['rounds'] ?? []),
+        ));
     }
 }

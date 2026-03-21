@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Search;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Game
 {
@@ -24,16 +23,9 @@ readonly class Game
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('SearchGame');
-        try {
-            static::validateData($data);
-
-            return new self(
-                name: $data['name'],
-                skillLevel: (string) ($data['skill_level'] ?? ''),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            name: $d['name'],
+            skillLevel: (string) ($d['skill_level'] ?? ''),
+        ));
     }
 }

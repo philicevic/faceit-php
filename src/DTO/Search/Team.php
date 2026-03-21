@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Search;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Team
 {
@@ -32,20 +31,13 @@ readonly class Team
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('SearchTeam');
-        try {
-            static::validateData($data);
-
-            return new self(
-                teamId: $data['team_id'],
-                name: $data['name'],
-                game: (string) ($data['game'] ?? ''),
-                avatar: (string) ($data['avatar'] ?? ''),
-                faceitUrl: (string) ($data['faceit_url'] ?? ''),
-                verified: (bool) ($data['verified'] ?? false),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            teamId: $d['team_id'],
+            name: $d['name'],
+            game: (string) ($d['game'] ?? ''),
+            avatar: (string) ($d['avatar'] ?? ''),
+            faceitUrl: (string) ($d['faceit_url'] ?? ''),
+            verified: (bool) ($d['verified'] ?? false),
+        ));
     }
 }

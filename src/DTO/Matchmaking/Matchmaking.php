@@ -3,7 +3,6 @@
 namespace Philicevic\FaceitPhp\DTO\Matchmaking;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
-use Philicevic\FaceitPhp\Validation\ValidationContext;
 
 readonly class Matchmaking
 {
@@ -41,26 +40,19 @@ readonly class Matchmaking
 
     public static function fromArray(array $data): self
     {
-        ValidationContext::pushPath('Matchmaking');
-        try {
-            static::validateData($data);
-
-            return new self(
-                uuid: (string) ($data['matchmaking_id'] ?? ''),
-                name: (string) ($data['name'] ?? ''),
-                game: (string) ($data['game'] ?? ''),
-                region: (string) ($data['region'] ?? ''),
-                icon: (string) ($data['icon'] ?? ''),
-                leagueId: (string) ($data['league_id'] ?? ''),
-                shortDescription: (string) ($data['short_description'] ?? ''),
-                longDescription: (string) ($data['long_description'] ?? ''),
-                queues: array_map(
-                    MatchmakingQueue::fromArray(...),
-                    $data['queues'] ?? [],
-                ),
-            );
-        } finally {
-            ValidationContext::popPath();
-        }
+        return static::validated($data, fn ($d) => new self(
+            uuid: (string) ($d['matchmaking_id'] ?? ''),
+            name: (string) ($d['name'] ?? ''),
+            game: (string) ($d['game'] ?? ''),
+            region: (string) ($d['region'] ?? ''),
+            icon: (string) ($d['icon'] ?? ''),
+            leagueId: (string) ($d['league_id'] ?? ''),
+            shortDescription: (string) ($d['short_description'] ?? ''),
+            longDescription: (string) ($d['long_description'] ?? ''),
+            queues: array_map(
+                MatchmakingQueue::fromArray(...),
+                $d['queues'] ?? [],
+            ),
+        ));
     }
 }
