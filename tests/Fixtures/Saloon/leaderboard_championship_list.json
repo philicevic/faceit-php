@@ -1,8 +1,33 @@
 {
     "statusCode": 200,
     "headers": {
-        "Content-Type": "application/json"
+        "Date": "Wed, 25 Mar 2026 06:40:28 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/leaderboards\/championships\/{championshipId}",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "9",
+        "vary": "Accept-Encoding,Origin",
+        "Server": "cloudflare",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "set-cookie": [
+            "__cf_bm=51Rn63d2oIWt2uKBxZPyrgNS0FAw79BmAIj4lxu9LDc-1774420828.6892695-1.0.1.1-cSOE.LaAfAychjSB6Yzb39MhAdiEU92PJzEdniylu0Zf3nZ_BodpWjvcphbYcZzwCM8_MX2BLygGyXmFB0J59dxG7rtiigRKmxai9IfPVqPbVJNw0Tp7_ay4ZCy85mfeqYVRpxxkRBxg_LrYqZd33g; HttpOnly; Secure; Path=\/; Domain=faceit.com; Expires=Wed, 25 Mar 2026 07:10:28 GMT",
+            "_cfuvid=KN.Gy8O_oCr1mJQrmrEhskTQpf8wToyZuJ33qcmdjdQ-1774420828.6892695-1.0.1.1-z8cxBohPQfXeyYdYt0Qhe2h5y6P1i.rNY3VCfp6sMvc; HttpOnly; SameSite=None; Secure; Path=\/; Domain=faceit.com"
+        ],
+        "CF-RAY": "9e1beca34f9ee50f-TXL"
     },
-    "data": "{\"start\":0,\"end\":1,\"items\":[{\"leaderboard_id\":\"lb-champ-001\",\"competition_id\":\"championship-abc123\",\"competition_type\":\"championship\",\"game_id\":\"cs2\",\"region\":\"EU\",\"leaderboard_mode\":\"score\",\"leaderboard_name\":\"Season 56 Leaderboard\",\"leaderboard_type\":\"general\",\"min_matches\":5,\"points_per_draw\":1,\"points_per_loss\":0,\"points_per_win\":3,\"points_type\":\"elo\",\"ranking_boost\":0,\"ranking_type\":\"default\",\"round\":14,\"season\":56,\"start_date\":1709000000,\"end_date\":1711000000,\"starting_points\":1000,\"status\":\"active\",\"group\":1}]}",
+    "data": "{\"items\":[{\"leaderboard_id\":\"69a22404225f9816924af12d\",\"leaderboard_name\":\"Group 8\",\"leaderboard_type\":\"championship\",\"leaderboard_mode\":\"classic\",\"competition_type\":\"championship\",\"competition_id\":\"588ab681-e552-4617-b0e7-588713f7713c\",\"game_id\":\"cs2\",\"region\":\"EU\",\"group\":8,\"ranking_type\":\"team\",\"start_date\":1772230132,\"end_date\":4927907332,\"min_matches\":1,\"points_type\":\"flat\",\"ranking_boost\":10,\"points_per_win\":3,\"points_per_loss\":0,\"points_per_draw\":1,\"starting_points\":0,\"status\":\"ONGOING\"},{\"leaderboard_id\":\"69a2240372cd0e2bf595c775\",\"leaderboard_name\":\"Group 7\",\"leaderboard_type\":\"championship\",\"leaderboard_mode\":\"classic\",\"competition_type\":\"championship\",\"competition_id\":\"588ab681-e552-4617-b0e7-588713f7713c\",\"game_id\":\"cs2\",\"region\":\"EU\",\"group\":7,\"ranking_type\":\"team\",\"start_date\":1772230131,\"end_date\":4927907331,\"min_matches\":1,\"points_type\":\"flat\",\"ranking_boost\":10,\"points_per_win\":3,\"points_per_loss\":0,\"points_per_draw\":1,\"starting_points\":0,\"status\":\"ONGOING\"},{\"leaderboard_id\":\"69a2240372cd0e2bf595c763\",\"leaderboard_name\":\"Group 6\",\"leaderboard_type\":\"championship\",\"leaderboard_mode\":\"classic\",\"competition_type\":\"championship\",\"competition_id\":\"588ab681-e552-4617-b0e7-588713f7713c\",\"game_id\":\"cs2\",\"region\":\"EU\",\"group\":6,\"ranking_type\":\"team\",\"start_date\":1772230131,\"end_date\":4927907331,\"min_matches\":1,\"points_type\":\"flat\",\"ranking_boost\":10,\"points_per_win\":3,\"points_per_loss\":0,\"points_per_draw\":1,\"starting_points\":0,\"status\":\"ONGOING\"},{\"leaderboard_id\":\"69a22402225f9816924af105\",\"leaderboard_name\":\"Group 5\",\"leaderboard_type\":\"championship\",\"leaderboard_mode\":\"classic\",\"competition_type\":\"championship\",\"competition_id\":\"588ab681-e552-4617-b0e7-588713f7713c\",\"game_id\":\"cs2\",\"region\":\"EU\",\"group\":5,\"ranking_type\":\"team\",\"start_date\":1772230130,\"end_date\":4927907330,\"min_matches\":1,\"points_type\":\"flat\",\"ranking_boost\":10,\"points_per_win\":3,\"points_per_loss\":0,\"points_per_draw\":1,\"starting_points\":0,\"status\":\"ONGOING\"},{\"leaderboard_id\":\"69a2240172cd0e2bf595c742\",\"leaderboard_name\":\"Group 4\",\"leaderboard_type\":\"championship\",\"leaderboard_mode\":\"classic\",\"competition_type\":\"championship\",\"competition_id\":\"588ab681-e552-4617-b0e7-588713f7713c\",\"game_id\":\"cs2\",\"region\":\"EU\",\"group\":4,\"ranking_type\":\"team\",\"start_date\":1772230129,\"end_date\":4927907329,\"min_matches\":1,\"points_type\":\"flat\",\"ranking_boost\":10,\"points_per_win\":3,\"points_per_loss\":0,\"points_per_draw\":1,\"starting_points\":0,\"status\":\"ONGOING\"},{\"leaderboard_id\":\"69a2240172cd0e2bf595c732\",\"leaderboard_name\":\"Group 3\",\"leaderboard_type\":\"championship\",\"leaderboard_mode\":\"classic\",\"competition_type\":\"championship\",\"competition_id\":\"588ab681-e552-4617-b0e7-588713f7713c\",\"game_id\":\"cs2\",\"region\":\"EU\",\"group\":3,\"ranking_type\":\"team\",\"start_date\":1772230129,\"end_date\":4927907329,\"min_matches\":1,\"points_type\":\"flat\",\"ranking_boost\":10,\"points_per_win\":3,\"points_per_loss\":0,\"points_per_draw\":1,\"starting_points\":0,\"status\":\"ONGOING\"},{\"leaderboard_id\":\"69a2240072cd0e2bf595c70c\",\"leaderboard_name\":\"Group 2\",\"leaderboard_type\":\"championship\",\"leaderboard_mode\":\"classic\",\"competition_type\":\"championship\",\"competition_id\":\"588ab681-e552-4617-b0e7-588713f7713c\",\"game_id\":\"cs2\",\"region\":\"EU\",\"group\":2,\"ranking_type\":\"team\",\"start_date\":1772230128,\"end_date\":4927907328,\"min_matches\":1,\"points_type\":\"flat\",\"ranking_boost\":10,\"points_per_win\":3,\"points_per_loss\":0,\"points_per_draw\":1,\"starting_points\":0,\"status\":\"ONGOING\"},{\"leaderboard_id\":\"69a2240072cd0e2bf595c6ef\",\"leaderboard_name\":\"Group 1\",\"leaderboard_type\":\"championship\",\"leaderboard_mode\":\"classic\",\"competition_type\":\"championship\",\"competition_id\":\"588ab681-e552-4617-b0e7-588713f7713c\",\"game_id\":\"cs2\",\"region\":\"EU\",\"group\":1,\"ranking_type\":\"team\",\"start_date\":1772230128,\"end_date\":4927907328,\"min_matches\":1,\"points_type\":\"flat\",\"ranking_boost\":10,\"points_per_win\":3,\"points_per_loss\":0,\"points_per_draw\":1,\"starting_points\":0,\"status\":\"ONGOING\"}],\"start\":0,\"end\":20}",
     "context": []
 }

@@ -12,12 +12,9 @@ readonly class Hub
         public string $uuid,
         public string $name,
         public string $avatar,
-        public string $coverImage,
-        public string $backgroundImage,
         public string $faceitUrl,
-        public string $description,
         public string $gameId,
-        public string $region,
+        public string $organizerId,
     ) {}
 
     protected static function fieldSchema(): array
@@ -25,13 +22,10 @@ readonly class Hub
         return [
             'hub_id' => 'string',
             'name' => 'string',
-            'avatar' => '?string',
-            'cover_image' => '?string',
-            'background_image' => '?string',
-            'faceit_url' => '?string',
-            'description' => '?string',
-            'game_id' => '?string',
-            'region' => '?string',
+            'avatar' => 'string',
+            'faceit_url' => 'string',
+            'game_id' => 'string',
+            'organizer_id' => 'string',
         ];
     }
 
@@ -41,12 +35,9 @@ readonly class Hub
             uuid: $d['hub_id'],
             name: $d['name'],
             avatar: (string) ($d['avatar'] ?? ''),
-            coverImage: (string) ($d['cover_image'] ?? ''),
-            backgroundImage: (string) ($d['background_image'] ?? ''),
             faceitUrl: (string) ($d['faceit_url'] ?? ''),
-            description: (string) ($d['description'] ?? ''),
             gameId: (string) ($d['game_id'] ?? ''),
-            region: (string) ($d['region'] ?? ''),
+            organizerId: (string) ($d['organizer_id'] ?? ''),
         ));
     }
 }

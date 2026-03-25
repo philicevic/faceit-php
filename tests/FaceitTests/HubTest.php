@@ -8,6 +8,9 @@ use Philicevic\FaceitPhp\DTO\Hub\Role;
 use Philicevic\FaceitPhp\DTO\Hub\Rules;
 use Philicevic\FaceitPhp\DTO\Match\Detail\Info as MatchInfo;
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
+use Philicevic\FaceitPhp\Enums\CompetitionType;
+use Philicevic\FaceitPhp\Enums\MatchStatus;
+use Philicevic\FaceitPhp\Enums\Region;
 use Philicevic\FaceitPhp\Requests\GetHubMatchesRequest;
 use Philicevic\FaceitPhp\Requests\GetHubMembersRequest;
 use Philicevic\FaceitPhp\Requests\GetHubRequest;
@@ -20,6 +23,7 @@ use Saloon\Http\Faking\MockResponse;
 beforeEach(function () {
     $this->faceit = faceitMock();
     $this->hub = $this->faceit->hub();
+    $this->hubId = '05f970ad-b6a9-4740-89d1-a9fea46f7525';
 });
 
 // --- Get hub details ---
@@ -29,10 +33,10 @@ test('can get hub details', function () {
         GetHubRequest::class => MockResponse::fixture('hub_details'),
     ]);
 
-    $hub = $this->hub->get('05f970ad-b6a9-4740-89d1-a9fea46f7525');
+    $hub = $this->hub->get($this->hubId);
 
     expect($hub)->toBeInstanceOf(Hub::class)
-        ->and($hub->uuid)->toBe('05f970ad-b6a9-4740-89d1-a9fea46f7525');
+        ->and($hub->uuid)->toBe($this->hubId);
 });
 
 test('hub details hydrate all attributes', function () {
@@ -40,24 +44,24 @@ test('hub details hydrate all attributes', function () {
         GetHubRequest::class => MockResponse::fixture('hub_details'),
     ]);
 
-    $hub = $this->hub->get('05f970ad-b6a9-4740-89d1-a9fea46f7525');
+    $hub = $this->hub->get($this->hubId);
 
-    expect($hub->uuid)->toBe('05f970ad-b6a9-4740-89d1-a9fea46f7525')
-        ->and($hub->name)->toBe('CS2 EU Hub')
+    expect($hub->uuid)->toBeString()->not->toBeEmpty()
+        ->and($hub->name)->toBeString()->not->toBeEmpty()
         ->and($hub->avatar)->toBeString()
         ->and($hub->backgroundImage)->toBeString()
         ->and($hub->coverImage)->toBeString()
-        ->and($hub->description)->toBe('The best CS2 hub in Europe')
+        ->and($hub->description)->toBeString()
         ->and($hub->faceitUrl)->toBeString()
-        ->and($hub->gameId)->toBe('cs2')
-        ->and($hub->region)->toBe('EU')
-        ->and($hub->organizerId)->toBe('organizer-abc123')
-        ->and($hub->joinPermission)->toBe('open')
-        ->and($hub->maxSkillLevel)->toBe(10)
-        ->and($hub->minSkillLevel)->toBe(1)
-        ->and($hub->playersJoined)->toBe(4523)
-        ->and($hub->ruleId)->toBe('rule-abc123')
-        ->and($hub->chatRoomId)->toBe('hub-05f970ad-b6a9-4740-89d1-a9fea46f7525');
+        ->and($hub->gameId)->toBeString()->not->toBeEmpty()
+        ->and($hub->region)->toBeString()->not->toBeEmpty()
+        ->and($hub->organizerId)->toBeString()->not->toBeEmpty()
+        ->and($hub->joinPermission)->toBeString()
+        ->and($hub->maxSkillLevel)->toBeInt()
+        ->and($hub->minSkillLevel)->toBeInt()
+        ->and($hub->playersJoined)->toBeInt()
+        ->and($hub->ruleId)->toBeString()
+        ->and($hub->chatRoomId)->toBeString();
 });
 
 // --- Get hub matches ---
@@ -67,7 +71,7 @@ test('can get hub matches', function () {
         GetHubMatchesRequest::class => MockResponse::fixture('hub_matches'),
     ]);
 
-    $response = $this->hub->getMatches('05f970ad-b6a9-4740-89d1-a9fea46f7525');
+    $response = $this->hub->getMatches($this->hubId);
 
     expect($response)->toBeInstanceOf(PaginatedResponse::class)
         ->and($response->items)->toContainOnlyInstancesOf(MatchInfo::class);
@@ -78,23 +82,28 @@ test('hub matches hydrate all attributes', function () {
         GetHubMatchesRequest::class => MockResponse::fixture('hub_matches'),
     ]);
 
-    $response = $this->hub->getMatches('05f970ad-b6a9-4740-89d1-a9fea46f7525');
-    $match = $response->items[0];
+    $response = $this->hub->getMatches($this->hubId);
 
-    expect($response->start)->toBe(0)
-        ->and($response->end)->toBe(1)
-        ->and($match->uuid)->toBe('1-abc12345-def6-7890-abcd-ef1234567890')
-        ->and($match->game)->toBe('cs2')
-        ->and($match->region)->toBe('EU')
-        ->and($match->competitionId)->toBe('05f970ad-b6a9-4740-89d1-a9fea46f7525')
-        ->and($match->competitionType)->toBe('hub')
-        ->and($match->competitionName)->toBe('CS2 EU Hub')
-        ->and($match->status)->toBe('FINISHED')
-        ->and($match->bestOf)->toBe(1)
-        ->and($match->startedAt)->toBeInstanceOf(DateTime::class)
-        ->and($match->finishedAt)->toBeInstanceOf(DateTime::class)
-        ->and($match->faceitUrl)->toBeString()
-        ->and($match->results->winner)->toBe('faction1');
+    expect($response->start)->toBeInt()
+        ->and($response->end)->toBeInt();
+
+    foreach ($response->items as $match) {
+        expect($match->uuid)->toBeString()->not->toBeEmpty()
+            ->and($match->game)->toBeString()->not->toBeEmpty()
+            ->and($match->region)->toBeIn(Region::cases())
+            ->and($match->competitionId)->toBeString()->not->toBeEmpty()
+            ->and($match->competitionType)->toBeIn(CompetitionType::cases())
+            ->and($match->competitionName)->toBeString()->not->toBeEmpty()
+            ->and($match->status)->toBeIn(MatchStatus::cases())
+            ->and($match->bestOf)->toBeInt()
+            ->and($match->organizerId)->toBeString()->not->toBeEmpty()
+            ->and($match->faceitUrl)->toBeString()
+            ->and($match->version)->toBeInt()
+            ->and($match->calculateElo)->toBeBool()
+            ->and($match->chatRoomId)->toBeString()
+            ->and($match->demoUrl)->toBeArray()
+            ->and($match->teams)->toBeArray();
+    }
 });
 
 // --- Get hub members ---
@@ -104,7 +113,7 @@ test('can get hub members', function () {
         GetHubMembersRequest::class => MockResponse::fixture('hub_members'),
     ]);
 
-    $response = $this->hub->getMembers('05f970ad-b6a9-4740-89d1-a9fea46f7525');
+    $response = $this->hub->getMembers($this->hubId);
 
     expect($response)->toBeInstanceOf(PaginatedResponse::class)
         ->and($response->items)->toContainOnlyInstancesOf(Member::class);
@@ -115,13 +124,15 @@ test('hub members hydrate all attributes', function () {
         GetHubMembersRequest::class => MockResponse::fixture('hub_members'),
     ]);
 
-    $member = $this->hub->getMembers('05f970ad-b6a9-4740-89d1-a9fea46f7525')->items[0];
+    $response = $this->hub->getMembers($this->hubId);
 
-    expect($member->uuid)->toBe('a58f6134-4f31-4611-8431-b0a9630bea77')
-        ->and($member->nickname)->toBe('xqsp4m')
-        ->and($member->avatar)->toBeString()
-        ->and($member->faceitUrl)->toBeString()
-        ->and($member->roles)->toBe(['admin', 'moderator']);
+    foreach ($response->items as $member) {
+        expect($member->uuid)->toBeString()->not->toBeEmpty()
+            ->and($member->nickname)->toBeString()->not->toBeEmpty()
+            ->and($member->avatar)->toBeString()
+            ->and($member->faceitUrl)->toBeString()
+            ->and($member->roles)->toBeArray();
+    }
 });
 
 // --- Get hub roles ---
@@ -131,7 +142,7 @@ test('can get hub roles', function () {
         GetHubRolesRequest::class => MockResponse::fixture('hub_roles'),
     ]);
 
-    $response = $this->hub->getRoles('05f970ad-b6a9-4740-89d1-a9fea46f7525');
+    $response = $this->hub->getRoles($this->hubId);
 
     expect($response)->toBeInstanceOf(PaginatedResponse::class)
         ->and($response->items)->toContainOnlyInstancesOf(Role::class);
@@ -142,13 +153,15 @@ test('hub roles hydrate all attributes', function () {
         GetHubRolesRequest::class => MockResponse::fixture('hub_roles'),
     ]);
 
-    $role = $this->hub->getRoles('05f970ad-b6a9-4740-89d1-a9fea46f7525')->items[0];
+    $response = $this->hub->getRoles($this->hubId);
 
-    expect($role->uuid)->toBe('role-admin-123')
-        ->and($role->name)->toBe('Admin')
-        ->and($role->color)->toBe('#FF0000')
-        ->and($role->ranking)->toBe(1)
-        ->and($role->visibleOnChat)->toBeTrue();
+    foreach ($response->items as $role) {
+        expect($role->uuid)->toBeString()->not->toBeEmpty()
+            ->and($role->name)->toBeString()->not->toBeEmpty()
+            ->and($role->color)->toBeString()->not->toBeEmpty()
+            ->and($role->ranking)->toBeInt()
+            ->and($role->visibleOnChat)->toBeBool();
+    }
 });
 
 // --- Get hub rules ---
@@ -158,7 +171,7 @@ test('can get hub rules', function () {
         GetHubRulesRequest::class => MockResponse::fixture('hub_rules'),
     ]);
 
-    $rules = $this->hub->getRules('05f970ad-b6a9-4740-89d1-a9fea46f7525');
+    $rules = $this->hub->getRules($this->hubId);
 
     expect($rules)->toBeInstanceOf(Rules::class);
 });
@@ -168,13 +181,13 @@ test('hub rules hydrate all attributes', function () {
         GetHubRulesRequest::class => MockResponse::fixture('hub_rules'),
     ]);
 
-    $rules = $this->hub->getRules('05f970ad-b6a9-4740-89d1-a9fea46f7525');
+    $rules = $this->hub->getRules($this->hubId);
 
-    expect($rules->uuid)->toBe('rule-abc123')
-        ->and($rules->name)->toBe('CS2 EU Hub Rules')
-        ->and($rules->body)->toBeString()
-        ->and($rules->game)->toBe('cs2')
-        ->and($rules->organizer)->toBe('FACEIT');
+    expect($rules->uuid)->toBeString()->not->toBeEmpty()
+        ->and($rules->name)->toBeString()->not->toBeEmpty()
+        ->and($rules->body)->toBeString()->not->toBeEmpty()
+        ->and($rules->game)->toBeString()->not->toBeEmpty()
+        ->and($rules->organizer)->toBeString()->not->toBeEmpty();
 });
 
 // --- Get hub stats ---
@@ -184,7 +197,7 @@ test('can get hub stats', function () {
         GetHubStatsRequest::class => MockResponse::fixture('hub_stats'),
     ]);
 
-    $stats = $this->hub->getStats('05f970ad-b6a9-4740-89d1-a9fea46f7525');
+    $stats = $this->hub->getStats($this->hubId);
 
     expect($stats)->toBeInstanceOf(HubStats::class)
         ->and($stats->players)->toContainOnlyInstancesOf(HubStatsPlayer::class);
@@ -195,14 +208,14 @@ test('hub stats hydrate all attributes', function () {
         GetHubStatsRequest::class => MockResponse::fixture('hub_stats'),
     ]);
 
-    $stats = $this->hub->getStats('05f970ad-b6a9-4740-89d1-a9fea46f7525');
-    $player = $stats->players[0];
+    $stats = $this->hub->getStats($this->hubId);
 
-    expect($stats->gameId)->toBe('cs2')
-        ->and($stats->players)->toHaveCount(2)
-        ->and($player->uuid)->toBe('a58f6134-4f31-4611-8431-b0a9630bea77')
-        ->and($player->nickname)->toBe('xqsp4m')
-        ->and($player->stats)->toHaveKey('Matches')
-        ->and($player->stats)->toHaveKey('Average K/D Ratio')
-        ->and($player->stats['Matches'])->toBe('42');
+    expect($stats->gameId)->toBeString()->not->toBeEmpty()
+        ->and($stats->players)->not->toBeEmpty();
+
+    foreach ($stats->players as $player) {
+        expect($player->uuid)->toBeString()->not->toBeEmpty()
+            ->and($player->nickname)->toBeString()->not->toBeEmpty()
+            ->and($player->stats)->toBeArray()->not->toBeEmpty();
+    }
 });

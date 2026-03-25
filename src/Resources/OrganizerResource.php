@@ -3,10 +3,10 @@
 namespace Philicevic\FaceitPhp\Resources;
 
 use Philicevic\FaceitPhp\DTO\Championship\Championship;
+use Philicevic\FaceitPhp\DTO\Hub\Hub;
 use Philicevic\FaceitPhp\DTO\Organizer\Organizer;
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
-use Philicevic\FaceitPhp\DTO\Player\Hub;
-use Philicevic\FaceitPhp\DTO\Player\Tournament;
+use Philicevic\FaceitPhp\DTO\Tournament;
 use Philicevic\FaceitPhp\Requests\GetOrganizerByNameRequest;
 use Philicevic\FaceitPhp\Requests\GetOrganizerChampionshipsRequest;
 use Philicevic\FaceitPhp\Requests\GetOrganizerGamesRequest;
@@ -35,9 +35,9 @@ class OrganizerResource extends FaceitResource
     }
 
     /**
-     * @return array<string>
+     * @return PaginatedResponse<Game>
      */
-    public function getGames(string $organizerId): array
+    public function getGames(string $organizerId): PaginatedResponse
     {
         return $this->send(new GetOrganizerGamesRequest($organizerId));
     }

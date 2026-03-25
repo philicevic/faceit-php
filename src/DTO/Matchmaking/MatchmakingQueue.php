@@ -19,6 +19,7 @@ readonly class MatchmakingQueue
     protected static function fieldSchema(): array
     {
         return [
+            'id' => '?string',
             'queue_id' => '?string',
             'name' => '?string',
             'open' => '?bool',
@@ -30,7 +31,7 @@ readonly class MatchmakingQueue
     public static function fromArray(array $data): self
     {
         return static::validated($data, fn ($d) => new self(
-            uuid: (string) ($d['queue_id'] ?? ''),
+            uuid: (string) ($d['queue_id'] ?? $d['id'] ?? ''),
             name: (string) ($d['name'] ?? ''),
             open: (bool) ($d['open'] ?? false),
             organizerId: (string) ($d['organizer_id'] ?? ''),

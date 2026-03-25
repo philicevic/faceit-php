@@ -9,4 +9,7 @@ enum ChampionshipStatus: string
     case Upcoming = 'upcoming';
     case Cancelled = 'cancelled';
     case Adjustment = 'adjustment';
+    case Paid = 'paid';
+    case Join = 'join';
+    case Finished = 'finished';
 }

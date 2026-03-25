@@ -4,20 +4,20 @@ namespace Philicevic\FaceitPhp\DTO\Search;
 
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
 
-readonly class Game
+readonly class PlayerGame
 {
     use ValidatesFields;
 
     public function __construct(
         public string $name,
-        public string $skillLevel,
+        public int $skillLevel,
     ) {}
 
     protected static function fieldSchema(): array
     {
         return [
             'name' => 'string',
-            'skill_level' => '?string',
+            'skill_level' => 'int',
         ];
     }
 
@@ -25,7 +25,7 @@ readonly class Game
     {
         return static::validated($data, fn ($d) => new self(
             name: $d['name'],
-            skillLevel: (string) ($d['skill_level'] ?? ''),
+            skillLevel: (int) ($d['skill_level'] ?? 0),
         ));
     }
 }

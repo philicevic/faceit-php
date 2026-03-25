@@ -14,6 +14,10 @@ readonly class Info
 
     /**
      * @param  array<Team>  $teams
+     * @param  array<string>  $demoUrl
+     * @param  ?array<mixed>  $voting
+     * @param  ?array<mixed>  $detailedResults
+     * @param  ?array<mixed>  $instances
      */
     public function __construct(
         public string $uuid,
@@ -28,8 +32,16 @@ readonly class Info
         public ?\DateTime $startedAt,
         public ?\DateTime $finishedAt,
         public ?\DateTime $scheduledAt,
+        public ?\DateTime $configuredAt,
         public string $faceitUrl,
+        public string $chatRoomId,
+        public int $version,
+        public bool $calculateElo,
+        public array $demoUrl,
         public ?MatchResult $results,
+        public ?array $voting,
+        public ?array $detailedResults,
+        public ?array $instances,
         public array $teams,
     ) {}
 
@@ -48,8 +60,16 @@ readonly class Info
             'started_at' => '?int',
             'finished_at' => '?int',
             'scheduled_at' => '?int',
+            'configured_at' => '?int',
             'faceit_url' => '?string',
+            'chat_room_id' => '?string',
+            'version' => '?int',
+            'calculate_elo' => '?bool',
+            'demo_url' => '?array',
             'results' => '?'.MatchResult::class,
+            'voting' => '?array',
+            'detailed_results' => '?array',
+            'instances' => '?array',
             'teams' => '?array',
         ];
     }
@@ -69,8 +89,16 @@ readonly class Info
             startedAt: isset($d['started_at']) ? new \DateTime('@'.$d['started_at']) : null,
             finishedAt: isset($d['finished_at']) ? new \DateTime('@'.$d['finished_at']) : null,
             scheduledAt: isset($d['scheduled_at']) ? new \DateTime('@'.$d['scheduled_at']) : null,
+            configuredAt: isset($d['configured_at']) ? new \DateTime('@'.$d['configured_at']) : null,
             faceitUrl: (string) ($d['faceit_url'] ?? ''),
+            chatRoomId: (string) ($d['chat_room_id'] ?? ''),
+            version: (int) ($d['version'] ?? 0),
+            calculateElo: (bool) ($d['calculate_elo'] ?? false),
+            demoUrl: $d['demo_url'] ?? [],
             results: isset($d['results']) ? MatchResult::fromArray($d['results']) : null,
+            voting: $d['voting'] ?? null,
+            detailedResults: $d['detailed_results'] ?? null,
+            instances: $d['instances'] ?? null,
             teams: array_map(Team::fromArray(...), array_values($d['teams'] ?? [])),
         ));
     }

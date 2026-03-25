@@ -1,8 +1,34 @@
 {
     "statusCode": 200,
     "headers": {
-        "Content-Type": "application/json"
+        "Date": "Wed, 25 Mar 2026 06:40:29 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Content-Length": "320",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e1beca989b4b4c5-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/organizers",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "37",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "vary": "Origin",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "Accept-Ranges": "bytes",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=03pYG34wSyxNSM1HnWIhE0Agne7MVC8aBleq1BQBt3o-1774420829-1.0.1.1-mOKUaLNW4vlZF0sIB.e2aeCng8Zty59URGDXYpvLmRFSsu0tGsP3JfSb4wWJrjMbFJyOkNd2oipN8S6LnNTXL7M48SeE1rqwYQu4rDR2dXNH7JmIuj8KFOTc7fTuB_9t; path=\/; expires=Wed, 25-Mar-26 07:10:29 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=_.FKAz0b56ybDM0GWc6q_iszqAykzTZUD132U6q0F5c-1774420829845-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
     },
-    "data": "{\"organizer_id\":\"organizer-abc123\",\"name\":\"FACEIT Pro League\",\"avatar\":\"https://cdn.faceit.com/organizer-avatar.jpg\",\"cover\":\"https://cdn.faceit.com/organizer-cover.jpg\",\"description\":\"Official FACEIT Pro League organizer\",\"faceit_url\":\"https://www.faceit.com/en/organizers/organizer-abc123\",\"type\":\"premium\",\"followers_count\":15000,\"facebook\":\"https://facebook.com/faceitproleague\",\"twitter\":\"https://twitter.com/faceitproleague\",\"twitch\":\"https://twitch.tv/faceitproleague\",\"youtube\":\"https://youtube.com/faceitproleague\",\"vk\":\"\",\"website\":\"https://www.faceit.com\"}",
+    "data": "{\"organizer_id\":\"fff41955-be67-43f0-aeec-678a1e0a0998\",\"avatar\":\"\",\"cover\":\"\",\"name\":\"DACHCS\",\"description\":\"\",\"type\":\"organization\",\"facebook\":\"\",\"youtube\":\"\",\"twitter\":\"\",\"twitch\":\"\",\"vk\":\"\",\"website\":\"\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/organizers\/fff41955-be67-43f0-aeec-678a1e0a0998\/\",\"followers_count\":0}",
     "context": []
 }

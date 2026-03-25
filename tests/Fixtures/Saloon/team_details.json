@@ -1,8 +1,33 @@
 {
     "statusCode": 200,
     "headers": {
-        "Content-Type": "application/json"
+        "Date": "Tue, 24 Mar 2026 17:10:51 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e174aa8bc07e512-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/teams\/{teamId}",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "55",
+        "vary": "Accept-Encoding,Origin",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=7JUTsteHJ57VhIi9NitstKcTIY1i218cwTPQZqaoU00-1774372251-1.0.1.1-eEoYtCqJG2e0laBSZnWqVyPSCyICCPgLKkSBK7U4FoFZsaa6ax1eGyS.zlBYiTA1nltVmHbpcbWCLxyn3oO8lgrzLf0ceayAsSrQ7skXhpltHm_ol2d1IgnMr6lj0mDu; path=\/; expires=Tue, 24-Mar-26 17:40:51 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=wdidn_4W1by2s6YKrGXwOJ_mZRIivbyAKn7qbXRLgvU-1774372251186-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
     },
-    "data": "{\"team_id\":\"team-abc-123\",\"name\":\"specialz\",\"nickname\":\"speciaLz\",\"avatar\":\"https://cdn.faceit.com/team.jpg\",\"cover_image\":\"https://cdn.faceit.com/team-cover.jpg\",\"description\":\"A competitive FACEIT team\",\"faceit_url\":\"https://www.faceit.com/en/teams/team-abc-123\",\"game\":\"cs2\",\"leader\":\"a58f6134-4f31-4611-8431-b0a9630bea77\",\"team_type\":\"premade\",\"chat_room_id\":\"team-room-abc\",\"members\":[{\"user_id\":\"a58f6134-4f31-4611-8431-b0a9630bea77\",\"nickname\":\"xqsp4m\",\"avatar\":\"https://cdn.faceit.com/player.jpg\",\"country\":\"DE\",\"faceit_url\":\"https://www.faceit.com/en/players/xqsp4m\",\"membership_type\":\"free\",\"memberships\":[\"free\"],\"skill_level\":10}],\"facebook\":\"https://facebook.com/specialz\",\"twitter\":\"https://twitter.com/specialz\",\"youtube\":\"https://youtube.com/specialz\",\"website\":\"https://specialz.gg\"}",
+    "data": "{\"team_id\":\"82df6f1b-9cfe-4da9-a5bf-a73219702f1f\",\"nickname\":\"OLDIES\",\"name\":\"N0rd1cS\",\"avatar\":\"https:\/\/assets.faceit-cdn.net\/teams_avatars\/82df6f1b-9cfe-4da9-a5bf-a73219702f1f_1550822857123.jpg\",\"game\":\"csgo\",\"team_type\":\"premade\",\"members\":[{\"user_id\":\"801939fd-49e4-4f01-820b-df23e95c2e64\",\"nickname\":\"Zaserjo\",\"avatar\":\"https:\/\/assets.faceit-cdn.net\/avatars\/801939fd-49e4-4f01-820b-df23e95c2e64_1583275085477.jpg\",\"country\":\"at\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/Zaserjo\"},{\"user_id\":\"3e519a79-d3fa-4b01-9345-9e374f786a27\",\"nickname\":\"derkojote\",\"avatar\":\"https:\/\/assets.faceit-cdn.net\/avatars\/3e519a79-d3fa-4b01-9345-9e374f786a27_1622021075320.jpg\",\"country\":\"at\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/derkojote\"},{\"user_id\":\"a58f6134-4f31-4611-8431-b0a9630bea77\",\"nickname\":\"xqsp4m\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/8fe92f06-95d4-4a2f-89d2-39fb7b7504a1.jpeg\",\"country\":\"de\",\"memberships\":[\"premium\",\"esea\",\"plus\"],\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/xqsp4m\"},{\"user_id\":\"06c4fe9e-1056-4525-ab12-5b37203d9eda\",\"nickname\":\"LHHeidi\",\"avatar\":\"https:\/\/assets.faceit-cdn.net\/avatars\/06c4fe9e-1056-4525-ab12-5b37203d9eda_1589226195706.jpg\",\"country\":\"de\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/LHHeidi\"},{\"user_id\":\"4c07850b-9b5f-4e86-b25b-34fb88384bad\",\"nickname\":\"basilisk_vqi\",\"avatar\":\"https:\/\/assets.faceit-cdn.net\/avatars\/4c07850b-9b5f-4e86-b25b-34fb88384bad_1550690479945.jpg\",\"country\":\"de\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/basilisk_vqi\"},{\"user_id\":\"ce2b72a4-1e51-417b-a965-3b9c9cdd2427\",\"nickname\":\"biomilch\",\"avatar\":\"https:\/\/assets.faceit-cdn.net\/avatars\/ce2b72a4-1e51-417b-a965-3b9c9cdd2427_1550566819429.jpg\",\"country\":\"de\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/biomilch\"}],\"leader\":\"4c07850b-9b5f-4e86-b25b-34fb88384bad\",\"chat_room_id\":\"team-82df6f1b-9cfe-4da9-a5bf-a73219702f1f\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/teams\/82df6f1b-9cfe-4da9-a5bf-a73219702f1f\"}",
     "context": []
 }

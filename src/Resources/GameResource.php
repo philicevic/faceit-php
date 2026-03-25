@@ -3,9 +3,7 @@
 namespace Philicevic\FaceitPhp\Resources;
 
 use Philicevic\FaceitPhp\DTO\Game\Game;
-use Philicevic\FaceitPhp\DTO\Game\MatchmakingSummary;
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
-use Philicevic\FaceitPhp\Requests\GetGameMatchmakingsRequest;
 use Philicevic\FaceitPhp\Requests\GetGameRequest;
 use Philicevic\FaceitPhp\Requests\GetGamesRequest;
 
@@ -22,13 +20,5 @@ class GameResource extends FaceitResource
     public function get(string $gameId): Game
     {
         return $this->send(new GetGameRequest($gameId));
-    }
-
-    /**
-     * @return PaginatedResponse<MatchmakingSummary>
-     */
-    public function getMatchmakings(string $gameId, ?string $region = null, int $offset = 0, int $limit = 20): PaginatedResponse
-    {
-        return $this->send(new GetGameMatchmakingsRequest($gameId, $region, $offset, $limit));
     }
 }

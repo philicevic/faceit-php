@@ -3,9 +3,9 @@
 namespace Philicevic\FaceitPhp\Resources;
 
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
-use Philicevic\FaceitPhp\DTO\Player\Tournament;
 use Philicevic\FaceitPhp\DTO\Team\Team;
 use Philicevic\FaceitPhp\DTO\Team\TeamStats;
+use Philicevic\FaceitPhp\DTO\Tournament;
 use Philicevic\FaceitPhp\Requests\GetTeamRequest;
 use Philicevic\FaceitPhp\Requests\GetTeamStatsRequest;
 use Philicevic\FaceitPhp\Requests\GetTeamTournamentsRequest;

@@ -3,6 +3,9 @@
 namespace Philicevic\FaceitPhp\DTO\Match\Summary;
 
 use Philicevic\FaceitPhp\DTO\MatchResult;
+use Philicevic\FaceitPhp\Enums\CompetitionType;
+use Philicevic\FaceitPhp\Enums\MatchStatus;
+use Philicevic\FaceitPhp\Enums\Region;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
 
 readonly class Info
@@ -17,14 +20,14 @@ readonly class Info
         public string $uuid,
         public string $competitionId,
         public string $competitionName,
-        public string $competitionType,
-        public string $status,
+        public CompetitionType $competitionType,
+        public MatchStatus $status,
         public string $gameId,
         public string $gameMode,
         public string $matchType,
         public int $maxPlayers,
         public string $organizerId,
-        public string $region,
+        public Region $region,
         public string $faceitUrl,
         public \DateTime $startedAt,
         public \DateTime $finishedAt,
@@ -62,14 +65,14 @@ readonly class Info
             uuid: $d['match_id'],
             competitionId: $d['competition_id'],
             competitionName: $d['competition_name'],
-            competitionType: $d['competition_type'],
-            status: $d['status'],
+            competitionType: CompetitionType::from($d['competition_type']),
+            status: MatchStatus::from(strtoupper($d['status'])),
             gameId: $d['game_id'],
             gameMode: $d['game_mode'],
             matchType: $d['match_type'],
             maxPlayers: (int) $d['max_players'],
             organizerId: $d['organizer_id'],
-            region: $d['region'],
+            region: Region::from($d['region']),
             faceitUrl: $d['faceit_url'],
             startedAt: new \DateTime('@'.$d['started_at']),
             finishedAt: new \DateTime('@'.$d['finished_at']),

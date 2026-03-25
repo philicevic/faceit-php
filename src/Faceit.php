@@ -21,13 +21,15 @@ use Philicevic\FaceitPhp\Resources\OrganizerResource;
 use Philicevic\FaceitPhp\Resources\PlayerResource;
 use Philicevic\FaceitPhp\Resources\RankingResource;
 use Philicevic\FaceitPhp\Resources\TeamResource;
-use Philicevic\FaceitPhp\Resources\TournamentResource;
 use Philicevic\FaceitPhp\Validation\ValidationContext;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
+use Saloon\Traits\Plugins\AlwaysThrowOnErrors;
 
 class Faceit extends Connector
 {
+    use AlwaysThrowOnErrors;
+
     public function __construct(public readonly string $token, bool $strict = false)
     {
         if ($strict) {
@@ -103,11 +105,6 @@ class Faceit extends Connector
     public function team(): TeamResource
     {
         return new TeamResource($this);
-    }
-
-    public function tournament(): TournamentResource
-    {
-        return new TournamentResource($this);
     }
 
     /**

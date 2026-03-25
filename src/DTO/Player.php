@@ -2,6 +2,8 @@
 
 namespace Philicevic\FaceitPhp\DTO;
 
+use Philicevic\FaceitPhp\DTO\Player\PlayerPlatform;
+use Philicevic\FaceitPhp\Enums\Platform;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
 
 readonly class Player
@@ -12,7 +14,7 @@ readonly class Player
      * @param  array<string>  $friendsIds
      * @param  array<string, GameProfile>  $games
      * @param  array<string>  $memberships
-     * @param  array<string, string>  $platforms
+     * @param  array<Platform, string>  $platforms
      */
     public function __construct(
         public string $uuid,
@@ -61,6 +63,11 @@ readonly class Player
                 $games[$gameId] = GameProfile::fromArray($game, $gameId);
             }
 
+            $platforms = [];
+            foreach ($d['platforms'] as $platform => $gameId) {
+                $platforms[] = PlayerPlatform::parse($platform, $gameId);
+            }
+
             return new self(
                 uuid: $d['player_id'],
                 nickname: $d['nickname'],
@@ -72,7 +79,7 @@ readonly class Player
                 friendsIds: $d['friends_ids'] ?? [],
                 games: $games,
                 memberships: $d['memberships'] ?? [],
-                platforms: $d['platforms'] ?? [],
+                platforms: $platforms,
                 membershipType: (string) ($d['membership_type'] ?? ''),
                 steamId64: (string) ($d['steam_id_64'] ?? ''),
                 steamNickname: (string) ($d['steam_nickname'] ?? ''),

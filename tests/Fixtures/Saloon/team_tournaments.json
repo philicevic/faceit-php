@@ -1,8 +1,33 @@
 {
     "statusCode": 200,
     "headers": {
-        "Content-Type": "application/json"
+        "Date": "Tue, 24 Mar 2026 17:10:51 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e174aabfcade533-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/teams\/{teamId}\/tournaments",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "13",
+        "vary": "Accept-Encoding,Origin",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=Upn0vCxDBWLl6c3naADrZw3BpyXdy8ox1es3CPfvtpI-1774372251-1.0.1.1-rDaCZc4QiFS_GZRTgEZVD5lH78xFiIxbVXADw8IdOrUzMkKAX6hCRHCVJValjF67jNRK9dJPIXMhgMgzLUM19yufom_ixIE.lo.lSccm0L035ul__53Op3tIssIyJe2A; path=\/; expires=Tue, 24-Mar-26 17:40:51 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=oVloZub62oyGWER.SpdnZQSNQd2.EaqTB6cP1IqHJu0-1774372251674-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
     },
-    "data": "{\"start\":0,\"end\":1,\"items\":[{\"tournament_id\":\"tournament-xyz-789\",\"name\":\"Weekly Cup\",\"game_id\":\"cs2\",\"region\":\"EU\",\"status\":\"finished\",\"faceit_url\":\"https://www.faceit.com/en/championship/tournament-xyz-789\",\"featured_image\":\"https://cdn.faceit.com/tournament.jpg\",\"membership_type\":\"free\",\"match_type\":\"5v5\",\"prize_type\":\"cash\",\"team_size\":5,\"max_skill\":10,\"min_skill\":1,\"subscriptions_count\":32,\"number_of_players\":160,\"number_of_players_joined\":160,\"number_of_players_checkedin\":140,\"number_of_players_participants\":160,\"started_at\":1710000000,\"whitelist_countries\":[\"DE\",\"GB\"]}]}",
+    "data": "{\"items\":[{\"tournament_id\":\"8db73243-ebce-46d5-a26e-6da6ae83eb9d\",\"name\":\"FACEIT Points Cup\",\"featured_image\":\"\",\"game_id\":\"csgo\",\"region\":\"EU\",\"status\":\"paid\",\"custom\":false,\"invite_type\":\"\",\"prize_type\":\"points\",\"total_prize\":\"2000\",\"team_size\":0,\"min_skill\":0,\"max_skill\":10,\"match_type\":\"csgo 5v5\",\"organizer_id\":\"faceit\",\"whitelist_countries\":[],\"membership_type\":\"free\",\"number_of_players\":32,\"number_of_players_joined\":32,\"number_of_players_checkedin\":29,\"number_of_players_participants\":31,\"anticheat_required\":false,\"started_at\":1547330400,\"subscriptions_count\":0,\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/csgo\/tournament\/8db73243-ebce-46d5-a26e-6da6ae83eb9d\"},{\"tournament_id\":\"10f49e86-3371-4642-b9b8-edd6945f1af9\",\"name\":\"FACEIT Major EU Open Qualifier #4\",\"featured_image\":\"\",\"game_id\":\"csgo\",\"region\":\"EU\",\"status\":\"paid\",\"custom\":false,\"invite_type\":\"\",\"prize_type\":\"points\",\"total_prize\":\"56000\",\"team_size\":0,\"min_skill\":0,\"max_skill\":10,\"match_type\":\"csgo 5v5\",\"organizer_id\":\"8eeebefe-657c-4e76-8b9d-003527fc0c93\",\"whitelist_countries\":[],\"membership_type\":\"free\",\"number_of_players\":1024,\"number_of_players_joined\":282,\"number_of_players_checkedin\":329,\"number_of_players_participants\":346,\"anticheat_required\":false,\"started_at\":1529154000,\"subscriptions_count\":0,\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/csgo\/tournament\/10f49e86-3371-4642-b9b8-edd6945f1af9\"}],\"start\":0,\"end\":20}",
     "context": []
 }

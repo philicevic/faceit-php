@@ -1,8 +1,33 @@
 {
     "statusCode": 200,
     "headers": {
-        "Content-Type": "application/json"
+        "Date": "Mon, 23 Mar 2026 09:16:40 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e0c56b149b44b12-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/hubs\/{hubId}\/rules",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "29",
+        "vary": "Accept-Encoding,Origin",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=fp5LiK4BndGfFpRP3QPPFDTu_zXBKzvKCQer7NSWZ64-1774257400-1.0.1.1-yJ2.bSJ78XcB40m.TS_W5U8ab1R5wDPNDuUjJRhU2mGZSdnd2pUGxHGBdZ7A0vMeKSOnIvjgSgupj4vhyGoybpPAY5G5pfl7m3oL32DgHq9hNhu4wjf3tCMtgiohKMQC; path=\/; expires=Mon, 23-Mar-26 09:46:40 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=mc_T.q5IupiXSt3zktWvL4MITITPIzho5N2j6rLR2OU-1774257400691-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
     },
-    "data": "{\"rule_id\":\"rule-abc123\",\"name\":\"CS2 EU Hub Rules\",\"body\":\"1. Be respectful\\n2. No cheating\\n3. English only in chat\",\"game\":\"cs2\",\"organizer\":\"FACEIT\"}",
+    "data": "{\"rule_id\":\"2b43df54-1ef2-4cb0-a56b-b56926c04906\",\"game\":\"cs2\",\"organizer\":\"948b5a8c-702e-4140-a4b3-1d0cbfeebd45\",\"name\":\"General Mapcore rules CS2 2023 November update\",\"body\":\"Rules\\n* Be respectful to all players at all times\\n* Toxicity is strictly forbidden\\n* Insulting language is strictly forbidden\\n* No aggressive negativity inside or outside of games\\n* Teamplay and communication are requirements to play here\\n* Advertising anything unrelated to Mapcore is forbidden\\n* Connect as early as possible to matches since community maps often take longer to load\\n* Please stick to English in the Mapcore Hub text and voice chats\\n* Abusing map exploits (e.g. tripleboosts, pixelwalks) is not allowed. If you find them, please use our Map Feedback form to report them!\\n* By playing on the hub you agree with the matches being streamed or uploaded on social media and being used for future promotion purposes\\n* General FACEIT rules apply at all times\\n\\nBreaking any of the rules might result in your temporary \/ permanent removal depending on the severity of the infraction. Permanently removed players will also lose any prizes that have not yet been paid out.  **The Mapcore Hub staff have the final say in any decision.**\\n\\n\\n**The Current Map Pool**\\n\\n5v5: https:\/\/steamcommunity.com\/sharedfiles\/filedetails\/?id=3075826341\\n\\nWingman: https:\/\/steamcommunity.com\/sharedfiles\/filedetails\/?id=3091166906\\n\\nAll maps in one place. Click the link above and press \u201cSubscribe to all\u201d to preload the\\nnecessary files and be able to connect in time. This collection will be kept up to date as the\\nmap pool changes.\\n# **PLAYERS HAVE TO SUBSCRIBE TO ALL MAPS IN THE POOL BEFORE QUEUING!**\\n\\n\\n\\n-----\\n\\n\\n\\n**Report a player**\\n\\nIf you want to report a player for abusive behaviour, a reason and evidence must be provided. (Match room link, timestamp\/round, screenshots etc.) Please use this form: https:\/\/bit.ly\/MapcoreReportForm\\n \\n\\nDO NOT use the public hub chat for reports.\\n\\n\\n\\n**Communication**\\n\\nIn order for players to communicate during games, feel free use the Voice Channels provided\\nin MapCore\u2019s official Discord server!\\nhttps:\/\/bit.ly\/MapcoreDiscordHubChannel\\n\\n\\n**Other Hubs**\\n\\nThere are separate regional 5v5 Hubs to ensure the best possible gameplay experience for users:\\n\\nEU: https:\/\/fce.gg\/MapCore_EU\\n\\nNA: https:\/\/fce.gg\/MapCore_NA\\n\\nSA: https:\/\/fce.gg\/Mapcore_SA\\n\\n\\nThere are also Wingman Hubs for 2v2 matches on community maps:\\n\\nEU: https:\/\/fce.gg\/MapCore_Wingman_EU\\n\\nNA: https:\/\/fce.gg\/MapCore_Wingman_NA\\n\\n\\n-----\\n\\n\\nThis shall be a place for all members of the Mapcore community and fans of map making in\\ngeneral to come together and have fun. Remember: This Hub serves to test, learn and enjoy great community\\nmaps!\"}",
     "context": []
 }

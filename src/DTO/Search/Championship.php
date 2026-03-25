@@ -2,42 +2,43 @@
 
 namespace Philicevic\FaceitPhp\DTO\Search;
 
-use Philicevic\FaceitPhp\Validation\ValidatesFields;
+use Philicevic\FaceitPhp\Enums\ChampionshipStatus;
+use Philicevic\FaceitPhp\Enums\Region;
 
 readonly class Championship
 {
-    use ValidatesFields;
-
     public function __construct(
-        public string $championshipId,
+        public string $uuid,
         public string $name,
         public string $game,
-        public string $region,
-        public string $status,
+        public Region $region,
+        public string $organizerId,
+        public string $organizerName,
+        public string $organizerType,
+        public ChampionshipStatus $status,
+        public ?string $prizeType,
+        public ?string $totalPrize,
+        public int $playersJoined,
+        public int $numberOfMembers,
         public string $type,
     ) {}
 
-    protected static function fieldSchema(): array
-    {
-        return [
-            'competition_id' => 'string',
-            'name' => 'string',
-            'game' => '?string',
-            'region' => '?string',
-            'status' => '?string',
-            'competition_type' => '?string',
-        ];
-    }
-
     public static function fromArray(array $data): self
     {
-        return static::validated($data, fn ($d) => new self(
-            championshipId: $d['competition_id'],
-            name: $d['name'],
-            game: (string) ($d['game'] ?? ''),
-            region: (string) ($d['region'] ?? ''),
-            status: (string) ($d['status'] ?? ''),
-            type: (string) ($d['competition_type'] ?? ''),
-        ));
+        return new self(
+            uuid: $data['competition_id'],
+            name: $data['name'],
+            game: $data['game'],
+            region: Region::from($data['region']),
+            organizerId: $data['organizer_id'],
+            organizerName: $data['organizer_name'],
+            organizerType: $data['organizer_type'],
+            status: ChampionshipStatus::from($data['status']),
+            prizeType: $data['prize_type'] ?? null,
+            totalPrize: $data['total_prize'] ?? null,
+            playersJoined: $data['players_joined'],
+            numberOfMembers: $data['number_of_members'],
+            type: $data['competition_type'],
+        );
     }
 }

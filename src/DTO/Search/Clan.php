@@ -2,6 +2,8 @@
 
 namespace Philicevic\FaceitPhp\DTO\Search;
 
+use Philicevic\FaceitPhp\Enums\ClanJoinType;
+use Philicevic\FaceitPhp\Enums\Region;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
 
 readonly class Clan
@@ -9,12 +11,17 @@ readonly class Clan
     use ValidatesFields;
 
     public function __construct(
-        public string $clanId,
+        public string $uuid,
         public string $name,
         public string $game,
-        public string $avatar,
-        public string $region,
+        public Region $region,
+        public string $type,
+        public string $organizerId,
+        public int $minSkillLevel,
+        public int $maxSkillLevel,
         public int $membersCount,
+        public ClanJoinType $joinType,
+        public string $avatar,
     ) {}
 
     protected static function fieldSchema(): array
@@ -22,22 +29,33 @@ readonly class Clan
         return [
             'id' => 'string',
             'name' => 'string',
-            'game' => '?string',
+            'game' => 'string',
+            'type' => 'string',
+            'join' => 'string',
             'avatar' => '?string',
-            'region' => '?string',
-            'members_count' => '?int',
+            'region' => Region::class,
+            'type' => ClanJoinType::class,
+            'organizer_id' => 'string',
+            'min_skill_level' => 'int',
+            'max_skill_level' => 'int',
+            'members_count' => 'int',
         ];
     }
 
     public static function fromArray(array $data): self
     {
         return static::validated($data, fn ($d) => new self(
-            clanId: $d['id'],
+            uuid: $d['id'],
             name: $d['name'],
-            game: (string) ($d['game'] ?? ''),
-            avatar: (string) ($d['avatar'] ?? ''),
-            region: (string) ($d['region'] ?? ''),
-            membersCount: (int) ($d['members_count'] ?? 0),
+            game: $d['game'],
+            region: Region::from($d['region']),
+            type: $d['type'],
+            organizerId: $d['organizer_id'],
+            minSkillLevel: (int) $d['min_skill_level'],
+            maxSkillLevel: (int) $d['max_skill_level'],
+            membersCount: (int) $d['members_count'],
+            joinType: ClanJoinType::from($d['join']),
+            avatar: $d['avatar'],
         ));
     }
 }

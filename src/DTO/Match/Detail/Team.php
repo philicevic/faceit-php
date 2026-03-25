@@ -17,6 +17,7 @@ readonly class Team
         public string $avatar,
         public string $leader,
         public string $type,
+        public bool $substituted,
         public array $players,
     ) {}
 
@@ -28,6 +29,7 @@ readonly class Team
             'avatar' => '?string',
             'leader' => '?string',
             'type' => '?string',
+            'substituted' => '?bool',
             'roster' => '?array',
         ];
     }
@@ -40,6 +42,7 @@ readonly class Team
             avatar: (string) ($d['avatar'] ?? ''),
             leader: (string) ($d['leader'] ?? ''),
             type: (string) ($d['type'] ?? ''),
+            substituted: (bool) ($d['substituted'] ?? false),
             players: array_map(Player::fromArray(...), $d['roster'] ?? []),
         ));
     }

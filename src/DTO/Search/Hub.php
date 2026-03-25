@@ -2,6 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO\Search;
 
+use Philicevic\FaceitPhp\Enums\Region;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
 
 readonly class Hub
@@ -9,35 +10,41 @@ readonly class Hub
     use ValidatesFields;
 
     public function __construct(
-        public string $hubId,
+        public string $uuid,
         public string $name,
+        public string $organizerId,
+        public string $organizerName,
+        public string $organizerType,
         public string $game,
-        public string $region,
-        public string $status,
-        public int $slots,
+        public Region $region,
+        public int $numberOfMembers
     ) {}
 
     protected static function fieldSchema(): array
     {
         return [
-            'competition_id' => 'string',
+            'uuid' => 'string',
             'name' => 'string',
-            'game' => '?string',
-            'region' => '?string',
-            'status' => '?string',
-            'slots' => '?int',
+            'organizerId' => 'string',
+            'organizerName' => 'string',
+            'organizerType' => 'string',
+            'game' => 'string',
+            'region' => Region::class,
+            'numberOfMembers' => 'int',
         ];
     }
 
     public static function fromArray(array $data): self
     {
         return static::validated($data, fn ($d) => new self(
-            hubId: $d['competition_id'],
+            uuid: $d['competition_id'],
             name: $d['name'],
-            game: (string) ($d['game'] ?? ''),
-            region: (string) ($d['region'] ?? ''),
-            status: (string) ($d['status'] ?? ''),
-            slots: (int) ($d['slots'] ?? 0),
+            organizerId: $d['organizer_id'],
+            organizerName: $d['organizer_name'],
+            organizerType: $d['organizer_type'],
+            game: $d['game'],
+            region: Region::from($d['region']),
+            numberOfMembers: (int) $d['number_of_members'],
         ));
     }
 }

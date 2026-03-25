@@ -35,7 +35,7 @@ readonly class TeamStats
             teamId: $d['team_id'],
             gameId: $d['game_id'],
             lifetime: $d['lifetime'] ?? [],
-            segments: $d['segments'] ?? [],
+            segments: array_map(fn ($s) => StatSegment::fromArray($s), $d['segments'])
         ));
     }
 }

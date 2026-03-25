@@ -2,6 +2,8 @@
 
 namespace Philicevic\FaceitPhp\DTO\Game;
 
+use Philicevic\FaceitPhp\Enums\Platform;
+use Philicevic\FaceitPhp\Enums\Region;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
 
 readonly class Game
@@ -9,8 +11,8 @@ readonly class Game
     use ValidatesFields;
 
     /**
-     * @param  array<string>  $platforms
-     * @param  array<string>  $regions
+     * @param  array<Platform>  $platforms
+     * @param  array<Region>  $regions
      */
     public function __construct(
         public string $uuid,
@@ -45,8 +47,8 @@ readonly class Game
             longLabel: (string) ($d['long_label'] ?? ''),
             order: (int) ($d['order'] ?? 0),
             parentGameId: (string) ($d['parent_game_id'] ?? ''),
-            platforms: $d['platforms'] ?? [],
-            regions: $d['regions'] ?? [],
+            platforms: array_map(fn ($p) => Platform::from($p), $d['platforms']),
+            regions: array_map(fn ($p) => Region::fromFlexible($p), $d['regions']),
             assets: GameAssets::fromArray($d['assets'] ?? []),
         ));
     }

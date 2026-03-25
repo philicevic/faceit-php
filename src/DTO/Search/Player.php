@@ -9,7 +9,7 @@ readonly class Player
     use ValidatesFields;
 
     /**
-     * @param  array<Game>  $games
+     * @param  array<PlayerGame>  $games
      */
     public function __construct(
         public string $playerId,
@@ -43,7 +43,7 @@ readonly class Player
             country: (string) ($d['country'] ?? ''),
             avatar: (string) ($d['avatar'] ?? ''),
             verified: (bool) ($d['verified'] ?? false),
-            games: array_map(Game::fromArray(...), $d['games'] ?? []),
+            games: array_map(PlayerGame::fromArray(...), $d['games'] ?? []),
         ));
     }
 }

@@ -3,7 +3,7 @@
 namespace Philicevic\FaceitPhp\Requests;
 
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
-use Philicevic\FaceitPhp\DTO\Player\Tournament;
+use Philicevic\FaceitPhp\DTO\Tournament;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;

@@ -11,6 +11,13 @@ readonly class Championship
 {
     use ValidatesFields;
 
+    /**
+     * @param  ?array<mixed>  $joinChecks
+     * @param  ?array<mixed>  $substitutionConfiguration
+     * @param  ?array<mixed>  $schedule
+     * @param  ?array<mixed>  $prizes
+     * @param  ?array<mixed>  $stream
+     */
     public function __construct(
         public string $uuid,
         public string $name,
@@ -30,6 +37,8 @@ readonly class Championship
         public int $currentSubscriptions,
         public int $slots,
         public int $totalGroups,
+        public int $totalRounds,
+        public int $totalPrizes,
         public string $rulesId,
         public string $seedingStrategy,
         public int $championshipStart,
@@ -39,6 +48,11 @@ readonly class Championship
         public int $subscriptionStart,
         public int $subscriptionEnd,
         public bool $subscriptionsLocked,
+        public ?array $joinChecks,
+        public ?array $substitutionConfiguration,
+        public ?array $schedule,
+        public ?array $prizes,
+        public ?array $stream,
     ) {}
 
     protected static function fieldSchema(): array
@@ -62,6 +76,8 @@ readonly class Championship
             'current_subscriptions' => '?int',
             'slots' => '?int',
             'total_groups' => '?int',
+            'total_rounds' => '?int',
+            'total_prizes' => '?int',
             'rules_id' => '?string',
             'seeding_strategy' => '?string',
             'championship_start' => '?int',
@@ -71,6 +87,11 @@ readonly class Championship
             'subscription_start' => '?int',
             'subscription_end' => '?int',
             'subscriptions_locked' => '?bool',
+            'join_checks' => '?array',
+            'substitution_configuration' => '?array',
+            'schedule' => '?array',
+            'prizes' => '?array',
+            'stream' => '?array',
         ];
     }
 
@@ -95,6 +116,8 @@ readonly class Championship
             currentSubscriptions: (int) ($d['current_subscriptions'] ?? 0),
             slots: (int) ($d['slots'] ?? 0),
             totalGroups: (int) ($d['total_groups'] ?? 0),
+            totalRounds: (int) ($d['total_rounds'] ?? 0),
+            totalPrizes: (int) ($d['total_prizes'] ?? 0),
             rulesId: (string) ($d['rules_id'] ?? ''),
             seedingStrategy: (string) ($d['seeding_strategy'] ?? ''),
             championshipStart: (int) ($d['championship_start'] ?? 0),
@@ -104,6 +127,11 @@ readonly class Championship
             subscriptionStart: (int) ($d['subscription_start'] ?? 0),
             subscriptionEnd: (int) ($d['subscription_end'] ?? 0),
             subscriptionsLocked: (bool) ($d['subscriptions_locked'] ?? false),
+            joinChecks: $d['join_checks'] ?? null,
+            substitutionConfiguration: $d['substitution_configuration'] ?? null,
+            schedule: $d['schedule'] ?? null,
+            prizes: $d['prizes'] ?? null,
+            stream: $d['stream'] ?? null,
         ));
     }
 }

@@ -26,6 +26,7 @@ readonly class Matchmaking
     protected static function fieldSchema(): array
     {
         return [
+            'id' => '?string',
             'matchmaking_id' => '?string',
             'name' => '?string',
             'game' => '?string',
@@ -41,7 +42,7 @@ readonly class Matchmaking
     public static function fromArray(array $data): self
     {
         return static::validated($data, fn ($d) => new self(
-            uuid: (string) ($d['matchmaking_id'] ?? ''),
+            uuid: (string) ($d['matchmaking_id'] ?? $d['id'] ?? ''),
             name: (string) ($d['name'] ?? ''),
             game: (string) ($d['game'] ?? ''),
             region: (string) ($d['region'] ?? ''),

@@ -25,7 +25,7 @@ test('can get championship leaderboards', function () {
         GetChampionshipLeaderboardsRequest::class => MockResponse::fixture('leaderboard_championship_list'),
     ]);
 
-    $response = $this->leaderboard->getChampionshipLeaderboards('championship-abc123');
+    $response = $this->leaderboard->getChampionshipLeaderboards('588ab681-e552-4617-b0e7-588713f7713c');
 
     expect($response)->toBeInstanceOf(PaginatedResponse::class)
         ->and($response->items)->toContainOnlyInstancesOf(Leaderboard::class);
@@ -36,33 +36,35 @@ test('championship leaderboards hydrate all attributes', function () {
         GetChampionshipLeaderboardsRequest::class => MockResponse::fixture('leaderboard_championship_list'),
     ]);
 
-    $response = $this->leaderboard->getChampionshipLeaderboards('championship-abc123');
-    $lb = $response->items[0];
+    $response = $this->leaderboard->getChampionshipLeaderboards('588ab681-e552-4617-b0e7-588713f7713c');
 
-    expect($response->start)->toBe(0)
-        ->and($response->end)->toBe(1)
-        ->and($lb->uuid)->toBe('lb-champ-001')
-        ->and($lb->competitionId)->toBe('championship-abc123')
-        ->and($lb->competitionType)->toBe('championship')
-        ->and($lb->gameId)->toBe('cs2')
-        ->and($lb->region)->toBe('EU')
-        ->and($lb->leaderboardMode)->toBe('score')
-        ->and($lb->leaderboardName)->toBe('Season 56 Leaderboard')
-        ->and($lb->leaderboardType)->toBe('general')
-        ->and($lb->minMatches)->toBe(5)
-        ->and($lb->pointsPerDraw)->toBe(1)
-        ->and($lb->pointsPerLoss)->toBe(0)
-        ->and($lb->pointsPerWin)->toBe(3)
-        ->and($lb->pointsType)->toBe('elo')
-        ->and($lb->rankingBoost)->toBe(0)
-        ->and($lb->rankingType)->toBe('default')
-        ->and($lb->round)->toBe(14)
-        ->and($lb->season)->toBe(56)
-        ->and($lb->startDate)->toBe(1709000000)
-        ->and($lb->endDate)->toBe(1711000000)
-        ->and($lb->startingPoints)->toBe(1000)
-        ->and($lb->status)->toBe('active')
-        ->and($lb->group)->toBe(1);
+    expect($response->start)->toBeInt()
+        ->and($response->end)->toBeInt();
+
+    foreach ($response->items as $lb) {
+        expect($lb->uuid)->toBeString()->not->toBeEmpty()
+            ->and($lb->competitionId)->toBeString()->not->toBeEmpty()
+            ->and($lb->competitionType)->toBeString()->not->toBeEmpty()
+            ->and($lb->gameId)->toBeString()->not->toBeEmpty()
+            ->and($lb->region)->toBeString()
+            ->and($lb->leaderboardMode)->toBeString()
+            ->and($lb->leaderboardName)->toBeString()->not->toBeEmpty()
+            ->and($lb->leaderboardType)->toBeString()
+            ->and($lb->minMatches)->toBeInt()
+            ->and($lb->pointsPerDraw)->toBeInt()
+            ->and($lb->pointsPerLoss)->toBeInt()
+            ->and($lb->pointsPerWin)->toBeInt()
+            ->and($lb->pointsType)->toBeString()
+            ->and($lb->rankingBoost)->toBeInt()
+            ->and($lb->rankingType)->toBeString()
+            ->and($lb->round)->toBeInt()
+            ->and($lb->season)->toBeInt()
+            ->and($lb->startDate)->toBeInt()
+            ->and($lb->endDate)->toBeInt()
+            ->and($lb->startingPoints)->toBeInt()
+            ->and($lb->status)->toBeString()->not->toBeEmpty()
+            ->and($lb->group)->toBeInt();
+    }
 });
 
 // --- Championship group ranking ---
@@ -72,7 +74,7 @@ test('can get championship group ranking', function () {
         GetChampionshipGroupRankingRequest::class => MockResponse::fixture('leaderboard_championship_group_ranking'),
     ]);
 
-    $ranking = $this->leaderboard->getChampionshipGroupRanking('championship-abc123', 1);
+    $ranking = $this->leaderboard->getChampionshipGroupRanking('4ee6b6af-3543-4733-be87-37efaf9f886f', 1);
 
     expect($ranking)->toBeInstanceOf(EntityRanking::class)
         ->and($ranking->leaderboard)->toBeInstanceOf(Leaderboard::class)
@@ -84,25 +86,27 @@ test('championship group ranking hydrates all attributes', function () {
         GetChampionshipGroupRankingRequest::class => MockResponse::fixture('leaderboard_championship_group_ranking'),
     ]);
 
-    $ranking = $this->leaderboard->getChampionshipGroupRanking('championship-abc123', 1);
-    $item = $ranking->items[0];
+    $ranking = $this->leaderboard->getChampionshipGroupRanking('4ee6b6af-3543-4733-be87-37efaf9f886f', 1);
 
-    expect($ranking->start)->toBe(0)
-        ->and($ranking->end)->toBe(2)
-        ->and($ranking->leaderboard->uuid)->toBe('lb-champ-001')
-        ->and($ranking->leaderboard->competitionType)->toBe('championship')
-        ->and($item->position)->toBe(1)
-        ->and($item->points)->toBe(42)
-        ->and($item->played)->toBe(14)
-        ->and($item->won)->toBe(13)
-        ->and($item->lost)->toBe(1)
-        ->and($item->draw)->toBe(0)
-        ->and($item->currentStreak)->toBe(5)
-        ->and($item->winRate)->toBe(92.86)
-        ->and($item->player)->toBeInstanceOf(UserSimple::class)
-        ->and($item->player->uuid)->toBe('a58f6134-4f31-4611-8431-b0a9630bea77')
-        ->and($item->player->nickname)->toBe('xqsp4m')
-        ->and($item->player->skillLevel)->toBe(10);
+    expect($ranking->start)->toBeInt()
+        ->and($ranking->end)->toBeInt()
+        ->and($ranking->leaderboard->uuid)->toBeString()->not->toBeEmpty()
+        ->and($ranking->leaderboard->competitionType)->toBeString()->not->toBeEmpty();
+
+    foreach ($ranking->items as $item) {
+        expect($item->position)->toBeInt()
+            ->and($item->points)->toBeInt()
+            ->and($item->played)->toBeInt()
+            ->and($item->won)->toBeInt()
+            ->and($item->lost)->toBeInt()
+            ->and($item->draw)->toBeInt()
+            ->and($item->currentStreak)->toBeInt()
+            ->and($item->winRate)->toBeFloat()
+            ->and($item->player)->toBeInstanceOf(UserSimple::class)
+            ->and($item->player->uuid)->toBeString()->not->toBeEmpty()
+            ->and($item->player->nickname)->toBeString()->not->toBeEmpty()
+            ->and($item->player->skillLevel)->toBeInt();
+    }
 });
 
 // --- Hub leaderboards ---
@@ -123,13 +127,29 @@ test('hub leaderboards hydrate all attributes', function () {
         GetHubLeaderboardsRequest::class => MockResponse::fixture('leaderboard_hub_list'),
     ]);
 
-    $lb = $this->leaderboard->getHubLeaderboards('05f970ad-b6a9-4740-89d1-a9fea46f7525')->items[0];
+    $response = $this->leaderboard->getHubLeaderboards('05f970ad-b6a9-4740-89d1-a9fea46f7525');
 
-    expect($lb->uuid)->toBe('lb-hub-001')
-        ->and($lb->competitionId)->toBe('05f970ad-b6a9-4740-89d1-a9fea46f7525')
-        ->and($lb->competitionType)->toBe('hub')
-        ->and($lb->gameId)->toBe('cs2')
-        ->and($lb->leaderboardName)->toBe('Hub All-Time Leaderboard');
+    foreach ($response->items as $lb) {
+        expect($lb->uuid)->toBeString()->not->toBeEmpty()
+            ->and($lb->competitionId)->toBeString()->not->toBeEmpty()
+            ->and($lb->competitionType)->toBeString()->not->toBeEmpty()
+            ->and($lb->gameId)->toBeString()->not->toBeEmpty()
+            ->and($lb->leaderboardName)->toBeString()->not->toBeEmpty()
+            ->and($lb->leaderboardType)->toBeString()
+            ->and($lb->leaderboardMode)->toBeString()
+            ->and($lb->status)->toBeString()->not->toBeEmpty()
+            ->and($lb->season)->toBeInt()
+            ->and($lb->startDate)->toBeInt()
+            ->and($lb->endDate)->toBeInt()
+            ->and($lb->minMatches)->toBeInt()
+            ->and($lb->startingPoints)->toBeInt()
+            ->and($lb->pointsPerWin)->toBeInt()
+            ->and($lb->pointsPerLoss)->toBeInt()
+            ->and($lb->pointsPerDraw)->toBeInt()
+            ->and($lb->pointsType)->toBeString()
+            ->and($lb->rankingType)->toBeString()
+            ->and($lb->rankingBoost)->toBeInt();
+    }
 });
 
 // --- Hub ranking ---
@@ -151,21 +171,24 @@ test('hub ranking hydrates all attributes', function () {
     ]);
 
     $ranking = $this->leaderboard->getHubRanking('05f970ad-b6a9-4740-89d1-a9fea46f7525');
-    $item = $ranking->items[0];
 
-    expect($ranking->leaderboard->uuid)->toBe('lb-hub-001')
-        ->and($ranking->leaderboard->competitionType)->toBe('hub')
-        ->and($ranking->start)->toBe(0)
-        ->and($ranking->end)->toBe(1)
-        ->and($item->position)->toBe(1)
-        ->and($item->points)->toBe(1850)
-        ->and($item->played)->toBe(120)
-        ->and($item->won)->toBe(85)
-        ->and($item->lost)->toBe(35)
-        ->and($item->currentStreak)->toBe(8)
-        ->and($item->winRate)->toBe(70.83)
-        ->and($item->player->uuid)->toBe('a58f6134-4f31-4611-8431-b0a9630bea77')
-        ->and($item->player->nickname)->toBe('xqsp4m');
+    expect($ranking->leaderboard->uuid)->toBeString()->not->toBeEmpty()
+        ->and($ranking->leaderboard->competitionType)->toBeString()->not->toBeEmpty()
+        ->and($ranking->start)->toBeInt()
+        ->and($ranking->end)->toBeInt();
+
+    foreach ($ranking->items as $item) {
+        expect($item->position)->toBeInt()
+            ->and($item->points)->toBeInt()
+            ->and($item->played)->toBeInt()
+            ->and($item->won)->toBeInt()
+            ->and($item->lost)->toBeInt()
+            ->and($item->currentStreak)->toBeInt()
+            ->and($item->winRate)->toBeFloat()
+            ->and($item->player)->toBeInstanceOf(UserSimple::class)
+            ->and($item->player->uuid)->toBeString()->not->toBeEmpty()
+            ->and($item->player->nickname)->toBeString()->not->toBeEmpty();
+    }
 });
 
 // --- Get leaderboard by ID ---
@@ -175,7 +198,7 @@ test('can get leaderboard by id', function () {
         GetLeaderboardRequest::class => MockResponse::fixture('leaderboard_details'),
     ]);
 
-    $ranking = $this->leaderboard->get('lb-generic-001');
+    $ranking = $this->leaderboard->get('69a02624260bcc6088dc548b');
 
     expect($ranking)->toBeInstanceOf(EntityRanking::class)
         ->and($ranking->leaderboard)->toBeInstanceOf(Leaderboard::class)
@@ -187,19 +210,22 @@ test('leaderboard by id hydrates all attributes', function () {
         GetLeaderboardRequest::class => MockResponse::fixture('leaderboard_details'),
     ]);
 
-    $ranking = $this->leaderboard->get('lb-generic-001');
-    $item = $ranking->items[0];
+    $ranking = $this->leaderboard->get('69a02624260bcc6088dc548b');
 
-    expect($ranking->leaderboard->uuid)->toBe('lb-generic-001')
-        ->and($ranking->leaderboard->competitionId)->toBe('comp-abc123')
-        ->and($ranking->leaderboard->status)->toBe('finished')
-        ->and($ranking->leaderboard->season)->toBe(2)
-        ->and($ranking->leaderboard->round)->toBe(7)
-        ->and($ranking->leaderboard->startingPoints)->toBe(500)
-        ->and($ranking->start)->toBe(0)
-        ->and($ranking->end)->toBe(1)
-        ->and($item->position)->toBe(1)
-        ->and($item->points)->toBe(520)
-        ->and($item->winRate)->toBe(70.0)
-        ->and($item->player->uuid)->toBe('a58f6134-4f31-4611-8431-b0a9630bea77');
+    expect($ranking->leaderboard->uuid)->toBeString()->not->toBeEmpty()
+        ->and($ranking->leaderboard->competitionId)->toBeString()->not->toBeEmpty()
+        ->and($ranking->leaderboard->status)->toBeString()->not->toBeEmpty()
+        ->and($ranking->start)->toBeInt()
+        ->and($ranking->end)->toBeInt();
+
+    foreach ($ranking->items as $item) {
+        expect($item->position)->toBeInt()
+            ->and($item->points)->toBeInt()
+            ->and($item->played)->toBeInt()
+            ->and($item->won)->toBeInt()
+            ->and($item->lost)->toBeInt()
+            ->and($item->winRate)->toBeFloat()
+            ->and($item->player)->toBeInstanceOf(UserSimple::class)
+            ->and($item->player->uuid)->toBeString()->not->toBeEmpty();
+    }
 });

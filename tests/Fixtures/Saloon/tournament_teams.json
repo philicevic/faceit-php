@@ -1,8 +1,0 @@
-{
-    "statusCode": 200,
-    "headers": {
-        "Content-Type": "application/json"
-    },
-    "data": "{\"checked_in\":[{\"team_id\":\"team-uuid-1\",\"nickname\":\"TeamAlpha\",\"team_leader\":\"player-uuid-1\",\"team_type\":\"premade\",\"skill_level\":8,\"subs_done\":0}],\"finished\":[{\"team_id\":\"team-uuid-2\",\"nickname\":\"TeamBeta\",\"team_leader\":\"player-uuid-6\",\"team_type\":\"premade\",\"skill_level\":7,\"subs_done\":1}],\"joined\":[{\"team_id\":\"team-uuid-3\",\"nickname\":\"TeamGamma\",\"team_leader\":\"player-uuid-11\",\"team_type\":\"premade\",\"skill_level\":6,\"subs_done\":0}],\"started\":[{\"team_id\":\"team-uuid-4\",\"nickname\":\"TeamDelta\",\"team_leader\":\"player-uuid-16\",\"team_type\":\"solo\",\"skill_level\":9,\"subs_done\":2}]}",
-    "context": []
-}

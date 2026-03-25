@@ -2,6 +2,8 @@
 
 namespace Philicevic\FaceitPhp\Requests;
 
+use Philicevic\FaceitPhp\DTO\Game\Game;
+use Philicevic\FaceitPhp\DTO\PaginatedResponse;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
@@ -20,10 +22,10 @@ class GetOrganizerGamesRequest extends Request
     }
 
     /**
-     * @return array<string>
+     * @return PaginatedResponse<Game>
      */
-    public function createDtoFromResponse(Response $response): array
+    public function createDtoFromResponse(Response $response): PaginatedResponse
     {
-        return $response->json()['items'] ?? [];
+        return PaginatedResponse::fromArray($response->json(), Game::fromArray(...));
     }
 }

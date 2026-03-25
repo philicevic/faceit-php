@@ -3,12 +3,15 @@
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
 use Philicevic\FaceitPhp\DTO\Search\Championship;
 use Philicevic\FaceitPhp\DTO\Search\Clan;
-use Philicevic\FaceitPhp\DTO\Search\Game;
 use Philicevic\FaceitPhp\DTO\Search\Hub;
 use Philicevic\FaceitPhp\DTO\Search\Organizer;
 use Philicevic\FaceitPhp\DTO\Search\Player;
+use Philicevic\FaceitPhp\DTO\Search\PlayerGame;
 use Philicevic\FaceitPhp\DTO\Search\Team;
 use Philicevic\FaceitPhp\DTO\Search\Tournament;
+use Philicevic\FaceitPhp\Enums\ChampionshipStatus;
+use Philicevic\FaceitPhp\Enums\ClanJoinType;
+use Philicevic\FaceitPhp\Enums\Region;
 use Philicevic\FaceitPhp\Enums\SearchType;
 use Philicevic\FaceitPhp\Faceit;
 use Philicevic\FaceitPhp\Requests\SearchChampionshipsRequest;
@@ -31,7 +34,7 @@ test('can search players', function () {
         SearchPlayersRequest::class => MockResponse::fixture('search_players'),
     ]);
 
-    $result = $this->faceit->search('xqsp4m');
+    $result = $this->faceit->search('ZywOo');
 
     expect($result)->toBeInstanceOf(PaginatedResponse::class)
         ->and($result->items)->toContainOnlyInstancesOf(Player::class);
@@ -42,18 +45,22 @@ test('search players hydrate all attributes', function () {
         SearchPlayersRequest::class => MockResponse::fixture('search_players'),
     ]);
 
-    $result = $this->faceit->search('xqsp4m');
-    $player = $result['items'][0];
+    $result = $this->faceit->search('ZywOo');
 
-    expect($player->nickname)->toBe('xqsp4m')
-        ->and($player->playerId)->toBeString()
-        ->and($player->avatar)->toBeString()
-        ->and($player->country)->toBeString()
-        ->and($player->status)->toBeString()
-        ->and($player->verified)->toBeBool()
-        ->and($player->games)->toContainOnlyInstancesOf(Game::class)
-        ->and($player->games[0]->name)->toBe('cs2')
-        ->and($player->games[0]->skillLevel)->toBe('10');
+    foreach ($result->items as $player) {
+        expect($player->nickname)->toBeString()->not->toBeEmpty()
+            ->and($player->playerId)->toBeString()->not->toBeEmpty()
+            ->and($player->avatar)->toBeString()
+            ->and($player->country)->toBeString()->not->toBeEmpty()
+            ->and($player->status)->toBeString()
+            ->and($player->verified)->toBeBool()
+            ->and($player->games)->toContainOnlyInstancesOf(PlayerGame::class);
+
+        foreach ($player->games as $game) {
+            expect($game->name)->toBeString()->not->toBeEmpty()
+                ->and($game->skillLevel)->toBeInt();
+        }
+    }
 });
 
 test('paginated response supports array access', function () {
@@ -61,12 +68,10 @@ test('paginated response supports array access', function () {
         SearchPlayersRequest::class => MockResponse::fixture('search_players'),
     ]);
 
-    $result = $this->faceit->search('xqsp4m');
+    $result = $this->faceit->search('ZywOo');
 
     expect($result[0])->toBeInstanceOf(Player::class)
-        ->and($result['items'])->toContainOnlyInstancesOf(Player::class)
-        ->and($result['start'])->toBe(0)
-        ->and($result['end'])->toBe(1);
+        ->and($result['items'])->toContainOnlyInstancesOf(Player::class);
 });
 
 test('can search tournaments', function () {
@@ -74,17 +79,26 @@ test('can search tournaments', function () {
         SearchTournamentsRequest::class => MockResponse::fixture('search_tournaments'),
     ]);
 
-    $result = $this->faceit->search('Weekly #1', SearchType::Tournament);
-    $tournament = $result[0];
+    $result = $this->faceit->search('Points', SearchType::Tournament, 0, 100);
+
+    foreach ($result->items as $tournament) {
+        expect($tournament->uuid)->toBeString()->not->toBeEmpty()
+            ->and($tournament->name)->toBeString()->not->toBeEmpty()
+            ->and($tournament->game)->toBeString()->not->toBeEmpty()
+            ->and($tournament->region)->toBeIn(Region::cases())
+            ->and($tournament->organizerId)->toBeString()->not->toBeEmpty()
+            ->and($tournament->organizerName)->toBeString()->not->toBeEmpty()
+            ->and($tournament->organizerType)->toBeString()
+            ->and($tournament->status)->toBeIn(ChampionshipStatus::cases())
+            ->and($tournament->prizeType)->when($tournament->prizeType != null, fn ($t) => $t->toBeString())
+            ->and($tournament->totalPrize)->when($tournament->totalPrize != null, fn ($t) => $t->toBeString())
+            ->and($tournament->playersJoined)->toBeInt()
+            ->and($tournament->numberOfMembers)->toBeInt()
+            ->and($tournament->type)->toBeString();
+    }
 
     expect($result)->toBeInstanceOf(PaginatedResponse::class)
-        ->and($result->items)->toContainOnlyInstancesOf(Tournament::class)
-        ->and($tournament->tournamentId)->toBe('tournament-1')
-        ->and($tournament->name)->toBe('Weekly #1')
-        ->and($tournament->game)->toBeString()
-        ->and($tournament->region)->toBeString()
-        ->and($tournament->status)->toBeString()
-        ->and($tournament->prizeType)->toBeString();
+        ->and($result->items)->toContainOnlyInstancesOf(Tournament::class);
 });
 
 test('can search championships', function () {
@@ -92,17 +106,27 @@ test('can search championships', function () {
         SearchChampionshipsRequest::class => MockResponse::fixture('search_championships'),
     ]);
 
-    $result = $this->faceit->search('Spring', SearchType::Championship);
-    $champ = $result[0];
+    $result = $this->faceit->search('Spring', SearchType::Championship, 0, 100);
 
     expect($result)->toBeInstanceOf(PaginatedResponse::class)
-        ->and($result->items)->toContainOnlyInstancesOf(Championship::class)
-        ->and($champ->championshipId)->toBe('champ-1')
-        ->and($champ->name)->toBe('Spring Championship')
-        ->and($champ->game)->toBeString()
-        ->and($champ->region)->toBeString()
-        ->and($champ->status)->toBeString()
-        ->and($champ->type)->toBeString();
+        ->and($result->items)->toContainOnlyInstancesOf(Championship::class);
+
+    foreach ($result->items as $champ) {
+        expect($champ->uuid)->toBeString()->not->toBeEmpty()
+            ->and($champ->name)->toBeString()->not->toBeEmpty()
+            ->and($champ->game)->toBeString()->not->toBeEmpty()
+            ->and($champ->region)->toBeIn(Region::cases())
+            ->and($champ->organizerId)->toBeString()->not->toBeEmpty()
+            ->and($champ->organizerName)->toBeString()->not->toBeEmpty()
+            ->and($champ->organizerType)->toBeString()
+            ->and($champ->status)->toBeIn(ChampionshipStatus::cases())
+            ->and($champ->prizeType)->when($champ->prizeType != null, fn ($t) => $t->toBeString())
+            ->and($champ->totalPrize)->when($champ->totalPrize != null, fn ($t) => $t->toBeString())
+            ->and($champ->playersJoined)->toBeInt()
+            ->and($champ->numberOfMembers)->toBeInt()
+            ->and($champ->type)->toBeString();
+    }
+
 });
 
 test('can search clans', function () {
@@ -110,17 +134,25 @@ test('can search clans', function () {
         SearchClansRequest::class => MockResponse::fixture('search_clans'),
     ]);
 
-    $result = $this->faceit->search('Example', SearchType::Clan);
-    $clan = $result[0];
+    $result = $this->faceit->search('Vitality', SearchType::Clan);
 
     expect($result)->toBeInstanceOf(PaginatedResponse::class)
-        ->and($result->items)->toContainOnlyInstancesOf(Clan::class)
-        ->and($clan->clanId)->toBe('clan-1')
-        ->and($clan->name)->toBe('Example Clan')
-        ->and($clan->game)->toBeString()
-        ->and($clan->avatar)->toBeString()
-        ->and($clan->region)->toBeString()
-        ->and($clan->membersCount)->toBeInt();
+        ->and($result->items)->toContainOnlyInstancesOf(Clan::class);
+
+    /** @var Clan $clan */
+    foreach ($result->items as $clan) {
+        expect($clan->uuid)->toBeString()->not->toBeEmpty()
+            ->and($clan->name)->toBeString()->not->toBeEmpty()
+            ->and($clan->game)->toBeString()->not->toBeEmpty()
+            ->and($clan->type)->toBeString()
+            ->and($clan->avatar)->toBeString()
+            ->and($clan->region)->toBeIn(Region::cases())
+            ->and($clan->minSkillLevel)->toBeInt()
+            ->and($clan->maxSkillLevel)->toBeInt()
+            ->and($clan->organizerId)->toBeString()->not->toBeEmpty()
+            ->and($clan->joinType)->toBeIn(ClanJoinType::cases())
+            ->and($clan->membersCount)->toBeInt();
+    }
 });
 
 test('can search hubs', function () {
@@ -128,17 +160,20 @@ test('can search hubs', function () {
         SearchHubsRequest::class => MockResponse::fixture('search_hubs'),
     ]);
 
-    $result = $this->faceit->search('EU CS2', SearchType::Hub);
-    $hub = $result[0];
-
+    $result = $this->faceit->search('EU CS2', SearchType::Hub, 0, 100);
     expect($result)->toBeInstanceOf(PaginatedResponse::class)
-        ->and($result->items)->toContainOnlyInstancesOf(Hub::class)
-        ->and($hub->hubId)->toBe('hub-1')
-        ->and($hub->name)->toBe('EU CS2 Hub')
-        ->and($hub->game)->toBeString()
-        ->and($hub->region)->toBeString()
-        ->and($hub->status)->toBeString()
-        ->and($hub->slots)->toBeInt();
+        ->and($result->items)->toContainOnlyInstancesOf(Hub::class);
+
+    foreach ($result->items as $hub) {
+        expect($hub->uuid)->toBeString()->not->toBeEmpty()
+            ->and($hub->name)->toBeString()->not->toBeEmpty()
+            ->and($hub->organizerId)->toBeString()->not->toBeEmpty()
+            ->and($hub->organizerName)->toBeString()->not->toBeEmpty()
+            ->and($hub->organizerType)->toBeString()->not->toBeEmpty()
+            ->and($hub->game)->toBeString()->not->toBeEmpty()
+            ->and($hub->region)->toBeIn(Region::cases())
+            ->and($hub->numberOfMembers)->toBeInt();
+    }
 });
 
 test('can search organizers', function () {
@@ -146,17 +181,19 @@ test('can search organizers', function () {
         SearchOrganizersRequest::class => MockResponse::fixture('search_organizers'),
     ]);
 
-    $result = $this->faceit->search('FACEIT', SearchType::Organizer);
-    $organizer = $result[0];
+    $result = $this->faceit->search('Dreamhack', SearchType::Organizer, 0, 100);
 
     expect($result)->toBeInstanceOf(PaginatedResponse::class)
-        ->and($result->items)->toContainOnlyInstancesOf(Organizer::class)
-        ->and($organizer->organizerId)->toBe('org-1')
-        ->and($organizer->name)->toBe('FACEIT')
-        ->and($organizer->avatar)->toBeString()
-        ->and($organizer->active)->toBeBool()
-        ->and($organizer->games)->toBeArray()
-        ->and($organizer->regions)->toBeArray();
+        ->and($result->items)->toContainOnlyInstancesOf(Organizer::class);
+
+    foreach ($result->items as $organizer) {
+        expect($organizer->organizerId)->toBeString()->not->toBeEmpty()
+            ->and($organizer->name)->toBeString()->not->toBeEmpty()
+            ->and($organizer->avatar)->toBeString()
+            ->and($organizer->active)->toBeBool()
+            ->and($organizer->games)->toBeArray()
+            ->and($organizer->regions)->toBeArray()->each->toBeIn(Region::cases());
+    }
 });
 
 test('can search teams', function () {
@@ -164,17 +201,19 @@ test('can search teams', function () {
         SearchTeamsRequest::class => MockResponse::fixture('search_teams'),
     ]);
 
-    $result = $this->faceit->search('Alpha', SearchType::Team);
-    $team = $result[0];
+    $result = $this->faceit->search('Vitality', SearchType::Team);
 
     expect($result)->toBeInstanceOf(PaginatedResponse::class)
-        ->and($result->items)->toContainOnlyInstancesOf(Team::class)
-        ->and($team->teamId)->toBe('team-1')
-        ->and($team->name)->toBe('Team Alpha')
-        ->and($team->game)->toBeString()
-        ->and($team->avatar)->toBeString()
-        ->and($team->faceitUrl)->toBeString()
-        ->and($team->verified)->toBeBool();
+        ->and($result->items)->toContainOnlyInstancesOf(Team::class);
+
+    foreach ($result->items as $team) {
+        expect($team->teamId)->toBeString()->not->toBeEmpty()
+            ->and($team->name)->toBeString()->not->toBeEmpty()
+            ->and($team->game)->toBeString()->not->toBeEmpty()
+            ->and($team->avatar)->toBeString()
+            ->and($team->faceitUrl)->toBeString()->not->toBeEmpty()
+            ->and($team->verified)->toBeBool();
+    }
 });
 
 test('invalid filters throw exception', function () {

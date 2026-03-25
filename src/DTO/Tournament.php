@@ -1,7 +1,10 @@
 <?php
 
-namespace Philicevic\FaceitPhp\DTO\Player;
+namespace Philicevic\FaceitPhp\DTO;
 
+use Philicevic\FaceitPhp\Enums\ChampionshipStatus;
+use Philicevic\FaceitPhp\Enums\MembershipType;
+use Philicevic\FaceitPhp\Enums\Region;
 use Philicevic\FaceitPhp\Validation\ValidatesFields;
 
 readonly class Tournament
@@ -15,11 +18,11 @@ readonly class Tournament
         public string $uuid,
         public string $name,
         public string $gameId,
-        public string $region,
-        public string $status,
+        public Region $region,
+        public ChampionshipStatus $status,
         public string $faceitUrl,
         public string $featuredImage,
-        public string $membershipType,
+        public MembershipType $membershipType,
         public string $matchType,
         public string $prizeType,
         public int $teamSize,
@@ -66,11 +69,11 @@ readonly class Tournament
             uuid: $d['tournament_id'],
             name: $d['name'],
             gameId: (string) ($d['game_id'] ?? ''),
-            region: (string) ($d['region'] ?? ''),
-            status: (string) ($d['status'] ?? ''),
+            region: Region::from($d['region']),
+            status: ChampionshipStatus::from($d['status']),
             faceitUrl: (string) ($d['faceit_url'] ?? ''),
             featuredImage: (string) ($d['featured_image'] ?? ''),
-            membershipType: (string) ($d['membership_type'] ?? ''),
+            membershipType: MembershipType::from($d['membership_type']),
             matchType: (string) ($d['match_type'] ?? ''),
             prizeType: (string) ($d['prize_type'] ?? ''),
             teamSize: (int) ($d['team_size'] ?? 0),

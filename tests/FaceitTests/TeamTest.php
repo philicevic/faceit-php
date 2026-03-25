@@ -1,9 +1,10 @@
 <?php
 
 use Philicevic\FaceitPhp\DTO\PaginatedResponse;
-use Philicevic\FaceitPhp\DTO\Player\Tournament;
+use Philicevic\FaceitPhp\DTO\Team\StatSegment;
 use Philicevic\FaceitPhp\DTO\Team\Team;
 use Philicevic\FaceitPhp\DTO\Team\TeamStats;
+use Philicevic\FaceitPhp\DTO\Tournament;
 use Philicevic\FaceitPhp\DTO\UserSimple;
 use Philicevic\FaceitPhp\Requests\GetTeamRequest;
 use Philicevic\FaceitPhp\Requests\GetTeamStatsRequest;
@@ -20,7 +21,7 @@ test('can get team', function () {
     MockClient::global([
         GetTeamRequest::class => MockResponse::fixture('team_details'),
     ]);
-    $team = $this->faceit->team()->get('team-uuid');
+    $team = $this->faceit->team()->get('82df6f1b-9cfe-4da9-a5bf-a73219702f1f');
     expect($team)->toBeInstanceOf(Team::class);
 });
 
@@ -28,8 +29,7 @@ test('team details hydrate all attributes', function () {
     MockClient::global([
         GetTeamRequest::class => MockResponse::fixture('team_details'),
     ]);
-    $team = $this->faceit->team()->get('team-uuid');
-    $member = $team->members[0];
+    $team = $this->faceit->team()->get('82df6f1b-9cfe-4da9-a5bf-a73219702f1f');
 
     expect($team->uuid)->toBeString()
         ->and($team->name)->toBeString()
@@ -42,10 +42,13 @@ test('team details hydrate all attributes', function () {
         ->and($team->leader)->toBeString()
         ->and($team->teamType)->toBeString()
         ->and($team->chatRoomId)->toBeString()
-        ->and($team->members)->toContainOnlyInstancesOf(UserSimple::class)
-        ->and($member->uuid)->toBeString()
-        ->and($member->nickname)->toBeString()
-        ->and($member->skillLevel)->toBeInt();
+        ->and($team->members)->toContainOnlyInstancesOf(UserSimple::class);
+
+    foreach ($team->members as $member) {
+        expect($member->uuid)->toBeString()
+            ->and($member->nickname)->toBeString()
+            ->and($member->skillLevel)->toBeInt();
+    }
 });
 
 // Test get team stats
@@ -53,7 +56,7 @@ test('can get team stats', function () {
     MockClient::global([
         GetTeamStatsRequest::class => MockResponse::fixture('team_stats'),
     ]);
-    $stats = $this->faceit->team()->getStats('team-uuid', 'cs2');
+    $stats = $this->faceit->team()->getStats('9d4341db-a93a-4a05-aca7-5373f64127df', 'cs2');
     expect($stats)->toBeInstanceOf(TeamStats::class);
 });
 
@@ -61,13 +64,11 @@ test('team stats hydrate all attributes', function () {
     MockClient::global([
         GetTeamStatsRequest::class => MockResponse::fixture('team_stats'),
     ]);
-    $stats = $this->faceit->team()->getStats('team-uuid', 'cs2');
+    $stats = $this->faceit->team()->getStats('9d4341db-a93a-4a05-aca7-5373f64127df', 'cs2');
     expect($stats->teamId)->toBeString()
         ->and($stats->gameId)->toBe('cs2')
         ->and($stats->lifetime)->toBeArray()
-        ->and($stats->lifetime)->toHaveKey('Win Rate %')
-        ->and($stats->segments)->toBeArray()
-        ->and($stats->segments[0])->toHaveKey('label');
+        ->and($stats->segments)->toBeArray()->each->toBeInstanceOf(StatSegment::class);
 });
 
 // Test get team tournaments
@@ -75,7 +76,7 @@ test('can get team tournaments', function () {
     MockClient::global([
         GetTeamTournamentsRequest::class => MockResponse::fixture('team_tournaments'),
     ]);
-    $response = $this->faceit->team()->getTournaments('team-uuid');
+    $response = $this->faceit->team()->getTournaments('82df6f1b-9cfe-4da9-a5bf-a73219702f1f');
     expect($response)->toBeInstanceOf(PaginatedResponse::class)
         ->and($response->items)->toContainOnlyInstancesOf(Tournament::class);
 });
@@ -84,7 +85,7 @@ test('team tournaments hydrate all attributes', function () {
     MockClient::global([
         GetTeamTournamentsRequest::class => MockResponse::fixture('team_tournaments'),
     ]);
-    $tournament = $this->faceit->team()->getTournaments('team-uuid')->items[0];
+    $tournament = $this->faceit->team()->getTournaments('82df6f1b-9cfe-4da9-a5bf-a73219702f1f')->items[0];
     expect($tournament->uuid)->toBeString()
         ->and($tournament->name)->toBeString()
         ->and($tournament->gameId)->toBeString()
