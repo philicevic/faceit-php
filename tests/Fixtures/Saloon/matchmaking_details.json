@@ -1,0 +1,33 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Wed, 25 Mar 2026 06:40:29 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e1beca7c96e4ae6-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/matchmakings\/{matchmakingId}",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "48",
+        "vary": "Accept-Encoding,Origin",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=lh0aTEx89Gnubl9sJrYIHmZ70W.jtZvmKChSBKJZnyE-1774420829-1.0.1.1-qc0XxzJWzslAzTatzjZaXAvM1teRS.NlrujF3MobTCBxhkxxmsAxVE1depDtvKlZFRTWShinAg9gbGw2i1FntWvXBr3CFBN25h6PwJT.YrmPuILKzziO02mGo6.pal6X; path=\/; expires=Wed, 25-Mar-26 07:10:29 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=TPB6f_1ockUCWQj_6FZ4BPeh1QUWF8NPZViAhVJEALM-1774420829601-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
+    },
+    "data": "{\"id\":\"f4148ddd-bce8-41b8-9131-ee83afcdd6dd\",\"name\":\"Europe 5v5 Queue\",\"game\":\"cs2\",\"region\":\"EU\",\"icon\":\"\",\"short_description\":\"\",\"long_description\":\"The game consists of 24 rounds, with each team switching sides after 12 rounds. The first team to win 13 rounds wins the match, with overtime series played if the game ends in a tie. The round time is 1m 55s and the bomb timer is 40s. Match starts with a knife round.\\n\\nWinner team's captain gets the right to choose the starting side.\",\"queues\":[{\"id\":\"6488bb8e09d02466271f097a\",\"name\":\"CS2 5v5 EU - default\",\"organizer_id\":\"faceit\",\"open\":true,\"paused\":false},{\"id\":\"66140674f2200d1bec86ffd8\",\"name\":\"CS2 5v5 EU - 2001-2900\",\"organizer_id\":\"faceit\",\"open\":true,\"paused\":false},{\"id\":\"6614fd3bf5b25b4b1d1d31d0\",\"name\":\"CS2 5v5 EU - Region Ru\",\"organizer_id\":\"faceit\",\"open\":true,\"paused\":false},{\"id\":\"66509bbb911c271d5225e1fa\",\"name\":\"CS2 5v5 EU - 2500+\",\"organizer_id\":\"faceit\",\"open\":false,\"paused\":false},{\"id\":\"66574e4142b2705d523a48a4\",\"name\":\"CS2 5v5 EU - 1200 Region Ru\",\"organizer_id\":\"faceit\",\"open\":true,\"paused\":false},{\"id\":\"666033f7fbabd66f9a6f26ee\",\"name\":\"CS2 5v5 EU - 1200-2000\",\"organizer_id\":\"faceit\",\"open\":true,\"paused\":false}],\"league_id\":\"ede44bb8-89f1-4059-b112-eadc28e332fd\"}",
+    "context": []
+}

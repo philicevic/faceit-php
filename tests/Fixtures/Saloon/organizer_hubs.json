@@ -1,0 +1,33 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 24 Mar 2026 18:57:47 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e17e7505e4de52e-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/organizers\/{organizerId}\/hubs",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "14",
+        "vary": "Accept-Encoding,Origin",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=V7xByItqlymrM6UjiwLi9d4JEuxsrD6WzXSSfhq5_sA-1774378667-1.0.1.1-yb.99IFyutsq9chodhEdpgORV2e_9bsm4oEDPMVH1kDBkCJ_MuPBna7FFYGxk8onerzcXF11RfTeEtNIgWbT0KtSMv5eBxO7gnX46yj2gZUEAr9p.4qk8ZMLNaqmUexV; path=\/; expires=Tue, 24-Mar-26 19:27:47 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=TN9fjriNgbDbgEensV2Wez.iVTnrCo_XbrNyMOphdbI-1774378667728-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
+    },
+    "data": "{\"items\":[{\"hub_id\":\"9b7519ab-c1eb-4f7c-a75f-61a4f4db9b3e\",\"name\":\"DACH CS\",\"avatar\":\"\",\"cover_image\":\"\",\"background_image\":\"\",\"game_id\":\"cs2\",\"region\":\"EU\",\"description\":\"\",\"chat_room_id\":\"hub-9b7519ab-c1eb-4f7c-a75f-61a4f4db9b3e-general\",\"organizer_id\":\"89ba1e87-e29b-4c98-a149-e6bcf293fa4f\",\"rule_id\":\"\",\"players_joined\":382,\"min_skill_level\":1,\"max_skill_level\":10,\"join_permission\":\"PUBLIC\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/hub\/9b7519ab-c1eb-4f7c-a75f-61a4f4db9b3e\/DACH%20CS\"},{\"hub_id\":\"a75a0bd0-fae7-441b-9836-19d2bd880295\",\"name\":\"DACH CS Empress\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/d7182627-5d24-4798-af95-994b87bd463d.jpg\",\"cover_image\":\"https:\/\/distribution.faceit-cdn.net\/images\/176c093f-0b8b-4361-8797-b694f6e8824f.jpg\",\"background_image\":\"\",\"game_id\":\"cs2\",\"region\":\"EU\",\"description\":\"\",\"chat_room_id\":\"hub-a75a0bd0-fae7-441b-9836-19d2bd880295-general\",\"organizer_id\":\"89ba1e87-e29b-4c98-a149-e6bcf293fa4f\",\"rule_id\":\"\",\"players_joined\":15,\"min_skill_level\":1,\"max_skill_level\":10,\"join_permission\":\"INVITED_ONLY\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/hub\/a75a0bd0-fae7-441b-9836-19d2bd880295\/DACH%20CS%20Empress\"}],\"start\":0,\"end\":20}",
+    "context": []
+}

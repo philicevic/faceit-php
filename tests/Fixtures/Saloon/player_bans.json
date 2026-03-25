@@ -1,34 +1,34 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Wed, 18 Mar 2026 09:03:25 GMT",
+        "Date": "Tue, 24 Mar 2026 01:27:21 GMT",
         "Content-Type": "application\/json; charset=utf-8",
-        "Content-Length": "226",
+        "Content-Length": "223",
         "Connection": "keep-alive",
-        "CF-RAY": "9de310686fe9e51e-TXL",
+        "CF-RAY": "9e11e4947a29e512-TXL",
         "faceit-env": "prod",
         "faceit-matched-route": "\/v4\/players\/{playerId}\/bans",
         "faceit-service": "open-data-api",
         "faceit-version": "1.80.0",
-        "x-envoy-upstream-service-time": "7",
+        "x-envoy-upstream-service-time": "5",
         "ratelimit-limit": "10, 10;w=1",
         "ratelimit-remaining": "8",
         "ratelimit-reset": "0",
         "vary": "Origin",
         "x-faceit-gateway": "true",
         "x-faceit-gateway-handler": "open-faceit",
-        "x-faceit-gateway-version": "0.31.0",
+        "x-faceit-gateway-version": "0.31.1",
         "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
         "via": "1.1 google",
         "alt-svc": "h3=\":443\"; ma=86400",
         "Accept-Ranges": "bytes",
         "cf-cache-status": "BYPASS",
         "Set-Cookie": [
-            "__cf_bm=unvg_bGSCipj5v9lT10ZWqKEmptl.MorcegKZl3vY8A-1773824605-1.0.1.1-kKUqDXVcSnJyby_TtQI48i6DIb.IQI6OjOTqbAaG7bCXZVKv_R3MuZIKsI0tHdHE01t2veuMJSnSKZB3d83z1I9SXqJL5EIKsgDHWaBu8jMKlvzhuHJjnBtvgnUwvv6H; path=\/; expires=Wed, 18-Mar-26 09:33:25 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
-            "_cfuvid=JgY8X4CkfHctglo8wAgG4yUN838h1m_aPhTFGMcAAOA-1773824605652-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+            "__cf_bm=sDtmOptZVNbZax2_lw7ehyQgb4rYdoa8jENZqaihZuo-1774315641-1.0.1.1-GW_4tUNJwWQfNCxqOpeMwFrofg6uWtMouEPKOGa8ogZ43dwBan4Tu28uoh741oIxIj88MWPT6WS_An.ItizUU96DjlPc4flA9UF3kE_KmwquT3jt5hG__tnsvGX82gm_; path=\/; expires=Tue, 24-Mar-26 01:57:21 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=cDnQErUm0_H9ZaZRdqzEZm2QIh90NL1C9Fz2gDlbvSU-1774315641173-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
         ],
         "Server": "cloudflare"
     },
-    "data": "{\"items\":[{\"nickname\":\"ReggioEmilia\",\"type\":\"game\",\"reason\":\"Verbal abuse\",\"game\":\"cs2\",\"starts_at\":\"2026-03-14T03:15:00Z\",\"ends_at\":\"2026-03-21T03:15:00Z\",\"user_id\":\"59ba3a1a-7036-47d9-bcf4-009194dbcbeb\"}],\"start\":0,\"end\":20}",
+    "data": "{\"items\":[{\"nickname\":\"Sipovvv20\",\"type\":\"game\",\"reason\":\"verbal abuse\",\"game\":\"cs2\",\"starts_at\":\"2026-03-20T12:11:00Z\",\"ends_at\":\"2026-03-27T12:11:00Z\",\"user_id\":\"fc885a4c-c6a6-4632-a816-c1cefb75fdf7\"}],\"start\":0,\"end\":20}",
     "context": []
 }

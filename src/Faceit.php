@@ -11,15 +11,33 @@ use Philicevic\FaceitPhp\Requests\SearchOrganizersRequest;
 use Philicevic\FaceitPhp\Requests\SearchPlayersRequest;
 use Philicevic\FaceitPhp\Requests\SearchTeamsRequest;
 use Philicevic\FaceitPhp\Requests\SearchTournamentsRequest;
+use Philicevic\FaceitPhp\Resources\ChampionshipResource;
+use Philicevic\FaceitPhp\Resources\GameResource;
+use Philicevic\FaceitPhp\Resources\HubResource;
+use Philicevic\FaceitPhp\Resources\LeaderboardResource;
+use Philicevic\FaceitPhp\Resources\MatchmakingResource;
 use Philicevic\FaceitPhp\Resources\MatchResource;
+use Philicevic\FaceitPhp\Resources\OrganizerResource;
 use Philicevic\FaceitPhp\Resources\PlayerResource;
-use Philicevic\FaceitPhp\Resources\TournamentResource;
+use Philicevic\FaceitPhp\Resources\RankingResource;
+use Philicevic\FaceitPhp\Resources\TeamResource;
+use Philicevic\FaceitPhp\Validation\ValidationContext;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
+use Saloon\Traits\Plugins\AlwaysThrowOnErrors;
 
 class Faceit extends Connector
 {
-    public function __construct(public readonly string $token) {}
+    use AlwaysThrowOnErrors;
+
+    public function __construct(public readonly string $token, bool $strict = false)
+    {
+        if ($strict) {
+            ValidationContext::enable();
+        } else {
+            ValidationContext::disable();
+        }
+    }
 
     public function resolveBaseUrl(): string
     {
@@ -39,9 +57,39 @@ class Faceit extends Connector
         return new TokenAuthenticator($this->token);
     }
 
+    public function championship(): ChampionshipResource
+    {
+        return new ChampionshipResource($this);
+    }
+
+    public function game(): GameResource
+    {
+        return new GameResource($this);
+    }
+
+    public function hub(): HubResource
+    {
+        return new HubResource($this);
+    }
+
+    public function leaderboard(): LeaderboardResource
+    {
+        return new LeaderboardResource($this);
+    }
+
     public function match(): MatchResource
     {
         return new MatchResource($this);
+    }
+
+    public function matchmaking(): MatchmakingResource
+    {
+        return new MatchmakingResource($this);
+    }
+
+    public function organizer(): OrganizerResource
+    {
+        return new OrganizerResource($this);
     }
 
     public function player(): PlayerResource
@@ -49,9 +97,14 @@ class Faceit extends Connector
         return new PlayerResource($this);
     }
 
-    public function tournament(): TournamentResource
+    public function ranking(): RankingResource
     {
-        return new TournamentResource($this);
+        return new RankingResource($this);
+    }
+
+    public function team(): TeamResource
+    {
+        return new TeamResource($this);
     }
 
     /**

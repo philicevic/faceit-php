@@ -3,9 +3,9 @@
 use Philicevic\FaceitPhp\Faceit;
 use Saloon\Http\Faking\MockClient;
 
-function faceitMock(): Faceit
+function faceitMock(bool $strict = false): Faceit
 {
     MockClient::destroyGlobal();
 
-    return new Faceit('fake-api-key');
+    return new Faceit('fake-key', strict: $strict);
 }

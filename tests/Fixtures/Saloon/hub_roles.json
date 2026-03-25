@@ -1,0 +1,34 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Mon, 23 Mar 2026 09:16:40 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Content-Length": "812",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e0c56b00a0be511-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/hubs\/{hubId}\/roles",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "6",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "vary": "Origin",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "Accept-Ranges": "bytes",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=04PlYMXUYbHwHqsfxRlA_0ffzBw9hQKS0imcJxX1m6M-1774257400-1.0.1.1-eG4aTcdklgg3vWGPVZ4c6TH9b6yrj.F6w_pccD00d_uyyNUSj5G7GwlwGKF6kz3QafDPyv.1JIpJ1XoFt.67dwWVmClSBYYtZyKMGzHxBDr.PiK0neFlekrmqORQul7X; path=\/; expires=Mon, 23-Mar-26 09:46:40 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=xIf9SeWix.GdiYt497.AqY5wDaBJeI4Ztm31mLxmut0-1774257400456-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
+    },
+    "data": "{\"items\":[{\"role_id\":\"owner\",\"name\":\"owner\",\"ranking\":1,\"color\":\"#FF8000\",\"visible_on_chat\":false},{\"role_id\":\"db926e5d-3d32-4ad6-88c9-4e9fd859f0a8\",\"name\":\"Admin\",\"ranking\":11,\"color\":\"#E74C3C\",\"visible_on_chat\":true},{\"role_id\":\"e480622e-0dc9-4252-af84-096bb14ef7d2\",\"name\":\"Moderator\",\"ranking\":12,\"color\":\"#F1C40F\",\"visible_on_chat\":true},{\"role_id\":\"3d795f61-cf22-4f34-bb7d-0423eb9a9ae9\",\"name\":\"Bot\",\"ranking\":13,\"color\":\"#F39C12\",\"visible_on_chat\":true},{\"role_id\":\"p-4351360\",\"name\":\"Mapcore subscriber\",\"ranking\":14,\"color\":\"#3498DB\",\"visible_on_chat\":true},{\"role_id\":\"9ab9c174-8d7a-46b2-84a4-114a242cdf5d\",\"name\":\"Verified Mapmaker\",\"ranking\":15,\"color\":\"#1ABC9C\",\"visible_on_chat\":true},{\"role_id\":\"member\",\"name\":\"member\",\"ranking\":1000,\"color\":\"#27AE60\",\"visible_on_chat\":true}],\"start\":0,\"end\":20}",
+    "context": []
+}

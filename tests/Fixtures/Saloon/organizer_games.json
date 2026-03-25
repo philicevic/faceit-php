@@ -1,0 +1,33 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Wed, 25 Mar 2026 06:40:30 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e1becacb8b4f558-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/organizers\/{organizerId}\/games",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "59",
+        "vary": "Accept-Encoding,Origin",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=q8NDxIq4mA2CiYyxDLl3oIhlOPlt6j5ReV4HATqW9Ns-1774420830-1.0.1.1-AdzYj2KXOHY82nn96L3fii8kHZgB7JSdMBWHh9jzjzG22eRVAIYBuijvzsZe7FMgGxyagccoGaTS0XVQIcZSpWaJOOAJ9eeBTDD.w0SWnJrpJVQ2Ec_q0SkrNPJrnl39; path=\/; expires=Wed, 25-Mar-26 07:10:30 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=T73ufMn.FlUqIYZd7TuqpXeCtvRNfy0fyFgp6OGSKIY-1774420830421-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
+    },
+    "data": "{\"items\":[{\"game_id\":\"cs2\",\"short_label\":\"CS2\",\"long_label\":\"Counter-Strike 2\",\"assets\":{\"cover\":\"https:\/\/distribution.faceit-cdn.net\/images\/32284743-42b1-4346-99c2-1769fe62f716.jpeg?width=2000\\u0026height=100\",\"flag_img_icon\":\"https:\/\/distribution.faceit-cdn.net\/images\/ea5c4171-712f-4afd-a8ae-3fb5e1e2afb8.jpeg?width=16\\u0026height=16\",\"flag_img_s\":\"https:\/\/distribution.faceit-cdn.net\/images\/ea5c4171-712f-4afd-a8ae-3fb5e1e2afb8.jpeg?width=24\\u0026height=24\",\"flag_img_m\":\"https:\/\/distribution.faceit-cdn.net\/images\/ea5c4171-712f-4afd-a8ae-3fb5e1e2afb8.jpeg?width=48\\u0026height=48\",\"flag_img_l\":\"https:\/\/distribution.faceit-cdn.net\/images\/ea5c4171-712f-4afd-a8ae-3fb5e1e2afb8.jpeg?width=96\\u0026height=96\",\"featured_img_s\":\"https:\/\/distribution.faceit-cdn.net\/images\/7ca81462-28cf-43a2-bf49-187e377ce880.jpeg?width=40\\u0026height=60\",\"featured_img_m\":\"https:\/\/distribution.faceit-cdn.net\/images\/7ca81462-28cf-43a2-bf49-187e377ce880.jpeg?width=212\\u0026height=320\",\"featured_img_l\":\"https:\/\/distribution.faceit-cdn.net\/images\/7ca81462-28cf-43a2-bf49-187e377ce880.jpeg?width=424\\u0026height=640\",\"landing_page\":\"https:\/\/distribution.faceit-cdn.net\/images\/7ca81462-28cf-43a2-bf49-187e377ce880.jpeg?width=424\\u0026height=640\"},\"platforms\":[],\"regions\":[\"EU\",\"NA\",\"SA\",\"SEA\",\"OCE\"],\"parent_game_id\":\"cs2\",\"order\":0}],\"start\":0,\"end\":1}",
+    "context": []
+}

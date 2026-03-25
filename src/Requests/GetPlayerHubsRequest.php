@@ -36,25 +36,6 @@ class GetPlayerHubsRequest extends Request
      */
     public function createDtoFromResponse(Response $response): PaginatedResponse
     {
-        $data = $response->json();
-        $items = array_map(function (array $hub): Hub {
-            return new Hub(
-                uuid: $hub['hub_id'],
-                name: $hub['name'],
-                avatar: (string) ($hub['avatar'] ?? ''),
-                coverImage: (string) ($hub['cover_image'] ?? ''),
-                backgroundImage: (string) ($hub['background_image'] ?? ''),
-                faceitUrl: (string) ($hub['faceit_url'] ?? ''),
-                description: (string) ($hub['description'] ?? ''),
-                gameId: (string) ($hub['game_id'] ?? ''),
-                region: (string) ($hub['region'] ?? ''),
-            );
-        }, $data['items'] ?? []);
-
-        return new PaginatedResponse(
-            items: $items,
-            start: $data['start'] ?? 0,
-            end: $data['end'] ?? 0,
-        );
+        return PaginatedResponse::fromArray($response->json(), Hub::fromArray(...));
     }
 }

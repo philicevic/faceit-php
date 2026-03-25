@@ -1,0 +1,33 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Mon, 23 Mar 2026 09:16:44 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e0c56c94e598863-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/rankings\/games\/{gameId}\/regions\/{region}",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "38",
+        "vary": "Accept-Encoding,Origin",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=Q11MjRAfIofGmUt5ddmpRWgicCJf7AtVK.V.ynekiEo-1774257404-1.0.1.1-gHq2tjsGVW13uM4O_GlZf2QPpCDz1qghlcQlbz4cf9nJcB36yGfuTucpaEP4skHheVK6N7tMgUvabgfKJSHzMK3flXft9i5PIyYzLMrdVdDW4i7ys6crqhbBwqOaroME; path=\/; expires=Mon, 23-Mar-26 09:46:44 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=uhdzkH7EzpvrZWi9QC7.w0viO.UOcY30E4_1YwQ4X4I-1774257404531-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
+    },
+    "data": "{\"items\":[{\"player_id\":\"790ce1ad-38e3-4a45-b44a-5d33658102e6\",\"nickname\":\"qw1nk1\",\"country\":\"ru\",\"position\":1,\"faceit_elo\":5192,\"game_skill_level\":10},{\"player_id\":\"16535c6a-fbce-4485-b5b8-fab4340b707e\",\"nickname\":\"b1st-\",\"country\":\"ru\",\"position\":2,\"faceit_elo\":5099,\"game_skill_level\":10},{\"player_id\":\"2d2af39e-de80-4670-91da-3a5f7c4a6d32\",\"nickname\":\"alkarenn56\",\"country\":\"jp\",\"position\":3,\"faceit_elo\":5042,\"game_skill_level\":10},{\"player_id\":\"91a68ab1-79e2-4e38-af1e-72aeb731ba35\",\"nickname\":\"auraeater\",\"country\":\"kz\",\"position\":4,\"faceit_elo\":4912,\"game_skill_level\":10},{\"player_id\":\"e5e8e2a6-d716-4493-b949-e16965f41654\",\"nickname\":\"donk666\",\"country\":\"kr\",\"position\":5,\"faceit_elo\":4911,\"game_skill_level\":10},{\"player_id\":\"5e18dd12-2e40-48c4-a66f-886108f095ed\",\"nickname\":\"HeavyGod\",\"country\":\"il\",\"position\":6,\"faceit_elo\":4859,\"game_skill_level\":10},{\"player_id\":\"6dc70967-6fdf-4acc-90fa-5b87c2a1abe0\",\"nickname\":\"verso-karnez\",\"country\":\"uz\",\"position\":7,\"faceit_elo\":4824,\"game_skill_level\":10},{\"player_id\":\"e05e2128-e0ab-459e-8ee5-4a0249ba508f\",\"nickname\":\"rallen\",\"country\":\"pl\",\"position\":8,\"faceit_elo\":4805,\"game_skill_level\":10},{\"player_id\":\"4cd0d638-8cf3-4770-8b44-d6576f69d2a5\",\"nickname\":\"fame--\",\"country\":\"ru\",\"position\":9,\"faceit_elo\":4799,\"game_skill_level\":10},{\"player_id\":\"1a4ed498-cee4-44e7-8fee-ce1ecba7647c\",\"nickname\":\"executor\",\"country\":\"ru\",\"position\":10,\"faceit_elo\":4781,\"game_skill_level\":10},{\"player_id\":\"d9e2a538-9722-4d1c-9925-958f849de1ea\",\"nickname\":\"NertZ\",\"country\":\"il\",\"position\":11,\"faceit_elo\":4777,\"game_skill_level\":10},{\"player_id\":\"8f151c97-d096-40f1-b3ae-3afaaca644bb\",\"nickname\":\"h4RN1zanami\",\"country\":\"bg\",\"position\":12,\"faceit_elo\":4757,\"game_skill_level\":10},{\"player_id\":\"7dbf107a-1199-4932-823e-e38ccc46288e\",\"nickname\":\"MaiL09\",\"country\":\"jp\",\"position\":13,\"faceit_elo\":4733,\"game_skill_level\":10},{\"player_id\":\"be994de3-89c8-4d40-9286-c14035208743\",\"nickname\":\"-SYPH0\",\"country\":\"kz\",\"position\":14,\"faceit_elo\":4707,\"game_skill_level\":10},{\"player_id\":\"64000660-f2d2-4c9b-8e29-6ad5ec2b49cf\",\"nickname\":\"CEMEN_BAKIN\",\"country\":\"cn\",\"position\":15,\"faceit_elo\":4695,\"game_skill_level\":10},{\"player_id\":\"ad239f19-d904-4771-8e6b-5a6c071bb94c\",\"nickname\":\"tO0RO\",\"country\":\"ru\",\"position\":16,\"faceit_elo\":4685,\"game_skill_level\":10},{\"player_id\":\"34f9fcd0-4f1f-4693-bd96-c2e29df992e5\",\"nickname\":\"bluewh1te\",\"country\":\"hk\",\"position\":17,\"faceit_elo\":4676,\"game_skill_level\":10},{\"player_id\":\"10735fa0-ab32-4b53-9725-f2f6ce9090de\",\"nickname\":\"youka\",\"country\":\"fr\",\"position\":18,\"faceit_elo\":4671,\"game_skill_level\":10},{\"player_id\":\"93306681-bce6-4369-8c41-e0bdba2597ed\",\"nickname\":\"m0NESY\",\"country\":\"ru\",\"position\":19,\"faceit_elo\":4652,\"game_skill_level\":10},{\"player_id\":\"f021a295-77ea-4eb4-a86d-f5de0fbae819\",\"nickname\":\"-k9ppy\",\"country\":\"ru\",\"position\":20,\"faceit_elo\":4646,\"game_skill_level\":10}],\"start\":0,\"end\":20}",
+    "context": []
+}

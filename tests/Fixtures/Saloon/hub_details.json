@@ -1,0 +1,34 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Mon, 23 Mar 2026 09:16:39 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Content-Length": "778",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e0c56ab28c0da39-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/hubs\/{hubId}",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "13",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "vary": "Origin",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "Accept-Ranges": "bytes",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=VXNfLeaCTAZ0z9TZrBfInkSkPaISFAIImRXYEI1tXKc-1774257399-1.0.1.1-P1LyWtw_IEiWnP0CDP.51GEPYNCKd1kma47IkYjs_gP_HeDfII0pLurJmnGE2zqg1w_0VaIPTcNLkcsOLgDLCNgwj09SJobhzt4Vtjglqaga0cIyVBCKja_MpqPBb3po; path=\/; expires=Mon, 23-Mar-26 09:46:39 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=_Iug.OQkdC5NInDB5OT0j3OIbcwj7pVKaHDgXYSPHp8-1774257399696-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
+    },
+    "data": "{\"hub_id\":\"05f970ad-b6a9-4740-89d1-a9fea46f7525\",\"name\":\"EU 5v5\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/7a28b40d-dc75-479e-bbe2-5d37d5a40230.jpeg\",\"cover_image\":\"https:\/\/distribution.faceit-cdn.net\/images\/0441c535-a7bf-44fc-98d6-fb26143e4c54.jpg\",\"background_image\":\"\",\"game_id\":\"cs2\",\"region\":\"EU\",\"description\":\"Mapcore's FACEIT hubs are the best way to play community maps with competitive 5v5 settings.\",\"chat_room_id\":\"hub-05f970ad-b6a9-4740-89d1-a9fea46f7525-general\",\"organizer_id\":\"948b5a8c-702e-4140-a4b3-1d0cbfeebd45\",\"rule_id\":\"2b43df54-1ef2-4cb0-a56b-b56926c04906\",\"players_joined\":112278,\"min_skill_level\":1,\"max_skill_level\":10,\"join_permission\":\"PUBLIC\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/hub\/05f970ad-b6a9-4740-89d1-a9fea46f7525\/EU%205v5\"}",
+    "context": []
+}

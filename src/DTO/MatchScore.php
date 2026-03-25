@@ -2,7 +2,7 @@
 
 namespace Philicevic\FaceitPhp\DTO;
 
-class MatchScore
+readonly class MatchScore
 {
     /**
      * @param  array<string, int|string>  $byFaction

@@ -1,0 +1,33 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Sat, 21 Mar 2026 13:22:47 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "9dfd4475ba39359e-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/championships\/{championshipId}\/results",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "16",
+        "vary": "Accept-Encoding,Origin",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=jewbD2AcEpw6qEku7nz.vOs7ZlV4NCK66Hna09y9k5k-1774099367-1.0.1.1-Tr0eIoY78O4uaWoA_.uEoPijp0JHIkCbeyFGOl7OAFplf.KNfksU0pSSJP8qLQtUk0_xfPzocYa9syX1p4nHyFCMYBV_xSPIZarPZY6jNUkfcBCO1.f4TkV54_HSABXm; path=\/; expires=Sat, 21-Mar-26 13:52:47 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=ztDaAr5ipw.Rk8Bup2_mVSPAxpJJNoxmkTK42MrDzi4-1774099367452-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
+    },
+    "data": "{\"items\":[{\"bounds\":{\"left\":1,\"right\":1},\"placements\":[{\"id\":\"bd28ec93-2015-427d-b72c-1e3603fbd62b\",\"name\":\"team_InZiL01\",\"type\":\"team\"}]},{\"bounds\":{\"left\":2,\"right\":2},\"placements\":[{\"id\":\"3219d630-d7e9-48b6-a6f0-4fb1017f4f69\",\"name\":\"team__Next_2\",\"type\":\"team\"}]},{\"bounds\":{\"left\":3,\"right\":4},\"placements\":[{\"id\":\"174ecc04-2374-46c1-b9d6-9b9bbfe6dbe5\",\"name\":\"Enemies\",\"type\":\"team\"},{\"id\":\"9586f259-c3e4-4be3-af67-91fb937ba80c\",\"name\":\"team_iIu-\",\"type\":\"team\"}]},{\"bounds\":{\"left\":5,\"right\":8},\"placements\":[{\"id\":\"\",\"name\":\"\",\"type\":\"\"},{\"id\":\"7d4ad05e-d71d-4f07-9bb1-083e9c686b5c\",\"name\":\"team_eye_of_speed\",\"type\":\"team\"},{\"id\":\"e7983a26-8e29-4ef1-b231-3a4e3fdedaf2\",\"name\":\"team__kakar_\",\"type\":\"team\"},{\"id\":\"054d973d-04dd-46a6-8292-dfa778e477f7\",\"name\":\"team_Merkwa\",\"type\":\"team\"}]},{\"bounds\":{\"left\":9,\"right\":13},\"placements\":[{\"id\":\"58e4cec0-0c71-4d10-a5d7-bcfc7cf74941\",\"name\":\"Cold_dd\",\"type\":\"team\"},{\"id\":\"f79b4529-5f84-4a63-b950-69ed38915a21\",\"name\":\"team_m0nrealll\",\"type\":\"team\"},{\"id\":\"30d15144-06a0-4cdc-a009-f921dc236bb3\",\"name\":\"team_Den_ZXC\",\"type\":\"team\"},{\"id\":\"6715d901-36ac-4ff2-80ec-61f542a7cf27\",\"name\":\"team_min_rail\",\"type\":\"team\"},{\"id\":\"b69a4763-4257-4096-8552-a22835657907\",\"name\":\"team_StEpan_KamaZ\",\"type\":\"team\"}]}],\"start\":0,\"end\":20}",
+    "context": []
+}

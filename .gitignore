@@ -3,7 +3,10 @@ vendor
 .phpunit.cache
 .DS_STORE
 .idea
+.agents
+.ai
+.claude
 AGENTS.md
 CLAUDE.md
-.claude
+skills-lock.json
 .env

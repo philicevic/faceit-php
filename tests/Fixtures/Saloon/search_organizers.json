@@ -1,8 +1,33 @@
 {
     "statusCode": 200,
     "headers": {
-        "Content-Type": "application/json"
+        "Date": "Tue, 24 Mar 2026 18:17:45 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e17acaacd50b9de-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/search\/organizers",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "15",
+        "vary": "Accept-Encoding,Origin",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=5lyf78_WYyHHvKyW44vIK61X99S9MWWJKaAURPKlZAE-1774376265-1.0.1.1-hDh0BeVzxbk5pqVJ16tPPNI4GVjq4t05_PEzfalNjcGcqH7KY3OBxdf87lSpI7rdKMSunBXcgHCCB2SUieKz3r83AEDtrjZTcdX_ZzqTpkAG9lX5RDwbW2zUvQe1zC7H; path=\/; expires=Tue, 24-Mar-26 18:47:45 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=DTsohiuvNxHFWdTY8sKOiVsNGkbx01nQ.gafoUqH4WU-1774376265559-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
     },
-    "data": "{\"start\":0,\"end\":1,\"items\":[{\"organizer_id\":\"org-1\",\"name\":\"FACEIT\",\"avatar\":\"https://cdn.faceit.com/org.jpg\",\"active\":true,\"games\":[\"cs2\"],\"regions\":[\"EU\"]}]}",
+    "data": "{\"items\":[{\"organizer_id\":\"6c339c51-6063-4ec0-ba09-9eb0d9af27af\",\"name\":\"DreamHack\",\"partner\":true,\"avatar\":\"https:\/\/assets.faceit-cdn.net\/organizer_avatar\/6c339c51-6063-4ec0-ba09-9eb0d9af27af_1666000874337.jpg\",\"games\":[\"rl_XBOX_PC\"],\"countries\":null,\"active\":false,\"regions\":null},{\"organizer_id\":\"0e1f71b5-14a5-408d-8bfc-9f6e98cfdbd7\",\"name\":\"Dreamhack Sports Games\",\"partner\":true,\"avatar\":\"https:\/\/assets.faceit-cdn.net\/organizer_avatar\/0e1f71b5-14a5-408d-8bfc-9f6e98cfdbd7_1673875613931.jpg\",\"games\":null,\"countries\":null,\"active\":false,\"regions\":null},{\"organizer_id\":\"7c2cc181-839d-4346-bb9a-652da7a7710b\",\"name\":\"DreamHack Partner Services\",\"partner\":true,\"avatar\":\"https:\/\/assets.faceit-cdn.net\/organizer_avatar\/7c2cc181-839d-4346-bb9a-652da7a7710b_1551450389882.jpg\",\"games\":[\"csgo\"],\"countries\":[\"FR\",\"NO\",\"AU\",\"GB\",\"US\",\"DK\",\"RU\",\"SE\",\"DE\",\"FI\",\"PL\"],\"active\":false,\"regions\":null},{\"organizer_id\":\"5b1d94e2-86c9-4dfc-9157-439e6d5d5198\",\"name\":\"DreamHack Beyond Scholastic\",\"partner\":true,\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/29ff9edf-c68f-40c8-b0be-bc80939a9ca8.jpeg\",\"games\":null,\"countries\":null,\"active\":false,\"regions\":null},{\"organizer_id\":\"14415684-2724-47b2-9fe2-b34cabd941db\",\"name\":\"DreamHack\",\"partner\":false,\"avatar\":\"\",\"games\":null,\"countries\":null,\"active\":false,\"regions\":null},{\"organizer_id\":\"2a5bf431-7267-4287-a99f-9b75f7b12684\",\"name\":\"Gamevasion Powered by Dreamhack\",\"partner\":true,\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/4bac70a8-98f9-4345-934e-bb8cef8fc1a5.jpeg\",\"games\":[\"csgo\",\"rocket_league\",\"dota2\"],\"countries\":null,\"active\":false,\"regions\":null},{\"organizer_id\":\"23dfb1ca-0371-4965-a449-7316609ffbe9\",\"name\":\"Dreamhack 2019\",\"partner\":false,\"avatar\":\"\",\"games\":null,\"countries\":null,\"active\":false,\"regions\":null},{\"organizer_id\":\"c0fac3b2-5268-4951-8b41-537e2e773152\",\"name\":\"Dreamhack Spain\",\"partner\":false,\"avatar\":\"https:\/\/assets.faceit-cdn.net\/organizer_avatar\/c0fac3b2-5268-4951-8b41-537e2e773152_1676635198354.jpg\",\"games\":null,\"countries\":null,\"active\":false,\"regions\":null},{\"organizer_id\":\"f08cf440-0e8e-4093-a7aa-c255ab9d8e1c\",\"name\":\"DreamHack BYOC\",\"partner\":false,\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/02366ca7-b633-4273-901a-0eaa64fb3659.jpeg\",\"games\":null,\"countries\":null,\"active\":false,\"regions\":null}],\"start\":0,\"end\":100}",
     "context": []
 }

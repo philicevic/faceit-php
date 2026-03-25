@@ -7,6 +7,9 @@ use Philicevic\FaceitPhp\DTO\Match\Stats\MatchStats;
 use Philicevic\FaceitPhp\DTO\Match\Stats\Player as MatchStatsPlayer;
 use Philicevic\FaceitPhp\DTO\Match\Stats\Round as MatchRound;
 use Philicevic\FaceitPhp\DTO\Match\Stats\Team as MatchStatsTeam;
+use Philicevic\FaceitPhp\Enums\CompetitionType;
+use Philicevic\FaceitPhp\Enums\MatchStatus;
+use Philicevic\FaceitPhp\Enums\Region;
 use Philicevic\FaceitPhp\Requests\GetMatchDetailsRequest;
 use Philicevic\FaceitPhp\Requests\GetMatchStatsRequest;
 use Saloon\Http\Faking\MockClient;
@@ -41,18 +44,24 @@ test('match details hydrate all attributes', function () {
     expect($match->uuid)->toBeString()
         ->and($match->competitionId)->toBeString()
         ->and($match->competitionName)->toBeString()
-        ->and($match->competitionType)->toBeString()
-        ->and($match->bestOf)->toBe(1)
-        ->and($match->status)->toBeString()
+        ->and($match->competitionType)->toBeIn(CompetitionType::cases())
+        ->and($match->bestOf)->toBeInt()
+        ->and($match->status)->toBeIn(MatchStatus::cases())
         ->and($match->game)->toBeString()
-        ->and($match->region)->toBeString()
+        ->and($match->region)->toBeIn(Region::cases())
         ->and($match->organizerId)->toBeString()
+        ->and($match->version)->toBeInt()
+        ->and($match->calculateElo)->toBeBool()
+        ->and($match->chatRoomId)->toBeString()
+        ->and($match->demoUrl)->toBeArray()
         ->and($match->startedAt)->toBeInstanceOf(DateTime::class)
         ->and($match->startedAt->getTimestamp())->toBeGreaterThan(0)
         ->and($match->finishedAt)->toBeInstanceOf(DateTime::class)
         ->and($match->finishedAt->getTimestamp())->toBeGreaterThan(0)
         ->and($match->scheduledAt)->toBeInstanceOf(DateTime::class)
         ->and($match->scheduledAt->getTimestamp())->toBeGreaterThan(0)
+        ->and($match->configuredAt)->toBeInstanceOf(DateTime::class)
+        ->and($match->configuredAt->getTimestamp())->toBeGreaterThan(0)
         ->and($match->faceitUrl)->toBeString()
         ->and($match->results->winner)->toBeString()
         ->and($match->results->score->byFaction)->toBeArray()
@@ -61,6 +70,7 @@ test('match details hydrate all attributes', function () {
         ->and($team->avatar)->toBeString()
         ->and($team->leader)->toBeString()
         ->and($team->type)->toBeString()
+        ->and($team->substituted)->toBeBool()
         ->and($player->uuid)->toBeString()
         ->and($player->nickname)->toBeString()
         ->and($player->avatar)->toBeString()

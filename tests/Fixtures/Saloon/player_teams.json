@@ -1,8 +1,33 @@
 {
     "statusCode": 200,
     "headers": {
-        "Content-Type": "application/json"
+        "Date": "Tue, 24 Mar 2026 01:27:22 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e11e49bfd1934b9-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/players\/{playerId}\/teams",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "12",
+        "vary": "Accept-Encoding,Origin",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=2hotaltLBLQS4sBXbwnhCzDEGws3K._LkURAbnf273M-1774315642-1.0.1.1-.AtSgC2OH4GrL0n9CX3cEktjT_1qT30x8oLmObS_QjdVS5zqfCoIXvxKT_ZDk522.Pf7rxOO3Cc94ETCMe4CjPSw6KHYXjgQ32sUSLRpF6uvlTlzEGEvj89IhdyQkpex; path=\/; expires=Tue, 24-Mar-26 01:57:22 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=YQzzN3IzQpBRD_vGTsHDpBGoSzdo2EqH_T1wUVrGyUs-1774315642375-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
     },
-    "data": "{\"start\":0,\"end\":1,\"items\":[{\"team_id\":\"team-1\",\"name\":\"specialz\",\"nickname\":\"speciaLz\",\"avatar\":\"https://cdn.faceit.com/team.jpg\",\"cover_image\":\"https://cdn.faceit.com/team-cover.jpg\",\"description\":\"A FACEIT team\",\"faceit_url\":\"https://www.faceit.com/en/teams/team-1\",\"game\":\"cs2\",\"leader\":\"a58f6134-4f31-4611-8431-b0a9630bea77\",\"team_type\":\"premade\",\"chat_room_id\":\"team-room-1\",\"members\":[{\"user_id\":\"a58f6134-4f31-4611-8431-b0a9630bea77\",\"nickname\":\"xqsp4m\",\"avatar\":\"https://cdn.faceit.com/player.jpg\",\"country\":\"DE\",\"faceit_url\":\"https://www.faceit.com/en/players/xqsp4m\",\"membership_type\":\"free\",\"memberships\":[\"free\"],\"skill_level\":10}]}]}",
+    "data": "{\"items\":[{\"team_id\":\"5221baf4-2ccc-4099-822b-49f65661843f\",\"nickname\":\"DNKRLRZ\",\"name\":\"doNkEyRoLLeRz\",\"avatar\":\"https:\/\/assets.faceit-cdn.net\/teams_avatars\/5221baf4-2ccc-4099-822b-49f65661843f_1558888139721.jpg\",\"game\":\"csgo\",\"team_type\":\"premade\",\"members\":null,\"leader\":\"73cbfc6c-080e-467d-8d26-c9c08228d628\",\"chat_room_id\":\"team-5221baf4-2ccc-4099-822b-49f65661843f\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/teams\/5221baf4-2ccc-4099-822b-49f65661843f\"},{\"team_id\":\"40ad3d71-aadf-4797-a5ba-9fb06011b535\",\"nickname\":\"OR4NGE\",\"name\":\"OR4NGE\",\"game\":\"csgo\",\"team_type\":\"premade\",\"members\":null,\"leader\":\"56d34ae7-5a95-4fd7-8fb5-7d319473990c\",\"chat_room_id\":\"team-40ad3d71-aadf-4797-a5ba-9fb06011b535\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/teams\/40ad3d71-aadf-4797-a5ba-9fb06011b535\"},{\"team_id\":\"3dc0862e-6bb3-4995-937c-ea79eb1b656a\",\"nickname\":\"mLG-\",\"name\":\"mLG\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/6b4c815e-a81e-4eb1-978d-d248accb0182.jpeg\",\"game\":\"csgo\",\"team_type\":\"premade\",\"members\":null,\"leader\":\"ffe3566c-9574-4f1b-8012-bf4d42aeb898\",\"chat_room_id\":\"team-3dc0862e-6bb3-4995-937c-ea79eb1b656a\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/teams\/3dc0862e-6bb3-4995-937c-ea79eb1b656a\"},{\"team_id\":\"27d0a4f7-f481-44b9-826f-b997172b7b39\",\"nickname\":\"mLG-\",\"name\":\"mLG\",\"game\":\"cs2\",\"team_type\":\"premade\",\"members\":null,\"leader\":\"03393954-b51a-4080-b525-fbf96c9b12f8\",\"chat_room_id\":\"team-27d0a4f7-f481-44b9-826f-b997172b7b39\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/teams\/27d0a4f7-f481-44b9-826f-b997172b7b39\"},{\"team_id\":\"7915057e-bc49-40c5-bb96-f898bd314b79\",\"nickname\":\"ltdmp\",\"name\":\"LTD MAP POOL\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/217047e6-abdc-4ffb-9d6d-1261f6d6b3b7.jpg\",\"cover_image\":\"https:\/\/distribution.faceit-cdn.net\/images\/11dce534-8a61-4211-9b65-90b5601adb74.jpg\",\"game\":\"cs2\",\"team_type\":\"premade\",\"members\":null,\"leader\":\"9b94b88b-6c4f-420a-918b-73ba572f748d\",\"chat_room_id\":\"team-7915057e-bc49-40c5-bb96-f898bd314b79\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/teams\/7915057e-bc49-40c5-bb96-f898bd314b79\"},{\"team_id\":\"72ae513c-4fc8-4b95-902a-bcf75f9aa5be\",\"nickname\":\"MVP_S\",\"name\":\"MVPs\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/01188680-d734-4af1-af7a-d66c659e642f.jpg\",\"game\":\"cs2\",\"team_type\":\"premade\",\"members\":null,\"leader\":\"4ecce201-5fa5-4396-acb5-f23c2c3325fa\",\"chat_room_id\":\"team-72ae513c-4fc8-4b95-902a-bcf75f9aa5be\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/teams\/72ae513c-4fc8-4b95-902a-bcf75f9aa5be\"},{\"team_id\":\"ca92ef92-b2e9-4a82-b66c-1e6ab869421b\",\"nickname\":\"SPCB\",\"name\":\"SUPERCLUB\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/407ba513-2c51-4247-ba1d-17df655806ab.jpeg\",\"game\":\"cs2\",\"team_type\":\"premade\",\"members\":null,\"leader\":\"8892da78-305d-4159-866c-d568026377ee\",\"chat_room_id\":\"team-ca92ef92-b2e9-4a82-b66c-1e6ab869421b\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/teams\/ca92ef92-b2e9-4a82-b66c-1e6ab869421b\"},{\"team_id\":\"772ecaf0-1635-44df-b50f-c75422d49ee9\",\"nickname\":\"rlt\",\"name\":\"Reluctant\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/110251b6-2097-473e-8fbf-141a89d3786b.jpeg\",\"cover_image\":\"https:\/\/distribution.faceit-cdn.net\/images\/88d4b87a-288e-45ef-9d84-3fdfc268211d.jpeg\",\"game\":\"cs2\",\"team_type\":\"premade\",\"members\":null,\"leader\":\"8a0ef1e4-521f-478c-ba00-4e21ed5e36e7\",\"youtube\":\"https:\/\/www.youtube.com\/watch?v=dQw4w9WgXcQ\",\"chat_room_id\":\"team-772ecaf0-1635-44df-b50f-c75422d49ee9\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/teams\/772ecaf0-1635-44df-b50f-c75422d49ee9\"}],\"start\":0,\"end\":20}",
     "context": []
 }

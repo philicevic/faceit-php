@@ -48,20 +48,6 @@ class SearchTeamsRequest extends Request
      */
     public function createDtoFromResponse(Response $response): PaginatedResponse
     {
-        $data = $response->json();
-        $items = array_map(fn (array $item): Team => new Team(
-            teamId: $item['team_id'],
-            name: $item['name'],
-            game: (string) ($item['game'] ?? ''),
-            avatar: (string) ($item['avatar'] ?? ''),
-            faceitUrl: (string) ($item['faceit_url'] ?? ''),
-            verified: (bool) ($item['verified'] ?? false),
-        ), $data['items'] ?? []);
-
-        return new PaginatedResponse(
-            items: $items,
-            start: $data['start'] ?? 0,
-            end: $data['end'] ?? 0,
-        );
+        return PaginatedResponse::fromArray($response->json(), Team::fromArray(...));
     }
 }

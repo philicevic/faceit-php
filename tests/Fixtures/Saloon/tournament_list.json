@@ -1,8 +1,0 @@
-{
-    "statusCode": 200,
-    "headers": {
-        "Content-Type": "application/json"
-    },
-    "data": "{\"start\":0,\"end\":2,\"items\":[{\"tournament_id\":\"tournament-1\",\"name\":\"Weekly Cup #1\",\"game_id\":\"cs2\",\"region\":\"EU\",\"status\":\"finished\",\"faceit_url\":\"https://www.faceit.com/en/championship/tournament-1\",\"featured_image\":\"https://cdn.faceit.com/tournament1.jpg\",\"membership_type\":\"free\",\"match_type\":\"5v5\",\"prize_type\":\"cash\",\"team_size\":5,\"max_skill\":10,\"min_skill\":1,\"subscriptions_count\":32,\"number_of_players\":160,\"number_of_players_joined\":160,\"number_of_players_checkedin\":140,\"number_of_players_participants\":160,\"started_at\":1710000000,\"whitelist_countries\":[\"DE\",\"GB\"]},{\"tournament_id\":\"tournament-2\",\"name\":\"Weekly Cup #2\",\"game_id\":\"cs2\",\"region\":\"US\",\"status\":\"ongoing\",\"faceit_url\":\"https://www.faceit.com/en/championship/tournament-2\",\"featured_image\":\"https://cdn.faceit.com/tournament2.jpg\",\"membership_type\":\"premium\",\"match_type\":\"5v5\",\"prize_type\":\"points\",\"team_size\":5,\"max_skill\":8,\"min_skill\":3,\"subscriptions_count\":16,\"number_of_players\":80,\"number_of_players_joined\":72,\"number_of_players_checkedin\":60,\"number_of_players_participants\":72,\"started_at\":1711000000,\"whitelist_countries\":[\"US\",\"CA\"]}]}",
-    "context": []
-}

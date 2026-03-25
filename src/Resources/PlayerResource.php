@@ -9,8 +9,8 @@ use Philicevic\FaceitPhp\DTO\Player;
 use Philicevic\FaceitPhp\DTO\Player\GameMatchStats;
 use Philicevic\FaceitPhp\DTO\Player\Hub;
 use Philicevic\FaceitPhp\DTO\Player\LifetimeStats;
-use Philicevic\FaceitPhp\DTO\Player\Team\Team;
-use Philicevic\FaceitPhp\DTO\Player\Tournament;
+use Philicevic\FaceitPhp\DTO\Team\Team;
+use Philicevic\FaceitPhp\DTO\Tournament;
 use Philicevic\FaceitPhp\Requests\GetPlayerBansRequest;
 use Philicevic\FaceitPhp\Requests\GetPlayerGameStatsRequest;
 use Philicevic\FaceitPhp\Requests\GetPlayerHubsRequest;
@@ -20,24 +20,17 @@ use Philicevic\FaceitPhp\Requests\GetPlayerMatchesRequest;
 use Philicevic\FaceitPhp\Requests\GetPlayerRequest;
 use Philicevic\FaceitPhp\Requests\GetPlayerTeamsRequest;
 use Philicevic\FaceitPhp\Requests\GetPlayerTournamentsRequest;
-use Saloon\Http\BaseResource;
 
-class PlayerResource extends BaseResource
+class PlayerResource extends FaceitResource
 {
     public function get(string $uuid): Player
     {
-        $request = new GetPlayerRequest($uuid);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetPlayerRequest($uuid));
     }
 
     public function lookup(?string $nickname = null, ?string $game = null, ?string $gamePlayerId = null): Player
     {
-        $request = new GetPlayerLookupRequest($nickname, $game, $gamePlayerId);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetPlayerLookupRequest($nickname, $game, $gamePlayerId));
     }
 
     /**
@@ -45,10 +38,7 @@ class PlayerResource extends BaseResource
      */
     public function getBans(string $playerId, int $offset = 0, int $limit = 20): PaginatedResponse
     {
-        $request = new GetPlayerBansRequest($playerId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetPlayerBansRequest($playerId, $offset, $limit));
     }
 
     /**
@@ -56,10 +46,7 @@ class PlayerResource extends BaseResource
      */
     public function getGameStats(string $playerId, string $gameId, int $offset = 0, int $limit = 20, ?int $from = null, ?int $to = null): PaginatedResponse
     {
-        $request = new GetPlayerGameStatsRequest($playerId, $gameId, $offset, $limit, $from, $to);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetPlayerGameStatsRequest($playerId, $gameId, $offset, $limit, $from, $to));
     }
 
     /**
@@ -67,10 +54,7 @@ class PlayerResource extends BaseResource
      */
     public function getMatches(string $playerId, string $game, ?int $from = null, ?int $to = null, int $offset = 0, int $limit = 20): PaginatedResponse
     {
-        $request = new GetPlayerMatchesRequest($playerId, $game, $from, $to, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetPlayerMatchesRequest($playerId, $game, $from, $to, $offset, $limit));
     }
 
     /**
@@ -78,18 +62,12 @@ class PlayerResource extends BaseResource
      */
     public function getHubs(string $playerId, int $offset = 0, int $limit = 50): PaginatedResponse
     {
-        $request = new GetPlayerHubsRequest($playerId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetPlayerHubsRequest($playerId, $offset, $limit));
     }
 
     public function getStats(string $playerId, string $gameId): LifetimeStats
     {
-        $request = new GetPlayerLifetimeStatsRequest($playerId, $gameId);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetPlayerLifetimeStatsRequest($playerId, $gameId));
     }
 
     /**
@@ -97,10 +75,7 @@ class PlayerResource extends BaseResource
      */
     public function getTeams(string $playerId, int $offset = 0, int $limit = 20): PaginatedResponse
     {
-        $request = new GetPlayerTeamsRequest($playerId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetPlayerTeamsRequest($playerId, $offset, $limit));
     }
 
     /**
@@ -108,9 +83,6 @@ class PlayerResource extends BaseResource
      */
     public function getTournaments(string $playerId, int $offset = 0, int $limit = 20): PaginatedResponse
     {
-        $request = new GetPlayerTournamentsRequest($playerId, $offset, $limit);
-        $response = $this->connector->send($request);
-
-        return $request->createDtoFromResponse($response);
+        return $this->send(new GetPlayerTournamentsRequest($playerId, $offset, $limit));
     }
 }

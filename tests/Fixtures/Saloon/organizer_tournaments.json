@@ -1,0 +1,34 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 24 Mar 2026 18:57:48 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Content-Length": "31",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e17e751d8aef8e1-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/organizers\/{organizerId}\/tournaments",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "13",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "vary": "Origin",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "Accept-Ranges": "bytes",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=PewuF1XL.yfw.xIvN.NKmJYjriIZfwnP6eb68j16QMI-1774378668-1.0.1.1-2.s_D_pSDoEWGt4Tyj5_m.OctJ8gCKH9XNo5PjDEecI4gjOe5GSNWaO9hQi7HFQoT7VRqL7VBA4V1015nGniaVJuDVJukOgnW850BCKHZFC4xJAxZQIBW2czwMbn4B6U; path=\/; expires=Tue, 24-Mar-26 19:27:48 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=Jch07nB_yEsBz_9k4hYmaQqQ4f1u0ABkvhyYYUb3.Bc-1774378668028-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
+    },
+    "data": "{\"items\":[],\"start\":0,\"end\":20}",
+    "context": []
+}

@@ -1,0 +1,33 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Wed, 25 Mar 2026 06:40:29 GMT",
+        "Content-Type": "application\/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "9e1beca4aa3a5315-TXL",
+        "faceit-env": "prod",
+        "faceit-matched-route": "\/v4\/leaderboards\/championships\/{championshipId}\/groups\/{group}",
+        "faceit-service": "open-data-api",
+        "faceit-version": "1.80.0",
+        "x-envoy-upstream-service-time": "11",
+        "vary": "Accept-Encoding,Origin",
+        "ratelimit-limit": "10, 10;w=1",
+        "ratelimit-remaining": "8",
+        "ratelimit-reset": "0",
+        "x-faceit-gateway": "true",
+        "x-faceit-gateway-handler": "open-faceit",
+        "x-faceit-gateway-version": "0.31.1",
+        "x-faceit-ratelimit-name": "gateway-open-faceit-ratelimit",
+        "via": "1.1 google",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "BYPASS",
+        "Set-Cookie": [
+            "__cf_bm=92xlxwtcUiREJT9BevFAXzjjOYcAzEkooHtl5Nau_zI-1774420829-1.0.1.1-JMce_L27yX4qPM98BLGwsP4LaLlM1y_Z42QR0YkwXSTyLy67GyeE1p.Tx2holdTeQJpqbzkKa0cP5M6jTkg8UY1BLIY0QAlPTMQ1Oc_cW1PUeMMhUOs6VshyzyR17y47; path=\/; expires=Wed, 25-Mar-26 07:10:29 GMT; domain=.faceit.com; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=S8civipk4OG3.4XmXy8MCTuyoYKngJ8ourN6In9bsjA-1774420829056-0.0.1.1-604800000; path=\/; domain=.faceit.com; HttpOnly; Secure; SameSite=None"
+        ],
+        "Server": "cloudflare"
+    },
+    "data": "{\"leaderboard\":{\"leaderboard_id\":\"68bc0de13d11493c692f5043\",\"leaderboard_name\":\"Group 1\",\"leaderboard_type\":\"championship\",\"leaderboard_mode\":\"classic\",\"competition_type\":\"championship\",\"competition_id\":\"4ee6b6af-3543-4733-be87-37efaf9f886f\",\"game_id\":\"cs2\",\"region\":\"EU\",\"group\":1,\"ranking_type\":\"team\",\"start_date\":1757151185,\"end_date\":1762728732,\"min_matches\":1,\"points_type\":\"flat\",\"ranking_boost\":10,\"points_per_win\":3,\"points_per_loss\":0,\"points_per_draw\":1,\"starting_points\":0,\"status\":\"FINISHED\"},\"items\":[{\"player\":{\"user_id\":\"d616a3e8-0274-42a7-acc8-6b4c92dbc6fe\",\"nickname\":\"AlpineBattalion\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/8fbd4011-b182-42ba-8804-8ba20b69dc94.jpg\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/AlpineBattalion\"},\"played\":9,\"won\":9,\"lost\":0,\"draw\":0,\"points\":27,\"win_rate\":1,\"current_streak\":9,\"position\":0},{\"player\":{\"user_id\":\"46c77ad9-8098-4c9c-a674-00a6a79a303e\",\"nickname\":\"DIEDONUTS\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/d4a0cb70-1581-4889-a322-261157f447b5.jpg\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/DIEDONUTS\"},\"played\":9,\"won\":7,\"lost\":2,\"draw\":0,\"points\":21,\"win_rate\":0.78,\"current_streak\":1,\"position\":0},{\"player\":{\"user_id\":\"6f694f63-afdf-4560-8120-1ad7b78fe039\",\"nickname\":\"HUSKGGCommunity\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/32f97595-5a48-400a-8de0-161820c87ecd.jpeg\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/HUSKGGCommunity\"},\"played\":9,\"won\":7,\"lost\":2,\"draw\":0,\"points\":21,\"win_rate\":0.78,\"current_streak\":2,\"position\":0},{\"player\":{\"user_id\":\"03d1e308-588f-4d26-a494-de7fe1cebf16\",\"nickname\":\"Lapiru GichtmbH\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/Lapiru+GichtmbH\"},\"played\":9,\"won\":5,\"lost\":4,\"draw\":0,\"points\":15,\"win_rate\":0.56,\"current_streak\":1,\"position\":0},{\"player\":{\"user_id\":\"3c1fc293-275d-4188-aec2-94d8264c88a7\",\"nickname\":\"spende\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/f999685c-6cfe-47fc-ad21-a43d6c42ee73.jpeg\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/spende\"},\"played\":9,\"won\":5,\"lost\":4,\"draw\":0,\"points\":15,\"win_rate\":0.56,\"current_streak\":0,\"position\":0},{\"player\":{\"user_id\":\"37d90f7a-f8ea-4e19-9483-54d03d3f2ce8\",\"nickname\":\"Ready to Rumble\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/903689c4-82d0-444b-a589-49d2b353dffa.jpg\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/Ready+to+Rumble\"},\"played\":9,\"won\":4,\"lost\":5,\"draw\":0,\"points\":12,\"win_rate\":0.44,\"current_streak\":2,\"position\":0},{\"player\":{\"user_id\":\"152a6da7-8d3b-483d-b5d7-18b484467051\",\"nickname\":\"FL-Fiere_Five\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/4da80ad2-becf-4d8c-a03c-99acda79d9b5.jpg\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/FL-Fiere_Five\"},\"played\":9,\"won\":4,\"lost\":5,\"draw\":0,\"points\":12,\"win_rate\":0.44,\"current_streak\":0,\"position\":0},{\"player\":{\"user_id\":\"32fbdc50-e545-4b42-afb8-41c966616c6b\",\"nickname\":\"Team Elorutsche\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/6fe59157-e9b8-4119-949a-4b016f3c6013.jpg\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/Team+Elorutsche\"},\"played\":9,\"won\":3,\"lost\":6,\"draw\":0,\"points\":9,\"win_rate\":0.33,\"current_streak\":0,\"position\":0},{\"player\":{\"user_id\":\"e0498016-531a-4544-bb11-ac624b8cadb4\",\"nickname\":\"Reveal Crashout\",\"avatar\":\"https:\/\/distribution.faceit-cdn.net\/images\/27e82d78-fc91-4a2d-937c-6235768c09f2.jpg\",\"faceit_url\":\"https:\/\/www.faceit.com\/{lang}\/players\/Reveal+Crashout\"},\"played\":9,\"won\":1,\"lost\":8,\"draw\":0,\"points\":3,\"win_rate\":0.11,\"current_streak\":0,\"position\":0}],\"start\":0,\"end\":20}",
+    "context": []
+}
