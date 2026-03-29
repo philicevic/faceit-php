@@ -5,7 +5,7 @@
     "type": "library",
     "require": {
         "php": "^8.3",
-        "saloonphp/saloon": "^3.0"
+        "saloonphp/saloon": "^4.0"
     },
     "license": "MIT",
     "autoload": {
