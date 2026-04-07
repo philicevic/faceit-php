@@ -28,8 +28,9 @@ test('can get match details', function () {
 
     expect($match)->toBeInstanceOf(MatchDetail::class)
         ->and($match->teams)->toContainOnlyInstancesOf(MatchDetailTeam::class)
-        ->and($match->teams[0]->players)->toContainOnlyInstancesOf(MatchDetailPlayer::class)
-        ->and($match->teams[0]->players[0]->gamePlayerId)->toBeString();
+        ->and($match->teams)->toHaveKeys(['faction1', 'faction2'])
+        ->and($match->teams['faction1']->players)->toContainOnlyInstancesOf(MatchDetailPlayer::class)
+        ->and($match->teams['faction1']->players[0]->gamePlayerId)->toBeString();
 });
 
 test('match details hydrate all attributes', function () {
@@ -38,7 +39,7 @@ test('match details hydrate all attributes', function () {
     ]);
 
     $match = $this->faceit->match()->get('1-bb13fd78-e183-4d37-8a4b-ceed67da5265');
-    $team = $match->teams[0];
+    $team = $match->teams['faction1'];
     $player = $team->players[0];
 
     expect($match->uuid)->toBeString()

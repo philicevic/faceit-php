@@ -13,7 +13,7 @@ readonly class Info
     use ValidatesFields;
 
     /**
-     * @param  array<Team>  $teams
+     * @param  array<string, Team>  $teams  Keyed by faction identifier (e.g. 'faction1', 'faction2')
      * @param  array<string>  $demoUrl
      * @param  ?array<mixed>  $voting
      * @param  ?array<mixed>  $detailedResults
@@ -99,7 +99,7 @@ readonly class Info
             voting: $d['voting'] ?? null,
             detailedResults: $d['detailed_results'] ?? null,
             instances: $d['instances'] ?? null,
-            teams: array_map(Team::fromArray(...), array_values($d['teams'] ?? [])),
+            teams: array_map(Team::fromArray(...), $d['teams'] ?? []),
         ));
     }
 }

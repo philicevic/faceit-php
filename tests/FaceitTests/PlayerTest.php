@@ -204,8 +204,9 @@ test('can get player matches', function () {
     expect($response)->toBeInstanceOf(PaginatedResponse::class)
         ->and($response->items)->toContainOnlyInstancesOf(MatchSummary::class)
         ->and($response->items[0]->teams)->toContainOnlyInstancesOf(MatchSummaryTeam::class)
-        ->and($response->items[0]->teams[0]->players)->toContainOnlyInstancesOf(MatchSummaryPlayer::class)
-        ->and($response->items[0]->teams[0]->players[0]->gamePlayerId)->toBeString()
+        ->and($response->items[0]->teams)->toHaveKeys(['faction1', 'faction2'])
+        ->and($response->items[0]->teams['faction1']->players)->toContainOnlyInstancesOf(MatchSummaryPlayer::class)
+        ->and($response->items[0]->teams['faction1']->players[0]->gamePlayerId)->toBeString()
         ->and($response->from)->toBe(0)
         ->and($response->to)->toBeInt()->toBeGreaterThan(0)
         ->and($response->start)->toBe(0)
@@ -222,7 +223,7 @@ test('player matches hydrate all attributes', function () {
     expect($response->items)->toContainOnlyInstancesOf(MatchSummary::class);
 
     foreach ($response->items as $match) {
-        $team = $match->teams[0];
+        $team = $match->teams['faction1'];
         $player = $team->players[0];
 
         expect($match->uuid)->toBeString()->not->toBeEmpty()

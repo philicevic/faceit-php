@@ -13,7 +13,7 @@ readonly class Info
     use ValidatesFields;
 
     /**
-     * @param  array<Team>  $teams
+     * @param  array<string, Team>  $teams  Keyed by faction identifier (e.g. 'faction1', 'faction2')
      * @param  array<string>  $playingPlayers
      */
     public function __construct(
@@ -77,7 +77,7 @@ readonly class Info
             startedAt: new \DateTime('@'.$d['started_at']),
             finishedAt: new \DateTime('@'.$d['finished_at']),
             results: MatchResult::fromArray($d['results']),
-            teams: array_map(Team::fromArray(...), array_values($d['teams'] ?? [])),
+            teams: array_map(Team::fromArray(...), $d['teams'] ?? []),
             playingPlayers: $d['playing_players'] ?? [],
         ));
     }
