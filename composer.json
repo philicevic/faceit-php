@@ -1,7 +1,7 @@
 {
     "name": "philicevic/faceit-php",
     "description": "A PHP SDK for FACEITs api.",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "type": "library",
     "require": {
         "php": "^8.3",

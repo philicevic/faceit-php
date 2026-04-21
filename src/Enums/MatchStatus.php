@@ -8,4 +8,5 @@ enum MatchStatus: string
     case Finished = 'FINISHED';
     case Cancelled = 'CANCELLED';
     case Ongoing = 'ONGOING';
+    case Voting = 'VOTING';
 }
